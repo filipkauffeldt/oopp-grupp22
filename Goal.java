@@ -1,4 +1,4 @@
-public class Goal extends Entity {
+public abstract class Goal extends Entity {
 
     private boolean scored;
     private double outerHitboxR;
