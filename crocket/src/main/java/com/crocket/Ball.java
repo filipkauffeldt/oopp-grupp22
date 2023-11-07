@@ -1,3 +1,4 @@
+package crocket.src.main.java.com.crocket;
 public class Ball extends Entity implements IMovable{
     private double power;
     private double mass;

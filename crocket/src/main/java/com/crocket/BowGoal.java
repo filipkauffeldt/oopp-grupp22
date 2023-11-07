@@ -1,3 +1,4 @@
+package crocket.src.main.java.com.crocket;
 public class BowGoal extends Goal {
 
     private double innerHitbox;

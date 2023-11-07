@@ -1,3 +1,7 @@
+package crocket.src.main.java.com.crocket;
+import crocket.src.main.java.com.crocket.Color;
+
+
 public abstract class Entity {
     // private Color color; // should add this class/interface
     private double xPosition;
