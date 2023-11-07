@@ -2,7 +2,7 @@ package com.crocket;
 import java.lang.Math;
 
 public class elasticCollision {
-    public static void calculateElasticCollision(Entity entity1, Entity entity2){
+    public static void elasticCollision(Entity entity1, Entity entity2){
         //Normal or distance between center of both objects. 
         double dx = entity1.getxPosition() - entity2.getxPosition();
         double dy = entity1.getyPosition() - entity2.getyPosition();
