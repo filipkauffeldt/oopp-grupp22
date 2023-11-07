@@ -1,21 +1,18 @@
 package crocket.src.main.java.com.crocket;
-import crocket.src.main.java.com.crocket.Color;
 
 
 public abstract class Entity {
-    // private Color color; // should add this class/interface
     private double xPosition;
     private double yPosition;
-    // private Texture texture; // should add this class/interface
     private int width;
     private int height;
 
-    public Entity(int width, int height, Color color, Texture texture)
+    public Entity(int width, int height, double xPosition, double yPosition)
     {
         this.width = width;
         this.height = height;
-        // this.color = color; // should add after the class/interface is done
-        // this.texture = texture; // should add after the class/interface is done
+        this.xPosition = xPosition;
+        this.yPosition = yPosition;
     }
 
     public double getxPosition() {
@@ -23,6 +20,12 @@ public abstract class Entity {
     }
     public double getyPosition() {
         return yPosition;
+    }
+    public int getWidth(){
+        return width;
+    }
+    public int getHeight(){
+        return height;
     }
 
     public void setCoordinates(double xPosition, double yPosition){
