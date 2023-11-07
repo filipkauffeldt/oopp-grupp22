@@ -28,13 +28,4 @@ public abstract class Entity {
         return height;
     }
 
-    public void setCoordinates(double xPosition, double yPosition){
-        this.xPosition = xPosition;
-        this.yPosition = yPosition;
-    }
-
-    public void setCollidablePossbilityX(int width, double xPosition){
-        
-    }
-
 }
