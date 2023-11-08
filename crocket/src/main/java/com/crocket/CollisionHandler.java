@@ -1,4 +1,4 @@
-package com.crocket;
+/*package com.crocket;
 import java.lang.Math;
 
 public class CollisionHandler {
@@ -24,7 +24,7 @@ public class CollisionHandler {
         double mass1 = entity1.getMass();
         double mass2 = entity2.getMass();
 
-        //Normal velocities with the one-dimensional collision formula 
+        //Normal velocities with the one-dimensional collision formula
         double newV1n = (v1n * (mass1 - mass2) + 2 * mass2 * v2n)/(mass1 + mass2);
         double newV2n = (v2n * (mass2 - mass1) + 2 * mass1 * v1n)/(mass1 + mass2);
 
@@ -41,4 +41,4 @@ public class CollisionHandler {
         entity2.setxVelocity(newXVelocityEntity2);
         entity2.setyVelocity(newYVelocityEntity2);  
     }
-}
+}*/
