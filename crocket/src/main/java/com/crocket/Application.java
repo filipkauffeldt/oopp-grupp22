@@ -14,7 +14,6 @@ public class Application {
         frame.setIconImage(img.getImage());
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.getContentPane().setBackground(Color.GREEN);
         frame.setLocationRelativeTo(null);
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
         frame.setVisible(true);  
