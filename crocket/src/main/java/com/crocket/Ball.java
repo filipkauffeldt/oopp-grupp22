@@ -11,7 +11,13 @@ public class Ball extends Entity implements IMovable{
         //TODO Auto-generated constructor stub
     }
 
+    public void shootBall(double cosinus, double sinus){
+        this.xVelocity = (power*cosinus)/mass;
+        this.yVelocity = (power*sinus)/mass;
+    }
+
     public void move(){
-        
+        this.setxPosition((this.getxPosition()+xVelocity));
+        this.setyPosition((this.getyPosition()+yVelocity));
     }
 }
