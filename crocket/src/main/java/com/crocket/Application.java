@@ -10,7 +10,6 @@ public class Application {
     private static void init(){
         JFrame frame = new JFrame("Crocket");
 
-        //This should be view
         ImageIcon img = new ImageIcon("crocket/assets/textures/JFrame_Icon.jpg");
         frame.setIconImage(img.getImage());
 
