@@ -28,4 +28,12 @@ public abstract class Entity {
         return height;
     }
 
+    public void setxPosition(double xPosition){
+        this.xPosition = xPosition;
+    }
+
+    public void setyPosition(double yPosition){
+        this.yPosition = yPosition;
+    }
+
 }
