@@ -4,9 +4,9 @@ public class MovableHoop extends Hoop implements IMovable {
 
     private double xVelocity;
     private double yVelocity;
-    
-    public MovableHoop(int width, int height, double xPosition, double yPosition, Direction direction, double innerHitboxWidth) {
-        super(width, height, xPosition, yPosition, direction, innerHitboxWidth);
+
+    public MovableHoop(int width, int height, int innerWidth,double xPosition, double yPosition, Direction dir) {
+        super(width, height, innerWidth, xPosition, yPosition, dir);
     }
 
     public void move(){
