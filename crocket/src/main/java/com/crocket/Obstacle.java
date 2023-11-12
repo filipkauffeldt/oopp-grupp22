@@ -1,5 +1,5 @@
-package crocket.src.main.java.com.crocket;
-import crocket.src.main.java.com.crocket.Entity;
+package com.crocket;
+import com.crocket.Entity;
 
 
 public abstract class Obstacle extends Entity {

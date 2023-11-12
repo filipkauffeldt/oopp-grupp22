@@ -1,4 +1,4 @@
-package crocket.src.main.java.com.crocket;
+package com.crocket;
 
 public class MovableHoop extends Hoop implements IMovable {
 
@@ -6,7 +6,7 @@ public class MovableHoop extends Hoop implements IMovable {
     private double yVelocity;
 
     public MovableHoop(int width, int height, double xPosition, double yPosition, Direction dir) {
-        super(width, height, xPosition, yPosition, dir);
+        super(width, height, xPosition, yPosition);
         //TODO Auto-generated constructor stub
     }
 

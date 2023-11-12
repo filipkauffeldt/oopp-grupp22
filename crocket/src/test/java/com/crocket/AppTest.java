@@ -1,4 +1,4 @@
-package crocket.src.test.java.com.crocket;
+package com.crocket;
 
 import static org.junit.Assert.assertTrue;
 

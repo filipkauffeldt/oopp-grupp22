@@ -1,4 +1,4 @@
-package crocket.src.main.java.com.crocket;
+package com.crocket;
 
 public enum Direction
 {

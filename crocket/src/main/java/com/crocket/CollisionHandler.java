@@ -1,4 +1,4 @@
-package crocket.src.main.java.com.crocket;
+package com.crocket;
 /*package com.crocket;
 import java.lang.Math;
 

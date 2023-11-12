@@ -1,4 +1,4 @@
-package crocket.src.main.java.com.crocket;
+package com.crocket;
 
 public class MovablePeg extends Peg implements IMovable{
     private double xVelocity;

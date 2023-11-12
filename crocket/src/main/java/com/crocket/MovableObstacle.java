@@ -1,4 +1,4 @@
-package crocket.src.main.java.com.crocket;
+package com.crocket;
 
 public class MovableObstacle extends Obstacle implements IMovable{
     private double xVelocity;
