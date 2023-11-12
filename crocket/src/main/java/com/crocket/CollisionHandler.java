@@ -58,7 +58,110 @@ public class CollisionHandler {
                 h1Y < h2Y + h2Height &&
                 h1Y + h1Height > h2Y);
     }
-    
+
+    public static void reflect(IMovable entity, Direction direction) {
+        double xVelocity = entity.getxVelocity();
+        double yVelocity = entity.getyVelocity();
+
+        if (direction == Direction.EAST || direction == Direction.WEST) {
+            entity.setxVelocity(-xVelocity);
+        } else {
+            entity.setyVelocity(-yVelocity);
+        }
+    }
+
+    public static Direction collidedDirection(Entity entity1, Entity entity2) {
+        Hitbox e1Hitbox = entity1.getHitbox();
+        Hitbox e2Hitbox = entity2.getHitbox();
+
+        double e1X = e1Hitbox.getxPosition();
+        double e1Y = e1Hitbox.getyPosition();
+
+        double e2X = e2Hitbox.getxPosition();
+        double e2Y = e2Hitbox.getyPosition();
+
+        if (intersect(entity1, entity2)) {
+            double xDistance = e1X - e2X;
+            double yDistance = e1Y - e2Y;
+
+            if (Math.abs(xDistance) > Math.abs(yDistance)) {
+                if (xDistance > 0) {
+                    return Direction.EAST;
+                } else {
+                    return Direction.WEST;
+                }
+            } else {
+                if (yDistance > 0) {
+                    return Direction.SOUTH;
+                } else {
+                    return Direction.NORTH;
+                }
+            }
+        } else {
+            return null;
+        }
+    }
+
+    public static Direction collidedDirection(Entity entity, Hitbox hitbox) {
+        Hitbox eHitbox = entity.getHitbox();
+
+        double eX = eHitbox.getxPosition();
+        double eY = eHitbox.getyPosition();
+
+        double hX = hitbox.getxPosition();
+        double hY = hitbox.getyPosition();
+
+        if (intersect(entity, hitbox)) {
+            double xDistance = eX - hX;
+            double yDistance = eY - hY;
+
+            if (Math.abs(xDistance) > Math.abs(yDistance)) {
+                if (xDistance > 0) {
+                    return Direction.EAST;
+                } else {
+                    return Direction.WEST;
+                }
+            } else {
+                if (yDistance > 0) {
+                    return Direction.SOUTH;
+                } else {
+                    return Direction.NORTH;
+                }
+            }
+        } else {
+            return null;
+        }
+    }
+
+    public static Direction collidedDirection(Hitbox hitbox1, Hitbox hitbox2) {
+        double h1X = hitbox1.getxPosition();
+        double h1Y = hitbox1.getyPosition();
+
+        double h2X = hitbox2.getxPosition();
+        double h2Y = hitbox2.getyPosition();
+
+        if (intersect(hitbox1, hitbox2)) {
+            double xDistance = h1X - h2X;
+            double yDistance = h1Y - h2Y;
+
+            if (Math.abs(xDistance) > Math.abs(yDistance)) {
+                if (xDistance > 0) {
+                    return Direction.EAST;
+                } else {
+                    return Direction.WEST;
+                }
+            } else {
+                if (yDistance > 0) {
+                    return Direction.SOUTH;
+                } else {
+                    return Direction.NORTH;
+                }
+            }
+        } else {
+            return null;
+        }
+    }
+
     // public static void elasticCollision(Entity entity1, Entity entity2){
     //     //Normal or distance between center of both objects. 
     //     double dx = entity1.getxPosition() - entity2.getxPosition();
