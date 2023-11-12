@@ -98,7 +98,7 @@ public class CollisionHandler {
                 }
             }
         } else {
-            return null;
+            throw new IllegalArgumentException("Entities do not intersect");
         }
     }
 
@@ -129,7 +129,7 @@ public class CollisionHandler {
                 }
             }
         } else {
-            return null;
+            throw new IllegalArgumentException("Entities do not intersect");
         }
     }
 
@@ -158,7 +158,7 @@ public class CollisionHandler {
                 }
             }
         } else {
-            return null;
+            throw new IllegalArgumentException("Entities do not intersect");
         }
     }
 
