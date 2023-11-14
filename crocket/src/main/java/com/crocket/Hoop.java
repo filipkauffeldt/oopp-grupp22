@@ -16,6 +16,7 @@ public class Hoop extends Entity implements ICollidable {
 
         int sideWidth = (width - openingWidth)/2;
         this.lefHitbox = new Hitbox(sideWidth, height, xPosition, yPosition); // Probably not right. Does not take into account rotation
+        this.rightHitbox = new Hitbox(sideWidth, height, xPosition + sideWidth + openingWidth, yPosition); // Probably not right. Does not take into account rotation
     }
 
     @Override
