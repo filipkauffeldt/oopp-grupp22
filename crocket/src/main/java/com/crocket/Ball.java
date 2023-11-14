@@ -20,11 +20,19 @@ public class Ball extends Entity implements IMovable{
         return yVelocity;
     }
 
+    public void setxVelocity(double xVelocity){
+        this.xVelocity = xVelocity;
+    }
+
+    public void setyVelocity(double yVelocity){
+        this.yVelocity = yVelocity;
+    }
+    
     public void startBall(double cosinus, double sinus, double power){
         this.xVelocity = (power*cosinus)/mass;
         this.yVelocity = (power*sinus)/mass;
     }
-
+    
     public void move(){
         this.setxPosition((this.getxPosition()+xVelocity));
         this.setyPosition((this.getyPosition()+yVelocity));
