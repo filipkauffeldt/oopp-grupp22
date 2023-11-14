@@ -8,13 +8,13 @@ public class Hoop extends Entity implements ICollidable {
     private Hitbox lefHitbox;
     private Hitbox rightHitbox;
 
-    public Hoop(int width, int height, int innerWidth, double xPosition, double yPosition, Direction dir) {
+    public Hoop(int width, int height, int openingWidth, double xPosition, double yPosition, Direction dir) {
         super(width, height, xPosition, yPosition);
-        this.innerWidth = innerWidth;
+        this.innerWidth = openingWidth;
         this.dir = dir;
-        this.innerHitbox = createInnerHitbox(width, height, innerWidth, dir, xPosition, yPosition);
+        this.innerHitbox = createInnerHitbox(width, height, openingWidth, dir, xPosition, yPosition);
 
-        int sideWidth = (width - innerWidth)/2;
+        int sideWidth = (width - openingWidth)/2;
         this.lefHitbox = new Hitbox(sideWidth, height, xPosition, yPosition); // Probably not right. Does not take into account rotation
     }
 
@@ -32,11 +32,11 @@ public class Hoop extends Entity implements ICollidable {
 
     private Hitbox createInnerHitbox(int outerWidth, int height, int innerWidth, Direction direction, double xPosition, double yPosition) {
         if (direction == Direction.EAST || direction == Direction.WEST) {
-            double xStart = xPosition + (outerWidth - innerWidth)/2;
-            return new Hitbox(innerWidth, innerWidth/10, xStart, yPosition);
-        } else {
             double yStart = yPosition + (outerWidth - innerWidth)/2;
             return new Hitbox(innerWidth/10, innerWidth, xPosition, yStart);
+        } else {
+            double xStart = xPosition + (outerWidth - innerWidth)/2;
+            return new Hitbox(innerWidth, innerWidth/10, xStart, yPosition);
         }
     }
 
