@@ -7,6 +7,9 @@ public class Ball extends Entity implements IMovable{
 
     public Ball(int width, int height, double xPosition, double yPosition, double mass) {
         super(width, height, xPosition, yPosition);
+        if(mass <= 0.0){
+            throw new IllegalArgumentException("Mass should be above 0");
+        }
     }
 
     public double getxVelocity(){
