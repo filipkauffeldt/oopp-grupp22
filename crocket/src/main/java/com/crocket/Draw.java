@@ -8,6 +8,8 @@ public class Draw extends Canvas {
     //temp placement
     Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
     Image ballImg = Toolkit.getDefaultToolkit().getImage("crocket/assets/textures/Ball.png");
+    Image bBallImg = Toolkit.getDefaultToolkit().getImage("crocket/assets/textures/BlueBall.png");
+    Image rBallImg = Toolkit.getDefaultToolkit().getImage("crocket/assets/textures/RedBall.png");
     Image grassImg = Toolkit.getDefaultToolkit().getImage("crocket/assets/textures/Weed.png");
     Image sandImg = Toolkit.getDefaultToolkit().getImage("crocket/assets/textures/Anakin.png");
     Image iceImg = Toolkit.getDefaultToolkit().getImage("crocket/assets/textures/Nice.png");
@@ -34,6 +36,9 @@ public class Draw extends Canvas {
         }
         
         g.drawImage(ballImg, 1000, 600, this);
+        g.drawImage(bBallImg, 1000, 100, this);
+        g.drawImage(rBallImg, 300, 600, this);
+        
     }
 
     
