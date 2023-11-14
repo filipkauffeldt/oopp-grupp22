@@ -7,7 +7,6 @@ public class Ball extends Entity implements IMovable{
 
     public Ball(int width, int height, double xPosition, double yPosition, double mass) {
         super(width, height, xPosition, yPosition);
-        //TODO Auto-generated constructor stub
     }
 
     public double getxVelocity(){

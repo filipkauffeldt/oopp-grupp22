@@ -6,7 +6,6 @@ public class MovableObstacle extends Obstacle implements IMovable{
 
     public MovableObstacle(int width, int height, double xPosition, double yPosition) {
         super(width, height, xPosition, yPosition);
-        //TODO Auto-generated constructor stub
     }
 
     public void move(){

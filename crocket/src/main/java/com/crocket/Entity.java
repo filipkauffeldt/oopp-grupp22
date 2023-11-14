@@ -1,6 +1,5 @@
 package com.crocket;
 
-
 public abstract class Entity {
     private double xPosition;
     private double yPosition;
@@ -18,12 +17,15 @@ public abstract class Entity {
     public double getxPosition() {
         return xPosition;
     }
+
     public double getyPosition() {
         return yPosition;
     }
+
     public int getWidth(){
         return width;
     }
+
     public int getHeight(){
         return height;
     }
@@ -35,5 +37,4 @@ public abstract class Entity {
     public void setyPosition(double yPosition){
         this.yPosition = yPosition;
     }
-
 }

@@ -6,7 +6,6 @@ public class MovablePeg extends Peg implements IMovable{
 
     public MovablePeg(int width, int height, double xPosition, double yPosition) {
         super(width, height, xPosition, yPosition);
-        //TODO Auto-generated constructor stub
     }
 
     public void move(){
