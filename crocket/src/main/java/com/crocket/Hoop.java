@@ -20,13 +20,17 @@ public class Hoop extends Entity implements ICollidable {
 
     @Override
     public void collideWithBall(Ball ball) {
+        if (missedTarget(ball)) return;
         if (collidedLeft(ball)) {
-            
+            Direction direction = CollisionHandler.collidedDirection(ball, lefHitbox);
+            CollisionHandler.reflect(ball, direction);
         } else if (collidedRight(ball)) {
-            
+            Direction direction = CollisionHandler.collidedDirection(ball, rightHitbox);
+            CollisionHandler.reflect(ball, direction);
         } else if (passedThrough(ball)) {
+            // TODO: Implement when possible in user
             // Notify player that they passed the hoop
-            // Move ball outside hoopp?
+            // Move ball outside hoop?
         }
     }
 
@@ -40,15 +44,20 @@ public class Hoop extends Entity implements ICollidable {
         }
     }
 
+    private boolean missedTarget(Ball ball) {
+        return !CollisionHandler.intersect(ball, this);
+    }
+
     private boolean passedThrough(Ball ball) {
-        return false;
+        return CollisionHandler.intersect(ball, innerHitbox);
+
     }
 
     private boolean collidedRight(Ball ball) {
-        return false;
+        return CollisionHandler.intersect(ball, rightHitbox);
     }
 
     private boolean collidedLeft(Ball ball) {
-        return false;
+        return CollisionHandler.intersect(ball, lefHitbox);
     }
 }
