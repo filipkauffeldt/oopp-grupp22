@@ -12,9 +12,6 @@ public class Application {
     
     private static void init(){
         new CroquetView();
-        
-        
-
     }
 
     
