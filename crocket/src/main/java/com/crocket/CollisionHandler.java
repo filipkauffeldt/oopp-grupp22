@@ -7,39 +7,13 @@ public class CollisionHandler {
         Hitbox e1Hitbox = entity1.getHitbox();
         Hitbox e2Hitbox = entity2.getHitbox();
 
-        double e1X = e1Hitbox.getxPosition();
-        double e1Y = e1Hitbox.getyPosition();
-        int e1Width = e1Hitbox.getWidth();
-        int e1Height = e1Hitbox.getHeight();
-
-        double e2X = e2Hitbox.getxPosition();
-        double e2Y = e2Hitbox.getyPosition();
-        int e2Width = e2Hitbox.getWidth();
-        int e2Height = e2Hitbox.getHeight();
-
-        return (e1X < e2X + e2Width &&
-                e1X + e1Width > e2X &&
-                e1Y < e2Y + e2Height &&
-                e1Y + e1Height > e2Y);
+        return intersect(e1Hitbox, e2Hitbox);
     }
 
     public static boolean intersect(Entity entity, Hitbox hitbox) {
         Hitbox eHitbox = entity.getHitbox();
 
-        double eX = eHitbox.getxPosition();
-        double eY = eHitbox.getyPosition();
-        int eWidth = eHitbox.getWidth();
-        int eHeight = eHitbox.getHeight();
-
-        double hX = hitbox.getxPosition();
-        double hY = hitbox.getyPosition();
-        int hWidth = hitbox.getWidth();
-        int hHeight = hitbox.getHeight();
-
-        return (eX < hX + hWidth &&
-                eX + eWidth > hX &&
-                eY < hY + hHeight &&
-                eY + eHeight > hY);
+        return intersect(eHitbox, hitbox);
     }
 
     public static boolean intersect(Hitbox hitbox1, Hitbox hitbox2) {
@@ -53,10 +27,15 @@ public class CollisionHandler {
         int h2Width = hitbox2.getWidth();
         int h2Height = hitbox2.getHeight();
 
-        return (h1X < h2X + h2Width &&
-                h1X + h1Width > h2X &&
-                h1Y < h2Y + h2Height &&
-                h1Y + h1Height > h2Y);
+        boolean isLeft = h1X < h2X + h2Width;
+        boolean isRight = h1X + h1Width > h2X;
+        boolean isAbove = h1Y < h2Y + h2Height;
+        boolean isBelow = h1Y + h1Height > h2Y;
+
+        return (isLeft &&
+                isRight &&
+                isAbove &&
+                isBelow);
     }
 
     public static void reflect(IMovable entity, Direction direction) {
