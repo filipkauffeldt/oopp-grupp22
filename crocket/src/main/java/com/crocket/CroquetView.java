@@ -8,7 +8,7 @@ import java.awt.Toolkit;
 public class CroquetView extends JFrame{
     JFrame frame;
     Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
-    Draw draw = new Draw();
+    DrawLevel drawLevel = new DrawLevel(new Level1());
 
     CroquetView(){
         frame = new JFrame();
@@ -21,7 +21,7 @@ public class CroquetView extends JFrame{
         setSize(500, 400);
         setLocationRelativeTo(null);
         setExtendedState(MAXIMIZED_BOTH); 
-        add(draw);
+        add(drawLevel);
 
         
         
