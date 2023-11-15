@@ -5,14 +5,13 @@ public enum Field {
     SAND("crocket/assets/textures/Anakin.png"),
     GRASS("crocket/assets/textures/Weed.png");
 
-
     private final String texturePath;
-    
-    private Field(String texturePath){
+
+    private Field(String texturePath) {
         this.texturePath = texturePath;
     }
 
-    public String getFieldTexturePath(){
+    public String getFieldTexturePath() {
         return texturePath;
     }
 

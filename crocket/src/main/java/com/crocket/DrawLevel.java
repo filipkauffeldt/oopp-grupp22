@@ -5,13 +5,12 @@ import java.awt.*;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-
 public class DrawLevel extends JPanel {
     private Level level;
 
     public DrawLevel(Level level) {
         this.level = level;
-        
+
     }
 
     @Override
