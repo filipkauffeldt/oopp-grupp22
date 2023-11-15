@@ -6,12 +6,16 @@ public abstract class Entity {
     private int width;
     private int height;
 
+    private Hitbox hitbox;
+
     public Entity(int width, int height, double xPosition, double yPosition)
     {
         this.width = width;
         this.height = height;
         this.xPosition = xPosition;
         this.yPosition = yPosition;
+
+        this.hitbox = new Hitbox(width, height, xPosition, yPosition);
     }
 
     public double getxPosition() {
@@ -37,4 +41,9 @@ public abstract class Entity {
     public void setyPosition(double yPosition){
         this.yPosition = yPosition;
     }
+
+    public Hitbox getHitbox() {
+        return hitbox;
+    }
+
 }
