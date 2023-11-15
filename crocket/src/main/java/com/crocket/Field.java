@@ -11,4 +11,9 @@ public enum Field {
     private Field(String texturePath){
         this.texturePath = texturePath;
     }
+
+    public String getFieldTexturePath(){
+        return texturePath;
+    }
+
 }
