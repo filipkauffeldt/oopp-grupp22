@@ -36,5 +36,14 @@ public class Draw extends Canvas {
         g.drawImage(ballImg, 1000, 600, this);
     }
 
+    public void paint(Graphics g, Level1){
+        Field[][] levelTilemap = Level1.getLevelTilemap();
+        for(int y = 0; y < Level1.getLevelHeight(); y++){
+            for(int x = 0; x < Level1.getgetLevelWidht(); x++){
+                levelTilemap[y][x] 
+            }
+        }
+    }
+
     
 }
