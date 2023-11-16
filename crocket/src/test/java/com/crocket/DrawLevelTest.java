@@ -23,9 +23,10 @@ public class DrawLevelTest {
         Level testLevel = new Level1();
         assertEquals(testLevel.getLevelWidth(), 25);
     }
+
     @Test
     public void drawWrongLevelTest() {
-        CroquetView testView= new CroquetView();
+        CroquetView testView = new CroquetView();
         LevelView level1View = null;
         testView.drawLevel(level1View);
     }

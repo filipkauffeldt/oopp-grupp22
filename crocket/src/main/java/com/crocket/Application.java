@@ -8,9 +8,8 @@ public class Application {
 
     private static void init(){
         LevelView level1View = new LevelView(new Level1());
-        CroquetView croquetView= new CroquetView();
+        CroquetView croquetView = new CroquetView();
         croquetView.drawLevel(level1View);
-        
     }
 
 }
