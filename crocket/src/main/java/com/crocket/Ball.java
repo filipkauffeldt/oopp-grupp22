@@ -14,7 +14,7 @@ public class Ball extends Entity implements IMovable{
     }
 
     public double getxVelocity(){
-        return xVelocity;
+        return this.xVelocity;
     }
 
     public double getyVelocity(){
@@ -32,7 +32,7 @@ public class Ball extends Entity implements IMovable{
     public void setyVelocity(double yVelocity){
         this.yVelocity = yVelocity;
     }
-    
+
     public void startBall(double cosinus, double sinus, double power){
         double newXVelocity;
         double newYVelocity;
@@ -42,14 +42,12 @@ public class Ball extends Entity implements IMovable{
         setxVelocity(newXVelocity);
         setyVelocity(newYVelocity);
     }
-    
+
     public void move(){
         double xPosition = getxPosition();
         double yPosition = getyPosition();
-        this.setxPosition((xPosition+xVelocity));
-        this.setyPosition((yPosition+yVelocity));
+        this.setxPosition((xPosition+ this.xVelocity));
+        this.setyPosition((yPosition+this.yVelocity));
         
-        getHitbox().setxPosition(getxPosition());
-        getHitbox().setyPosition(getyPosition());
     }
 }
