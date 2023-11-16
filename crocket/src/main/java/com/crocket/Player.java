@@ -8,6 +8,7 @@ public class Player implements IEventListener{
     int strokes;
     boolean finished;
     PriorityQueue<Entity> unpassedHoops; //Queue of hoops that have not been passed through yet
+    Ball ball;
     
     Player(List<Entity>  hoops) {
         this.unpassedHoops =  new PriorityQueue<Entity>(hoops); 
@@ -29,7 +30,10 @@ public class Player implements IEventListener{
     //Gets a hoop a ball has passed under and check if it is the next hoop in the queue
     //If it is, it removes it from the queue if not the hoops has been passed in the wrong order
     @Override
-    public void update(Hoop hoop) {
+    public void handleEvent(PassHoopEvent event) {
+        if (event.getBall() != ball) return;
+        
+        Hoop hoop = event.getHoop();
         if (this.unpassedHoops.peek() == hoop) {
             this.unpassedHoops.poll();
         }
