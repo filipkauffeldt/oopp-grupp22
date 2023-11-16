@@ -2,7 +2,6 @@ package com.crocket;
 import javax.swing.*;
 
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Toolkit;
 
 
@@ -28,10 +27,6 @@ public class CroquetView extends JFrame{
         df.add(draw);
         draw.setBounds(1000, 600, 19, 19);
         
-        
-
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
-
-    
 }

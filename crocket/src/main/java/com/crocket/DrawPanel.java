@@ -10,7 +10,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 
-
 public class DrawPanel extends JLabel implements KeyListener{
     
     //temp placement
@@ -56,7 +55,6 @@ public class DrawPanel extends JLabel implements KeyListener{
         
     }
 
-    
     @Override
     public void keyTyped(KeyEvent e) {
         
