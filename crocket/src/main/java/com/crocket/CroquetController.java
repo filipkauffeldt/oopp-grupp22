@@ -18,7 +18,7 @@ public class CroquetController implements KeyListener{
     public void keyPressed(KeyEvent ke){
         if (ke.getKeyCode() == KeyEvent.VK_SPACE){
             ball.startBall(30, 0, 2000 );
-            
+            view.draw.setLocation(1000, 600);
             System.out.println("Hej");
             
         }
