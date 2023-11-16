@@ -1,22 +1,29 @@
 package com.crocket;
-import java.awt.Color;
-import javax.swing.*; 
+import javax.swing.*;
 
-public class Application {
-    public static void main( String[] args )
-    {
-        init(); 
+public class Application extends JComponent{
+    private static int delay = 20;
+
+    static CroquetView frame = new CroquetView();
+      
+    static Ball ball = new Ball(19,19,100,200,2);
+    static CroquetController cc = new CroquetController(frame, ball);
+    
+    public static void main( String[] args ){
+        init();   
     }
+    
     private static void init(){
-        JFrame frame = new JFrame("Crocket");
-
-        ImageIcon img = new ImageIcon("crocket/assets/textures/JFrame_Icon.jpg");
-        frame.setIconImage(img.getImage());
-
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLocationRelativeTo(null);
-        frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
-        frame.setVisible(true);  
+        
+        Thread run = new Thread();
+        run.start();
+        while(true){
+            try{
+                Thread.sleep(delay);
+            }
+            catch(Exception ex){}
+            cc.update();
+        }
     }
-
 }
+ 
