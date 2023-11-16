@@ -30,15 +30,15 @@ public class BallTest {
 
     @Test
     public void test_if_move_method_moves_correctly_x(){
-        ball.startBall(0, 1, 4);
-        ball.setxPosition(this.xPosition + ball.getxVelocity());
+        ball.startBall(1, 0, 4);
+        ball.move();
         assertEquals(ball.getxPosition(), 22, 0.0001);
     }
 
     @Test
     public void test_if_move_method_moves_correctly_y(){
         ball.startBall(0, 1, 4);
-        ball.setxPosition(this.yPosition + ball.getyVelocity());
+        ball.move();
         assertEquals(ball.getyPosition(), 22, 0.0001);
     }
 }
