@@ -1,10 +1,10 @@
 package com.crocket;
 
 public abstract class Entity {
-    protected double xPosition;
-    protected double yPosition;
-    protected int width;
-    protected int height;
+    private double xPosition;
+    private double yPosition;
+    private int width;
+    private int height;
 
     private Hitbox hitbox;
 

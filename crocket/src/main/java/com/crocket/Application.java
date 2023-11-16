@@ -1,15 +1,11 @@
 package com.crocket;
 import javax.swing.*;
 
-
-
-
-
 public class Application extends JComponent{
 
     static CroquetView frame = new CroquetView();
       
-    static Ball ball = new Ball(19,19,100,200,20);
+    static Ball ball = new Ball(19,19,100,200,2);
     static CroquetController cc = new CroquetController(frame, ball);
     
     public static void main( String[] args ){
@@ -22,14 +18,11 @@ public class Application extends JComponent{
         run.start();
         while(true){
             try{
-                Thread.sleep(500);
+                Thread.sleep(20);
             }
             catch(Exception ex){}
             cc.update();
-            
         }
-        
     }
-
 }
  

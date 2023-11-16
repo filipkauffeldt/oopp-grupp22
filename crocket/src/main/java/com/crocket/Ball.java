@@ -14,7 +14,7 @@ public class Ball extends Entity implements IMovable{
     }
 
     public double getxVelocity(){
-        return this.xVelocity;
+        return xVelocity;
     }
 
     public double getyVelocity(){
@@ -48,6 +48,8 @@ public class Ball extends Entity implements IMovable{
         double yPosition = getyPosition();
         this.setxPosition((xPosition+xVelocity));
         this.setyPosition((yPosition+yVelocity));
+        
+        getHitbox().setxPosition(getxPosition());
         
     }
 }
