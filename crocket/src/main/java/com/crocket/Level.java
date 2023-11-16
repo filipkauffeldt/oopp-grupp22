@@ -5,7 +5,7 @@ public interface Level {
 
     public int getLevelWidth();
 
-    public Field[][] getLevelTilemap();
+    public Surface[][] getLevelTilemap();
 
     public void validateLevel();
 }

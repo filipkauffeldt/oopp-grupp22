@@ -1,6 +1,7 @@
 package com.crocket;
 import javax.swing.*;
 
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 
@@ -8,7 +9,21 @@ import java.awt.Toolkit;
 public class CroquetView extends JFrame{
     JFrame frame;
     Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
-    DrawLevel drawLevel = new DrawLevel(new Level1());
+
+
+    public void drawLevel(LevelView drawLevel){
+        removeAllLevelComponents();
+        add(drawLevel);
+    }
+
+    private void removeAllLevelComponents(){
+        Component[] components = frame.getComponents();
+        for (Component component : components) {
+            if (component instanceof LevelView) {
+                frame.remove(component);
+            }
+        }
+    }
 
     CroquetView(){
         frame = new JFrame();
@@ -21,7 +36,6 @@ public class CroquetView extends JFrame{
         setSize(500, 400);
         setLocationRelativeTo(null);
         setExtendedState(MAXIMIZED_BOTH); 
-        add(drawLevel);
 
         
         

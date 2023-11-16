@@ -1,11 +1,11 @@
 package com.crocket;
 
-import static com.crocket.Field.*;
+import static com.crocket.Surface.*;
 
 public class Level1 implements Level {
     private int width = 25;
     private int height = 15;
-    Field[][] tilemap = {
+    Surface[][] tilemap = {
             { GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS},
             { GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS },
             { GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS,GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS },
@@ -30,7 +30,7 @@ public class Level1 implements Level {
         return width;
     }
 
-    public Field[][] getLevelTilemap() {
+    public Surface[][] getLevelTilemap() {
         return tilemap;
     }
 

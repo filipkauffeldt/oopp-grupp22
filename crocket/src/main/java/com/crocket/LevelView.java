@@ -5,16 +5,20 @@ import java.awt.*;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-public class DrawLevel extends JPanel {
+public class LevelView extends JPanel {
     private Level level;
 
-    public DrawLevel(Level level) {
+    public LevelView(Level level) {
         this.level = level;
 
     }
 
+    public void drawLevel(){
+        repaint();
+    }
+
     @Override
-    public void paintComponent(Graphics g) {
+    protected void paintComponent(Graphics g) {
         try {
             level.validateLevel();
             drawLevel(g);
@@ -24,7 +28,7 @@ public class DrawLevel extends JPanel {
         }
     }
 
-    private void getTileTexture(Graphics g, Field[][] levelTilemap, int y, int x) {
+    private void getTileTexture(Graphics g, Surface[][] levelTilemap, int y, int x) {
         String tileTexturePath = levelTilemap[y][x].getFieldTexturePath();
         if (tileTexturePath == null) {
             throw new NullPointerException("Tile texture not found!");
@@ -34,7 +38,7 @@ public class DrawLevel extends JPanel {
     }
 
     private void drawLevel(Graphics g) {
-        Field[][] levelTilemap = this.level.getLevelTilemap();
+        Surface[][] levelTilemap = this.level.getLevelTilemap();
         for (int y = 0; y < this.level.getLevelHeight(); y++) {
             for (int x = 0; x < this.level.getLevelWidth(); x++) {
                 getTileTexture(g, levelTilemap, y, x);
