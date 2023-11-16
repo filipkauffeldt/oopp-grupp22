@@ -24,4 +24,14 @@ public class DrawLevelTest {
         assertEquals(testLevel.getLevelWidth(), 25);
     }
 
+    @Test
+    public void testLevelMatrix() {
+        ILevel testLevel = new Level1();
+        Surface[][] testMatrix = testLevel.getLevelTilemap();
+        for (Surface[] row : testMatrix) {
+            for (Surface surface : row) {
+                assertNotEquals(surface, null);
+            }
+        }
+    }
 }
