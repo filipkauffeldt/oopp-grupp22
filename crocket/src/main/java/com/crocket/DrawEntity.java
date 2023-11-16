@@ -4,13 +4,13 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 
-public class DrawPanel extends JLabel{
+public class DrawEntity extends JLabel{
     
     //temp placement
     Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
     Image ballImg = Toolkit.getDefaultToolkit().getImage("crocket/assets/textures/Ball.png");
 
-    public DrawPanel(){
+    public DrawEntity(){
         super();
         this.setIcon(new ImageIcon(ballImg));
     }

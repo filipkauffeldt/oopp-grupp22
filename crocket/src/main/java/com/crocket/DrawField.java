@@ -11,9 +11,9 @@ import javax.swing.JPanel;
 public class DrawField extends JPanel{
     Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 
-    Image grassImg = Toolkit.getDefaultToolkit().getImage("crocket/assets/textures/Weed.png");
-    Image sandImg = Toolkit.getDefaultToolkit().getImage("crocket/assets/textures/Anakin.png");
-    Image iceImg = Toolkit.getDefaultToolkit().getImage("crocket/assets/textures/Nice.png");
+    Image grassImg = Toolkit.getDefaultToolkit().getImage("crocket/assets/textures/GrassTile.png");
+    Image sandImg = Toolkit.getDefaultToolkit().getImage("crocket/assets/textures/SandTile.png");
+    Image iceImg = Toolkit.getDefaultToolkit().getImage("crocket/assets/textures/IceTile.png");
 
     @Override
     public void paintComponent(Graphics g){

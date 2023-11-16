@@ -2,6 +2,7 @@ package com.crocket;
 import javax.swing.*;
 
 public class Application extends JComponent{
+    private static int delay = 20;
 
     static CroquetView frame = new CroquetView();
       
@@ -18,7 +19,7 @@ public class Application extends JComponent{
         run.start();
         while(true){
             try{
-                Thread.sleep(20);
+                Thread.sleep(delay);
             }
             catch(Exception ex){}
             cc.update();
