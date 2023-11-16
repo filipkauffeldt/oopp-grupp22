@@ -1,6 +1,6 @@
 package com.crocket;
 
-public interface Level {
+public interface ILevel {
     public int getLevelHeight();
 
     public int getLevelWidth();
@@ -8,4 +8,5 @@ public interface Level {
     public Surface[][] getLevelTilemap();
 
     public void validateLevel();
+
 }

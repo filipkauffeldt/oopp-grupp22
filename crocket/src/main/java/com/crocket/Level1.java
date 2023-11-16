@@ -2,10 +2,10 @@ package com.crocket;
 
 import static com.crocket.Surface.*;
 
-public class Level1 implements Level {
+public class Level1 implements ILevel {
     private int width = 25;
     private int height = 15;
-    Surface[][] tilemap = {
+    private Surface[][] tilemap = {
             { GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS},
             { GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS },
             { GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS,GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS },
@@ -39,4 +39,15 @@ public class Level1 implements Level {
             throw new IllegalArgumentException("Level height does not match tilemap height!");
         }
     }
+
+    public Level1() {
+    }
+
+    //Defensive copy
+    public Level1(Level1 levelCopy){
+        this.width = levelCopy.width;
+        this.height = levelCopy.height;
+        this.tilemap = levelCopy.tilemap.clone();
+    }
+    
 }

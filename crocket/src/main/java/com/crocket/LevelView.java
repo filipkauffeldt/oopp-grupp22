@@ -6,9 +6,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class LevelView extends JPanel {
-    private Level level;
+    private ILevel level;
 
-    public LevelView(Level level) {
+    public LevelView(ILevel level) {
         this.level = level;
 
     }
@@ -45,5 +45,5 @@ public class LevelView extends JPanel {
             }
         }
     }
-
+    
 }
