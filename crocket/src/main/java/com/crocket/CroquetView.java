@@ -5,7 +5,6 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 
-
 public class CroquetView extends JFrame{
     JFrame frame;
     Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
@@ -28,12 +27,9 @@ public class CroquetView extends JFrame{
     CroquetView(){
         frame = new JFrame();
 
-        
-        ImageIcon img = new ImageIcon("crocket/assets/textures/JFrame_Icon.jpg");
         setIconImage(img.getImage());
-        setTitle("Krocket");
-        setVisible(true); 
-        setSize(500, 400);
+        setTitle(title);
+        setVisible(visibility); 
         setLocationRelativeTo(null);
         setExtendedState(MAXIMIZED_BOTH); 
 
@@ -42,6 +38,4 @@ public class CroquetView extends JFrame{
         
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
-
-    
 }

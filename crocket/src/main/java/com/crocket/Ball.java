@@ -10,6 +10,7 @@ public class Ball extends Entity implements IMovable{
         if(mass <= 0.0){
             throw new IllegalArgumentException("Mass should be above 0");
         }
+        this.mass = mass;
     }
 
     public double getxVelocity(){
@@ -20,6 +21,10 @@ public class Ball extends Entity implements IMovable{
         return yVelocity;
     }
 
+    public double getMass(){
+        return mass;
+    }
+
     public void setxVelocity(double xVelocity){
         this.xVelocity = xVelocity;
     }
@@ -27,17 +32,24 @@ public class Ball extends Entity implements IMovable{
     public void setyVelocity(double yVelocity){
         this.yVelocity = yVelocity;
     }
-    
+
     public void startBall(double cosinus, double sinus, double power){
-        this.xVelocity = (power*cosinus)/mass;
-        this.yVelocity = (power*sinus)/mass;
+        double newXVelocity;
+        double newYVelocity;
+        mass = getMass();
+        newXVelocity = (power*cosinus)/mass;
+        newYVelocity = (power*sinus)/mass;
+        setxVelocity(newXVelocity);
+        setyVelocity(newYVelocity);
     }
-    
+
     public void move(){
-        this.setxPosition((this.getxPosition()+xVelocity));
-        this.setyPosition((this.getyPosition()+yVelocity));
+        double xPosition = getxPosition();
+        double yPosition = getyPosition();
+        this.setxPosition((xPosition+xVelocity));
+        this.setyPosition((yPosition+yVelocity));
         
         getHitbox().setxPosition(getxPosition());
-        getHitbox().setyPosition(getyPosition());
+        
     }
 }
