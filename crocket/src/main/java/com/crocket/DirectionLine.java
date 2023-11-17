@@ -47,6 +47,9 @@ public class DirectionLine {
     }
 
     public void setDegreeAngle(int degreeAngle){
+        if(degreeAngle > 360 || degreeAngle < 0){
+            degreeAngle = (((degreeAngle % 360) + 360) % 360);
+        }
         this.degreeAngle = degreeAngle;
     }
 
