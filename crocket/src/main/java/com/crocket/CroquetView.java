@@ -23,7 +23,7 @@ import java.awt.Toolkit;
  */
 
 public class CroquetView extends JFrame{
-    private static CroquetView INSTANCE = new CroquetView();
+    private static CroquetView INSTANCE;
     private ImageIcon img = new ImageIcon("crocket/assets/textures/JFrame_Icon.jpg");
     private String title = "Krocket";
     public DrawEntity entity = new DrawEntity();
@@ -57,6 +57,10 @@ public class CroquetView extends JFrame{
     }
 
     public static CroquetView getInstance(){
+        if (INSTANCE == null) {
+            INSTANCE = new CroquetView();
+            
+        }
         return INSTANCE;
     }
 
