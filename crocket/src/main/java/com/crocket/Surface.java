@@ -1,9 +1,9 @@
 package com.crocket;
 
 public enum Surface {
-    ICE("crocket/assets/textures/Nice.png"),
-    SAND("crocket/assets/textures/Anakin.png"),
-    GRASS("crocket/assets/textures/Weed.png");
+    ICE("crocket/assets/textures/IceTile.png"),
+    SAND("crocket/assets/textures/SandTile.png"),
+    GRASS("crocket/assets/textures/GrassTile.png");
 
     private final String texturePath;
 

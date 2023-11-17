@@ -20,5 +20,7 @@ public class DrawEntity extends JLabel{
         super.paint(g);
         
     }
+    
+
 
 }
