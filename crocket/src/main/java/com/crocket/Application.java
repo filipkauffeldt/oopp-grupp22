@@ -7,7 +7,8 @@ public class Application extends JComponent{
     static CroquetView frame = new CroquetView();
       
     static Ball ball = new Ball(19,19,100,200,2);
-    static CroquetController cc = new CroquetController(frame, ball);
+    static DirectionLine directionline = new DirectionLine(90, 120, 120, 10, 3);
+    static CroquetController cc = new CroquetController(frame, ball, directionline);
     
     public static void main( String[] args ){
         init();   
