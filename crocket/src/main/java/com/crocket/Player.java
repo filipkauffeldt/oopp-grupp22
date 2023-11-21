@@ -1,19 +1,20 @@
 package com.crocket;
 
-import java.util.PriorityQueue;
-import java.util.List;
+import java.util.Queue;
+import java.util.LinkedList;
 
 
 public class Player implements IEventListener{
     int strokes;
     boolean finished;
-    PriorityQueue<Entity> unpassedHoops; //Queue of hoops that have not been passed through yet
+    Queue<Entity> unpassedHoops; //Queue of hoops that have not been passed through yet
     Ball ball;
     
-    Player(List<Entity>  hoops) {
-        this.unpassedHoops =  new PriorityQueue<Entity>(hoops); 
+    Player(Ball ball) {
+        this.unpassedHoops =  new LinkedList<Entity>(); 
         this.strokes = 0;
         this.finished = false;
+        this.ball = ball;
 
     }
 
@@ -43,8 +44,28 @@ public class Player implements IEventListener{
         this.strokes++;
     }
 
+    //Setters and getters
+    public void resestStrokes() {
+        this.strokes = 0;
+    }
+
+    public void addHoop(Hoop hoop) {
+        this.unpassedHoops.add(hoop);
+    }
+
+    public void setHoops(Queue<Entity> hoops) {
+        this.unpassedHoops.clear();
+        for (Entity hoop : hoops) {
+            this.unpassedHoops.add(hoop);
+        }
+        
+    }
+    
     public int getStrokes() {
         return this.strokes;
     }
     
+    public Ball getBall() {
+        return ball;
+    }
 }
