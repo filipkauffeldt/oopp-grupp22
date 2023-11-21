@@ -16,6 +16,14 @@ import java.util.logging.Level;
  * in the application at any time. This is done to maintain a consistent view state throughout
  * the application.
  * 
+ * Methods:
+ * setLevelView: Sets the current level view to the specified LevelView object. Clears the frame
+ * setBallToLevel: Sets the ball to the specified DrawEntity object.
+ * 
+ * 
+ * Problems:
+ * CroquetView can only have one DrawEntity object at a time. Might be problems later on when we add multiplayer. 
+ * 
  * 
  */
 
