@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.util.logging.Level;
 
 /*
  * Class: CroquetView
@@ -26,21 +27,25 @@ public class CroquetView extends JFrame{
     private static CroquetView instance;
     private ImageIcon img = new ImageIcon("crocket/assets/textures/JFrame_Icon.jpg");
     private String title = "Krocket";
-    public DrawEntity entity = new DrawEntity();
-
-    public void drawLevel(LevelView level){
-        removeAllLevelComponents();
-        add(level);
-        level.add(entity);
-    }
+    private DrawEntity entity;
+    private LevelView levelView;
     
-    //Check this as it might be ugly 
-    private void removeAllLevelComponents(){
-        Component[] components = this.getComponents();
-        for (Component component : components) {
-            if (component.getClass() == LevelView.class) {
-                this.remove(component);
-            }
+    public void setLevelView(LevelView level) {
+        if (getContentPane() != null) {
+            getContentPane().removeAll();
+        }
+        this.levelView = level;
+        add(level);
+        revalidate();
+    }
+
+    public void setBallToLevel(DrawEntity ball){
+        try{
+            this.entity = ball;
+            levelView.add(ball);
+        }
+        catch(NullPointerException e){
+            System.out.println("No container found!");
         }
     }
 
@@ -51,9 +56,6 @@ public class CroquetView extends JFrame{
         setVisible(true);
         setLocationRelativeTo(null);
         setExtendedState(MAXIMIZED_BOTH); 
-        entity.setBounds(1000, 600, 19, 19);
-        
-        
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
@@ -68,5 +70,9 @@ public class CroquetView extends JFrame{
     public DrawEntity getEntity(){
         return entity;
     }
-    
+
+    public void moveBall(int x, int y){
+        entity.setLocation(x, y);
+    }
+
 }

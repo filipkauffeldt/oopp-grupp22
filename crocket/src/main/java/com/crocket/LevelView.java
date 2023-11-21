@@ -13,10 +13,6 @@ public class LevelView extends JPanel {
 
     }
 
-    public void drawLevel(){
-        repaint();
-    }
-
     @Override
     protected void paintComponent(Graphics g) {
         try {

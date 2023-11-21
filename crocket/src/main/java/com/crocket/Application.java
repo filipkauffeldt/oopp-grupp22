@@ -7,6 +7,7 @@ public class Application {
     private static CroquetView frame = CroquetView.getInstance();
     private static LevelView level1View = new LevelView(new Level1());
     static Ball ball = new Ball(19,19,100,200,2);
+    private static DrawEntity ballView = new DrawEntity();
     static CroquetController cc = new CroquetController(frame, ball);
     
 
@@ -17,7 +18,8 @@ public class Application {
     }
 
     private static void init(){
-        frame.drawLevel(level1View);
+        frame.setLevelView(level1View);
+        frame.setBallToLevel(ballView);
         Thread run = new Thread();
         run.start();
         while(true){

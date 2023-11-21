@@ -15,13 +15,13 @@ public class DrawLevelTest {
     @Test
     public void getLevelHeightTest() {
         ILevel testLevel = new Level1();
-        assertEquals(testLevel.getLevelHeight(), 15);
+        assertEquals(15, testLevel.getLevelHeight());
     }
 
     @Test
     public void getLevelWidthTest() {
         ILevel testLevel = new Level1();
-        assertEquals(testLevel.getLevelWidth(), 25);
+        assertEquals(25,testLevel.getLevelWidth());
     }
 
     @Test
