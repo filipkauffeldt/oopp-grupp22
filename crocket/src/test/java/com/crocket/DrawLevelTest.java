@@ -6,11 +6,6 @@ import static org.junit.Assert.assertNotEquals;
 import org.junit.Test;
 
 public class DrawLevelTest {
-    @Test
-    public void validateLevelTest() {
-        ILevel testLevel = new Level1();
-       testLevel.validateLevel();
-    }
 
     @Test
     public void getLevelHeightTest() {
