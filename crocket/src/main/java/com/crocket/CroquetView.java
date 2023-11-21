@@ -16,10 +16,6 @@ import java.util.logging.Level;
  * in the application at any time. This is done to maintain a consistent view state throughout
  * the application.
  * 
- * Methods:
- * - drawLevel(LevelView drawLevel): Adds the provided LevelView to the JFrame, effectively drawing the level.
- * - removeAllLevelComponents(): Removes all LevelView components from the JFrame.
- * - getInstance(): Returns the singleton instance of CroquetView.
  * 
  */
 
