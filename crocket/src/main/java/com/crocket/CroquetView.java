@@ -23,7 +23,7 @@ import java.awt.Toolkit;
  */
 
 public class CroquetView extends JFrame{
-    private static CroquetView INSTANCE;
+    private static CroquetView instance;
     private ImageIcon img = new ImageIcon("crocket/assets/textures/JFrame_Icon.jpg");
     private String title = "Krocket";
     public DrawEntity entity = new DrawEntity();
@@ -33,11 +33,12 @@ public class CroquetView extends JFrame{
         add(level);
         level.add(entity);
     }
-
+    
+    //Check this as it might be ugly 
     private void removeAllLevelComponents(){
         Component[] components = this.getComponents();
         for (Component component : components) {
-            if (component instanceof LevelView) {
+            if (component.getClass() == LevelView.class) {
                 this.remove(component);
             }
         }
@@ -57,11 +58,11 @@ public class CroquetView extends JFrame{
     }
 
     public static CroquetView getInstance(){
-        if (INSTANCE == null) {
-            INSTANCE = new CroquetView();
+        if (instance == null) {
+            instance = new CroquetView();
             
         }
-        return INSTANCE;
+        return instance;
     }
 
     public DrawEntity getEntity(){
