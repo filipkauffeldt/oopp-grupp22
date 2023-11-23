@@ -14,11 +14,4 @@ public class DrawEntity extends JLabel{
         super();
         this.setIcon(new ImageIcon(ballImg));
     }
-
-    //temp positioning
-    public void paint(Graphics g){
-        super.paint(g);
-        
-    }
-
 }
