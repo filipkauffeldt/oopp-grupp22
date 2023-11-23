@@ -63,7 +63,7 @@ public class CollisionHandler {
             double xDistance = e1X - e2X;
             double yDistance = e1Y - e2Y;
 
-            if (Math.abs(xDistance) > Math.abs(yDistance)) {
+            if (Math.abs(xDistance) < Math.abs(yDistance)) {
                 if (xDistance > 0) {
                     return Direction.EAST;
                 } else {
@@ -94,7 +94,7 @@ public class CollisionHandler {
             double xDistance = eX - hX;
             double yDistance = eY - hY;
 
-            if (Math.abs(xDistance) > Math.abs(yDistance)) {
+            if (Math.abs(xDistance) < Math.abs(yDistance)) {
                 if (xDistance > 0) {
                     return Direction.EAST;
                 } else {
@@ -123,7 +123,7 @@ public class CollisionHandler {
             double xDistance = h1X - h2X;
             double yDistance = h1Y - h2Y;
 
-            if (Math.abs(xDistance) > Math.abs(yDistance)) {
+            if (Math.abs(xDistance) < Math.abs(yDistance)) {
                 if (xDistance > 0) {
                     return Direction.EAST;
                 } else {

@@ -8,8 +8,9 @@ public class Application {
     private static LevelView level1View = new LevelView(new Level1());
     static DrawEntity ballView = new DrawEntity();
     static Ball ball = new Ball(19,19,100,200,2);
+    static Stone stone = new Stone(25, 25, 200, 300);
     static DirectionLine directionLine = new DirectionLine(90, 120, 120, 10, 3);
-    static CroquetController cc = new CroquetController(frame, ball, directionLine);
+    static CroquetController cc = new CroquetController(frame, ball, stone, directionLine);
     
 
 

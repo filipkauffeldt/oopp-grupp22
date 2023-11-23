@@ -8,12 +8,14 @@ public class CroquetController implements KeyListener{
     private CroquetView view;
     
     private Ball ball;
+    private Stone stone;
 
     private DirectionLine directionLine;
 
-    public CroquetController(CroquetView view, Ball ball, DirectionLine directionLine){
+    public CroquetController(CroquetView view, Ball ball, Stone stone, DirectionLine directionLine){
         this.view = view;
         this.ball = ball;
+        this.stone = stone;
         this.directionLine = directionLine;
 
         view.addKeyListener(this);
@@ -52,6 +54,14 @@ public class CroquetController implements KeyListener{
 
     public void update(){
         ball.move();
-        view.moveBall((int)ball.getxPosition(),(int)ball.getyPosition());
+        if(CollisionHandler.intersect(stone, ball)){
+            System.out.print("wow");
+            stone.collideWithBall(ball);
+        }
+        
+
+        view.entity.setLocation((int)ball.getxPosition(),(int)ball.getyPosition());
+        view.stone.setLocation((int)stone.getxPosition(), (int)stone.getyPosition());
     }
 }
+
