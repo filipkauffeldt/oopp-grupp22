@@ -8,8 +8,6 @@ import static org.junit.Assert.assertEquals;
 
 public class BallTest {
     private Ball ball = new Ball(20, 20, 20, 20, 2);
-    private double xPosition;
-    private double yPosition;
 
     @Before
     public void reset_ball(){

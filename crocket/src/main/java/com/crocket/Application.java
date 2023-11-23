@@ -7,8 +7,8 @@ public class Application {
     private static CroquetView frame = CroquetView.getInstance();
     private static LevelView level1View = new LevelView(new Level1());
     static Ball ball = new Ball(19,19,100,200,2);
-    private static DrawEntity ballView = new DrawEntity();
-    static CroquetController cc = new CroquetController(frame, ball);
+    static DirectionLine directionLine = new DirectionLine(90, 120, 120, 10, 3);
+    static CroquetController cc = new CroquetController(frame, ball, directionLine);
     
 
 
