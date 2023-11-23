@@ -26,7 +26,7 @@ public class EventPublisher {
         listeners.remove(listener);
     }
 
-    public void publishEvent(PassHoopEvent event) {
+    public void publishEvent(PassTargetEvent event) {
         for (IEventListener listener : listeners) {
             listener.handleEvent(event);
         }

@@ -1,5 +1,5 @@
 package com.crocket;
 
 public interface IEventListener {
-    public void handleEvent(PassHoopEvent event);
+    public void handleEvent(PassTargetEvent event);
 }

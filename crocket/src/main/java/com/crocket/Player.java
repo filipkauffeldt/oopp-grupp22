@@ -5,13 +5,13 @@ import java.util.LinkedList;
 
 
 public class Player implements IEventListener{
-    int strokes;
-    boolean finished;
-    Queue<Entity> unpassedHoops; //Queue of hoops that have not been passed through yet
-    Ball ball;
+    private int strokes;
+    private boolean finished;
+    private Queue<Entity> remainingTargets; //Queue of hoops and peg that have not been passed yet
+    private Ball ball;
     
     Player(Ball ball) {
-        this.unpassedHoops =  new LinkedList<Entity>(); 
+        this.remainingTargets =  new LinkedList<Entity>(); 
         this.strokes = 0;
         this.finished = false;
         this.ball = ball;
@@ -20,7 +20,7 @@ public class Player implements IEventListener{
 
     //Checks if the player has passed through all hoops
     public boolean hasWon() {
-        if (this.unpassedHoops.size() == 0){
+        if (this.remainingTargets.size() == 0){
             return true;
         }
         else{
@@ -31,12 +31,12 @@ public class Player implements IEventListener{
     //Gets a hoop a ball has passed under and check if it is the next hoop in the queue
     //If it is, it removes it from the queue if not the hoops has been passed in the wrong order
     @Override
-    public void handleEvent(PassHoopEvent event) {
+    public void handleEvent(PassTargetEvent event) {
         if (event.getBall() != ball) return;
         
-        Hoop hoop = event.getHoop();
-        if (this.unpassedHoops.peek() == hoop) {
-            this.unpassedHoops.poll();
+        Entity target = event.getTarget();
+        if (this.remainingTargets.peek() == target) {
+            this.remainingTargets.poll();
         }
     }
     
@@ -49,16 +49,20 @@ public class Player implements IEventListener{
         this.strokes = 0;
     }
 
-    public void addHoop(Hoop hoop) {
-        this.unpassedHoops.add(hoop);
+    public void addTarget(Entity target) {
+        this.remainingTargets.add(target);
     }
 
-    public void setHoops(Queue<Entity> hoops) {
-        this.unpassedHoops.clear();
-        for (Entity hoop : hoops) {
-            this.unpassedHoops.add(hoop);
+    public void setTargets(Queue<Entity> targets) {
+        this.remainingTargets.clear();
+        for (Entity target : targets) {
+            this.remainingTargets.add(target);
         }
         
+    }
+
+    public Queue<Entity> getRemainingTargets() {
+        return remainingTargets;
     }
     
     public int getStrokes() {
@@ -67,5 +71,8 @@ public class Player implements IEventListener{
     
     public Ball getBall() {
         return ball;
+
     }
+    
 }
+
