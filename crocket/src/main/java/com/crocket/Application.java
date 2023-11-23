@@ -6,6 +6,7 @@ public class Application {
     private static final int delay = 20;
     private static CroquetView frame = CroquetView.getInstance();
     private static LevelView level1View = new LevelView(new Level1());
+    static DrawEntity ballView = new DrawEntity();
     static Ball ball = new Ball(19,19,100,200,2);
     static DirectionLine directionLine = new DirectionLine(90, 120, 120, 10, 3);
     static CroquetController cc = new CroquetController(frame, ball, directionLine);
