@@ -56,7 +56,7 @@ public class Player implements IEventListener{
     public void setTargets(Queue<Entity> targets) {
         this.remainingTargets.clear();
         for (Entity target : targets) {
-            this.remainingTargets.add(target);
+            this.addTarget(target);
         }
         
     }
