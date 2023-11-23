@@ -4,6 +4,8 @@ import java.awt.*;
 import java.awt.image.*;
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
@@ -11,10 +13,11 @@ import javax.swing.JPanel;
 
 public class LevelView extends JPanel {
     private final ILevel level;
+    private Map<String, BufferedImage> textureCacheMap;
 
     public LevelView(ILevel level) {
         this.level = level;
-
+        textureCacheMap = new HashMap<>();
     }
 
     @Override
@@ -31,8 +34,17 @@ public class LevelView extends JPanel {
     private void getTileTexture(Graphics g, Surface[][] levelTilemap, int y, int x) throws IOException {
         BufferedImage tileTexture;
         String tileTexturePath = levelTilemap[y][x].getFieldTexturePath();
-        tileTexture = ImageIO.read(new File(tileTexturePath));
+        updateTextureCache(tileTexturePath);
+        tileTexture = textureCacheMap.get(tileTexturePath);
         g.drawImage(tileTexture, x * 100, y * 100, this);
+    }
+
+
+    private void updateTextureCache(String tileTexturePath) throws IOException {
+        if (!textureCacheMap.containsKey(tileTexturePath)) {
+            BufferedImage tileTexture = ImageIO.read(new File(tileTexturePath));
+            textureCacheMap.put(tileTexturePath, tileTexture);
+        }
     }
 
     private void drawLevel(Graphics g) throws IOException{
