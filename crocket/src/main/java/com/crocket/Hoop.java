@@ -8,6 +8,8 @@ public class Hoop extends Entity implements ICollidable {
     private Hitbox lefHitbox;
     private Hitbox rightHitbox;
 
+    private EventPublisher eventPublisher;
+
     public Hoop(int width, int height, int openingWidth, double xPosition, double yPosition, Direction dir) {
         super(width, height, xPosition, yPosition);
         this.innerWidth = openingWidth;
@@ -17,6 +19,8 @@ public class Hoop extends Entity implements ICollidable {
         int sideWidth = (width - openingWidth)/2;
         this.lefHitbox = new Hitbox(sideWidth, height, xPosition, yPosition); // Probably not right. Does not take into account rotation
         this.rightHitbox = new Hitbox(sideWidth, height, xPosition + sideWidth + openingWidth, yPosition); // Probably not right. Does not take into account rotation
+
+        this.eventPublisher = EventPublisher.getInstance();
     }
 
     @Override
@@ -29,9 +33,9 @@ public class Hoop extends Entity implements ICollidable {
             Direction direction = CollisionHandler.collidedDirection(ball, rightHitbox);
             CollisionHandler.reflect(ball, direction);
         } else if (passedThrough(ball)) {
-            // TODO: Implement when possible in user
-            // Notify player that they passed the hoop
-            // Move ball outside hoop?
+            PassTargetEvent event = new PassTargetEvent(ball, this);
+
+            eventPublisher.publishEvent(event);
         }
     }
 
