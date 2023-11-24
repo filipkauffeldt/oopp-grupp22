@@ -14,13 +14,11 @@ public class Stone extends Obstacle {
     }
 
     private boolean collideTarget(Ball ball){
-        Hitbox stoneHitbox = this.getHitbox();
-        return CollisionHandler.intersect(ball, stoneHitbox);
+        return CollisionHandler.intersect(ball, this.getHitbox());
     }
 
     private Direction collisionDirection(Ball ball){
-        Hitbox stoneHitbox = this.getHitbox();
-        return CollisionHandler.collidedDirection(ball, stoneHitbox);
+        return CollisionHandler.collidedDirection(ball, this.getHitbox());
     }
 
     private void reflectEntity(Ball ball, Direction direction){

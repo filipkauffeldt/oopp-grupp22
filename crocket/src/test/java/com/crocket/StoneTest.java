@@ -18,7 +18,7 @@ public class StoneTest {
     public void test_if_collision_works_from_up(){
         ball.setxVelocity(1);
         ball.setyVelocity(1);
-        while(!CollisionHandler.intersect(ball, stone)){
+        while(!CollisionHandler.intersect(stone, ball)){
 
             ball.move();
         }
