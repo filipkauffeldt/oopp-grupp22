@@ -1,5 +1,7 @@
 package com.crocket;
 
+import java.util.Set;
+
 public interface ILevel {
     public int getLevelHeight();
 
