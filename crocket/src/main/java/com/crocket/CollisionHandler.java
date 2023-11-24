@@ -27,15 +27,23 @@ public class CollisionHandler {
         int h2Width = hitbox2.getWidth();
         int h2Height = hitbox2.getHeight();
 
-        boolean isLeft = h1X < h2X + h2Width;
-        boolean isRight = h1X + h1Width > h2X;
-        boolean isAbove = h1Y < h2Y + h2Height;
-        boolean isBelow = h1Y + h1Height > h2Y;
+        
+        
+        boolean isAbove = false; 
+        if(((h1X + h1Width > h2X && h1X + h1Width < h2X + h2Width) || (h1X > h2X && h1X < h2X + h2Width)) && (h1Y + h1Height > h2Y && h1Y + h1Height < h2Y + h2Height)){
+            isAbove = true;
+        }
+        return isAbove;
 
-        return (isLeft &&
-                isRight &&
-                isAbove &&
-                isBelow);
+        // boolean isLeft = h1X < h2X + h2Width;
+        // boolean isRight = h1X + h1Width > h2X;
+        // boolean isAbove = h1Y < h2Y + h2Height;
+        // boolean isBelow = h1Y + h1Height > h2Y;
+
+        // return (isLeft &&
+        //         isRight &&
+        //         isAbove &&
+        //         isBelow);
     }
 
     public static void reflect(IMovable entity, Direction direction) {
