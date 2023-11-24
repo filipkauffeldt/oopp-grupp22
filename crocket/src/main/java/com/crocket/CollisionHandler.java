@@ -27,23 +27,24 @@ public class CollisionHandler {
         int h2Width = hitbox2.getWidth();
         int h2Height = hitbox2.getHeight();
 
-        
-        
-        boolean isAbove = false; 
-        if(((h1X + h1Width > h2X && h1X + h1Width < h2X + h2Width) || (h1X > h2X && h1X < h2X + h2Width)) && (h1Y + h1Height > h2Y && h1Y + h1Height < h2Y + h2Height)){
-            isAbove = true;
+        //Checks collision from above
+        if(((h1X + h1Width > h2X && h1X + h1Width < h2X + h2Width) || (h1X > h2X && h1X < h2X + h2Width)) && (h1Y + h1Height > h2Y && h1Y + h1Height < h2Y + 10)){
+            return true;
         }
-        return isAbove;
+        //Checks collision from below
+        if(((h1X + h1Width > h2X && h1X + h1Width < h2X + h2Width) || (h1X > h2X && h1X < h2X + h2Width)) && (h1Y < h2Y + h2Height && h1Y > h2Y + h2Height - 10)){
+           return true;
+        }
+        //Checks collision from left
+        if(((h1Y + h1Height > h2Y && h1Y + h1Height < h2Y + h2Height) || (h1Y > h2Y && h1Y < h2Y + h2Height)) && (h1X + h1Width > h2X && h1X + h1Width < h2X + 10)){
+            return true;
+        }
+        //Checks collision from right
+        if(((h1Y + h1Height > h2Y && h1Y + h1Height < h2Y + h2Height) || (h1Y > h2Y && h1Y < h2Y + h2Height)) && (h1X < h2X + h2Width && h1X > h2X + h2Width - 10)){
+            return true;
+        }
 
-        // boolean isLeft = h1X < h2X + h2Width;
-        // boolean isRight = h1X + h1Width > h2X;
-        // boolean isAbove = h1Y < h2Y + h2Height;
-        // boolean isBelow = h1Y + h1Height > h2Y;
-
-        // return (isLeft &&
-        //         isRight &&
-        //         isAbove &&
-        //         isBelow);
+        return false;
     }
 
     public static void reflect(IMovable entity, Direction direction) {

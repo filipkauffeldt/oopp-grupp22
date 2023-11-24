@@ -38,6 +38,7 @@ public class CroquetController implements KeyListener{
                 break;
             case KeyEvent.VK_SPACE:
                 int degreeAngle = directionLine.getDegreeAngle();
+                // degreeAngle = degreeAngle * Math.PI/180;
                 double sinus = Math.sin(degreeAngle);
                 double cosinus = Math.cos(degreeAngle);
                 ball.startBall(cosinus, sinus, 2);
@@ -56,7 +57,7 @@ public class CroquetController implements KeyListener{
     public void update(){
         
         ball.move();
-        if(!CollisionHandler.intersect(stone, ball)){
+        if(CollisionHandler.intersect(ball, stone)){
             stone.collideWithBall(ball);
         }
         
