@@ -4,5 +4,6 @@ public enum EntityType {
     BALL,
     HOOP,
     PEG,
-    STONE
+    STONE,
+    DIRECTIONLINE
 }

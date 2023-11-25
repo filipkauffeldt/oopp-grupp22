@@ -5,9 +5,10 @@ public class DrawableEntity {
     private int yPosition;
     private int width;
     private int height;
+    private int rotation;
     private EntityType type;
     
-    public DrawableEntity(int xPosition, int yPosition, int width, int height, EntityType type) {
+    public DrawableEntity(int xPosition, int yPosition, int width, int height, int rotation, EntityType type) {
         this.xPosition = xPosition;
         this.yPosition = yPosition;
         this.width = width;
@@ -37,6 +38,10 @@ public class DrawableEntity {
 
     public int getHeight() {
         return height;
+    }
+
+    public int getRotation() {
+        return rotation;
     }
 
     public EntityType getType() {
