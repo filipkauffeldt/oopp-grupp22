@@ -15,6 +15,14 @@ public class DrawableEntity {
         this.type = type;
     }
 
+    public DrawableEntity(Entity entity) {
+        this.xPosition = (int) entity.getxPosition();
+        this.yPosition = (int) entity.getyPosition();
+        this.width = entity.getWidth();
+        this.height = entity.getHeight();
+        this.type = EntityType.fromClass(entity.getClass());
+    }
+
     public int getxPosition() {
         return xPosition;
     }
