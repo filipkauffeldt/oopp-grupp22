@@ -7,25 +7,29 @@ import static org.junit.Assert.assertEquals;
 
 public class StoneTest {
     private Ball ball = new Ball(20, 20, 0, 0, 2);
-    private Stone stone = new Stone(25, 25, 20, 30);
+    private Stone stone = new Stone(25, 25, 30, 30);
     
     @Before
     public void reset_ball(){
-        ball = new Ball(20, 20, 0, 20, 2);
+        ball = new Ball(20, 20, 0, 0, 2);
     }
 
+    // Already tested most of the methods in CollisionHandlerTest. Only to see if everything works together.
     @Test
-    public void test_if_collision_works_from_up(){
+    public void test_if_ball_can_collide_with_stone(){
         ball.setxVelocity(1);
         ball.setyVelocity(1);
-        while(!CollisionHandler.intersect(ball, stone)){
 
+        for(int i = 0; i < 20 ; i++){
+            ball.move();
+            if(CollisionHandler.intersect(ball, stone)){
+                stone.collideWithBall(ball);
+                break;
+            }
+        }
+        for(int i = 0; i < 10; i++){
             ball.move();
         }
-        // stone.collideWithBall(ball);
-        // for(int i = 0; i < 10; i++){
-        //     ball.move();
-        // }
-        assertEquals(ball.getyPosition(), 20, 0.0001);
+        assertEquals(1, ball.getyPosition(), 0.0001);
     }
 }
