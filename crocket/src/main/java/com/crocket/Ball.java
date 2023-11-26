@@ -50,10 +50,5 @@ public class Ball extends Entity implements IMovable{
         this.setyPosition((newyPosition));
         getHitbox().setxPosition(newxPosition);
         getHitbox().setyPosition(newyPosition);
-
-
-        
-        // getHitbox().setxPosition(getxPosition());
-        
     }
 }
