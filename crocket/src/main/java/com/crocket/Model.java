@@ -9,8 +9,7 @@ public class Model implements IModel {
     private List<Player> players;
     private Set<IMovable> movables;
     private Set<Entity> entities;
-    private Set<Peg> pegs;
-    private Set<Hoop> hoops;
+    private Set<ICollidable> collidables;
     private ILevel level;
 
     private Player activePlayer;
@@ -83,7 +82,25 @@ public class Model implements IModel {
         Set<DrawableEntity> drawableEntities = new HashSet<DrawableEntity>();
 
         for (Entity entity : entities) {
-            drawableEntities.add(new DrawableEntity(entity));
+            int xPosition = (int) entity.getxPosition();
+            int yPosition = (int) entity.getyPosition();
+            int width = entity.getWidth();
+            int height = entity.getHeight();
+            int rotation = 0;
+            EntityType type = getEntityTypeFromClass(entity.getClass());
+
+            drawableEntities.add(new DrawableEntity(xPosition, yPosition, width, height, rotation, type));
+        }
+
+        if (!ballIsMoving) {
+            int xPosition = (int) directionLine.getxPosition();
+            int yPosition = (int) directionLine.getyPosition();
+            int width = (int) directionLine.getWidth();
+            int height = (int) directionLine.getHeight();
+            int rotation = directionLine.getDegreeAngle();
+            EntityType type = getEntityTypeFromClass(directionLine.getClass());
+
+            drawableEntities.add(new DrawableEntity(xPosition, yPosition, width, height, rotation, type));
         }
 
         return drawableEntities;
@@ -100,8 +117,7 @@ public class Model implements IModel {
 
         entities = level.getEntities();
         movables = level.getMovables();
-        pegs = level.getPegs();
-        hoops = level.getHoops();
+        collidables = level.getCollidables();
 
         round = 0;
         ballIsMoving = false;
@@ -112,6 +128,10 @@ public class Model implements IModel {
 
         for (IMovable movable : movables) {
             movable.move();
+        }
+
+        for (ICollidable collidable : collidables) {
+            collidable.collideWithBall(activePlayer.getBall());
         }
 
         if (ballIsMoving) {
