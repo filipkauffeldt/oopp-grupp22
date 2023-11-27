@@ -15,10 +15,6 @@ public interface ILevel {
 
     public Set<ICollidable> getCollidables();
 
-    public Set<Peg> getPegs();
-
-    public Set<Hoop> getHoops();
-
     public void validateLevel();
 
 }
