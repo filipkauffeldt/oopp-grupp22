@@ -7,6 +7,16 @@ public interface ILevel {
 
     public Surface[][] getLevelTilemap();
 
+    public Set<Entity> getEntities();
+
+    public Set<IMovable> getMovables();
+
+    public Set<ICollidable> getCollidables();
+
+    public Set<Peg> getPegs();
+
+    public Set<Hoop> getHoops();
+
     public void validateLevel();
 
 }
