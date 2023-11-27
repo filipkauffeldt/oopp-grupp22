@@ -11,9 +11,4 @@ public class DrawStone extends JLabel{
         super();
         this.setIcon(new ImageIcon(stoneImg));
     }
-    
-    public void paint(Graphics g){
-        super.paint(g);
-    }
-    
 }

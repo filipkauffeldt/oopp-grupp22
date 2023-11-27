@@ -60,10 +60,8 @@ public class CroquetController implements KeyListener{
         if(CollisionHandler.intersect(ball, stone)){
             stone.collideWithBall(ball);
         }
-        
-
-        view.entity.setLocation((int)ball.getxPosition(),(int)ball.getyPosition());
-        view.stone.setLocation((int)stone.getxPosition(), (int)stone.getyPosition());
+        view.moveBall((int)ball.getxPosition(), (int)ball.getyPosition());
+        view.setStone((int)stone.getxPosition(), (int)stone.getyPosition());
     }
 }
 
