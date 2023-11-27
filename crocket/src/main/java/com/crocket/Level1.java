@@ -2,9 +2,15 @@ package com.crocket;
 
 import static com.crocket.Surface.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class Level1 implements ILevel {
     private int width = 25;
     private int height = 15;
+    private Set<Entity> entities = new HashSet<Entity>();
+    private Set<IMovable> movables = new HashSet<IMovable>();
+    private Set<ICollidable> collidables = new HashSet<ICollidable>();
     private Surface[][] tilemap = {
             { GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS},
             { GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS },
@@ -34,6 +40,18 @@ public class Level1 implements ILevel {
         return tilemap;
     }
 
+    public Set<Entity> getEntities() {
+        return entities;
+    }
+
+    public Set<IMovable> getMovables() {
+        return movables;
+    }
+
+    public Set<ICollidable> getCollidables() {
+        return collidables;
+    }
+
     public void validateLevel() {
         if (height != tilemap.length) {
             throw new IllegalArgumentException("Level height does not match tilemap height!");
@@ -48,6 +66,9 @@ public class Level1 implements ILevel {
         this.width = levelCopy.width;
         this.height = levelCopy.height;
         this.tilemap = levelCopy.tilemap.clone();
+        this.entities = levelCopy.entities;
+        this.movables = levelCopy.movables;
+        this.collidables = levelCopy.collidables;
     }
     
 }
