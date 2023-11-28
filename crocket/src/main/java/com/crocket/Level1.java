@@ -52,12 +52,6 @@ public class Level1 implements ILevel {
         return collidables;
     }
 
-    public void validateLevel() {
-        if (height != tilemap.length) {
-            throw new IllegalArgumentException("Level height does not match tilemap height!");
-        }
-    }
-
     public Level1() {
     }
 

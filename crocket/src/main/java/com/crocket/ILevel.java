@@ -15,6 +15,4 @@ public interface ILevel {
 
     public Set<ICollidable> getCollidables();
 
-    public void validateLevel();
-
 }
