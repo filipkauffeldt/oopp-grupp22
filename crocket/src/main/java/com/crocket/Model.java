@@ -19,9 +19,6 @@ public class Model implements IModel {
     private boolean ballIsMoving;
 
     private Model() {
-        activePlayer = new Player(new Ball(0, 0, 0, 0, 0));
-        players.add(activePlayer);
-
         directionLine = new DirectionLine(0, 0, 0, 0, 0);
         round = 0;
         ballIsMoving = false;
@@ -153,6 +150,18 @@ public class Model implements IModel {
         validateLevelIsSet();
 
         directionLine.setDegreeAngle(degrees);
+    }
+
+    public void setPlayers(List<Player> players) {
+        this.players = players;
+    }
+
+    public void addPlayer(Player player) {
+        players.add(player);
+    }
+
+    public void clearPlayers() {
+        players.clear();
     }
 
 }
