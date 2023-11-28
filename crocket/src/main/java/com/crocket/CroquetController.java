@@ -8,6 +8,8 @@ public class CroquetController implements KeyListener{
     private CroquetView view;
     private Ball ball;
     private DirectionLine directionLine;
+
+    double degreeAngle;
     double friction = 0.1;
     double power;
     double sinus;
@@ -17,6 +19,7 @@ public class CroquetController implements KeyListener{
         this.view = view;
         this.ball = ball;
         this.directionLine = directionLine;
+
 
         view.addKeyListener(this);
     }
@@ -36,10 +39,7 @@ public class CroquetController implements KeyListener{
                 directionLine.decrementDegreeAngle();
                 break;
             case KeyEvent.VK_SPACE:
-                double degreeAngle = directionLine.getDegreeAngle();
-                degreeAngle = degreeAngle * (Math.PI/180);
-                sinus = Math.sin(degreeAngle);
-                cosinus = Math.cos(degreeAngle);
+                
                 
                 power+=1;
                 if(power == 10){
@@ -53,6 +53,7 @@ public class CroquetController implements KeyListener{
         if(ke.getKeyCode() == KeyEvent.VK_SPACE){
             ball.startBall(cosinus, sinus, power);
             power = 1;
+            view.line.setVisible(false);
         }
     }
 
@@ -62,12 +63,20 @@ public class CroquetController implements KeyListener{
 
     public void update(){
         ball.move();
+        degreeAngle = directionLine.getDegreeAngle();
+        degreeAngle = Math.toRadians(degreeAngle);
+        sinus = Math.sin(degreeAngle);
+        cosinus = Math.cos(degreeAngle);
+        
         view.moveBall((int)ball.getxPosition(),(int)ball.getyPosition());
+        view.updateLine((int)ball.getxPosition()+ball.getWidth()/2, (int)ball.getyPosition()+ball.getHeight()/2, (int)(cosinus*50), (int)(sinus*50));
+        view.updatePowerMeter();
     
         if(ball.getxVelocity() > 0){
             ball.setxVelocity(ball.getxVelocity()-(friction*cosinus));
             if(ball.getxVelocity() <= 0){
                 ball.setxVelocity(0);
+                view.line.setVisible(true);
             }
         }
         
@@ -75,6 +84,7 @@ public class CroquetController implements KeyListener{
             ball.setxVelocity(ball.getxVelocity()-(friction*cosinus));
             if(ball.getxVelocity() >= 0){
                 ball.setxVelocity(0);
+                view.line.setVisible(true);
             }
         }
         
@@ -82,6 +92,7 @@ public class CroquetController implements KeyListener{
             ball.setyVelocity(ball.getyVelocity()-(friction*sinus));
             if(ball.getyVelocity() <= 0){
                 ball.setyVelocity(0);
+                view.line.setVisible(true);
             }
         }
         
@@ -89,7 +100,9 @@ public class CroquetController implements KeyListener{
             ball.setyVelocity(ball.getyVelocity()-(friction*sinus));
             if(ball.getyVelocity() >= 0){
                 ball.setyVelocity(0);
+                view.line.setVisible(true);
             }
         }
+        
     }
 }

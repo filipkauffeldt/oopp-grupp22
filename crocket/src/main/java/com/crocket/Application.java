@@ -1,14 +1,13 @@
 package com.crocket;
-import javax.swing.*;
 
 public class Application {
 
     private static final int delay = 20;
     private static CroquetView frame = CroquetView.getInstance();
     private static LevelView level1View = new LevelView(new Level1());
-    static DrawEntity ballView = new DrawEntity();
+    static DrawBall ballView = new DrawBall();
     static Ball ball = new Ball(19,19,100,200,2);
-    static DirectionLine directionLine = new DirectionLine(270, 120, 120, 10, 3);
+    static DirectionLine directionLine = new DirectionLine(0, 120, 120, 10, 3);
     static CroquetController cc = new CroquetController(frame, ball, directionLine);
     
 
@@ -21,8 +20,10 @@ public class Application {
     private static void init(){
         frame.setLevelView(level1View);
         frame.setBallToLevel(ballView);
+        
         Thread run = new Thread();
         run.start();
+        
         while(true){
             try{
                 Thread.sleep(delay);

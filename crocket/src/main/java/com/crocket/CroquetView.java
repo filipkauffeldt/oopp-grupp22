@@ -3,6 +3,7 @@ import javax.swing.*;
 
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.Toolkit;
 import java.util.logging.Level;
 
@@ -30,10 +31,14 @@ import java.util.logging.Level;
 public class CroquetView extends JFrame{
     private static CroquetView instance;
     private ImageIcon img = new ImageIcon("crocket/assets/textures/JFrame_Icon.jpg");
+    private ImageIcon meterImg = new ImageIcon("crocket/assets/textures/PowerMeter.jpg");
     private String title = "Krocket";
     private DrawBall ball;
     private LevelView levelView;
-    private DrawDirectionLine line = new DrawDirectionLine();
+    DrawDirectionLine line = new DrawDirectionLine();
+    PowerPanel pPanel = new PowerPanel();
+    
+    
     
     public void setLevelView(LevelView level) {
         if (getContentPane() != null) {
@@ -48,6 +53,9 @@ public class CroquetView extends JFrame{
         try{
             this.ball = ball;
             levelView.add(ball);
+            levelView.add(line);
+            levelView.add(pPanel);
+            
             
         }
         catch(NullPointerException e){
@@ -62,6 +70,8 @@ public class CroquetView extends JFrame{
         setVisible(true);
         setLocationRelativeTo(null);
         setExtendedState(MAXIMIZED_BOTH); 
+
+       
         
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         
@@ -82,6 +92,17 @@ public class CroquetView extends JFrame{
 
     public void moveBall(int x, int y){
         ball.setLocation(x, y);
+    }
+
+    public void updateLine(int xPos, int yPos, int xAngle, int yAngle){
+        line.setSize(100, 100);
+        line.setLocation(xPos-line.getStartX(), yPos-line.getStartY());
+        line.changeAngle(xAngle + (line.getStartX()), yAngle + (line.getStartY()));
+        line.repaint();
+    }
+
+    public void updatePowerMeter(){
+        
     }
 
 }
