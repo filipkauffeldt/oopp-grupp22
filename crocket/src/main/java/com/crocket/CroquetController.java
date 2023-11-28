@@ -38,7 +38,6 @@ public class CroquetController implements KeyListener{
                 break;
             case KeyEvent.VK_SPACE:
                 int degreeAngle = directionLine.getDegreeAngle();
-                // degreeAngle = degreeAngle * Math.PI/180;
                 double sinus = Math.sin(degreeAngle);
                 double cosinus = Math.cos(degreeAngle);
                 ball.startBall(cosinus, sinus, 2);

@@ -27,20 +27,32 @@ public class CollisionHandler {
         int h2Width = hitbox2.getWidth();
         int h2Height = hitbox2.getHeight();
 
+        boolean xMaxIsBetween = h1X + h1Width > h2X && h1X + h1Width < h2X + h2Width;
+        boolean xMinIsBetween = h1X > h2X && h1X < h2X + h2Width;
+        boolean yMaxIsBetweenIntervalAbove = h1Y + h1Height > h2Y && h1Y + h1Height < h2Y + 10;
+        boolean yMinIsBetweenIntervalBelow = h1Y < h2Y + h2Height && h1Y > h2Y + h2Height - 10;
+
+        boolean yMaxIsBetween = h1Y + h1Height > h2Y && h1Y + h1Height < h2Y + h2Height;
+        boolean yMinIsBetween = h1Y > h2Y && h1Y < h2Y + h2Height;
+        boolean xMaxIsBetweenIntervalLeft = h1X + h1Width > h2X && h1X + h1Width < h2X + 10;
+        boolean xMinIsBetweenIntervalRight = h1X < h2X + h2Width && h1X > h2X + h2Width - 10;
+
+
+
         //Checks collision from above
-        if(((h1X + h1Width > h2X && h1X + h1Width < h2X + h2Width) || (h1X > h2X && h1X < h2X + h2Width)) && (h1Y + h1Height > h2Y && h1Y + h1Height < h2Y + 10)){
+        if((xMaxIsBetween || xMinIsBetween) && yMaxIsBetweenIntervalAbove){
             return true;
         }
         //Checks collision from below
-        if(((h1X + h1Width > h2X && h1X + h1Width < h2X + h2Width) || (h1X > h2X && h1X < h2X + h2Width)) && (h1Y < h2Y + h2Height && h1Y > h2Y + h2Height - 10)){
+        if((xMaxIsBetween || xMinIsBetween) && yMinIsBetweenIntervalBelow){
            return true;
         }
         //Checks collision from left
-        if(((h1Y + h1Height > h2Y && h1Y + h1Height < h2Y + h2Height) || (h1Y > h2Y && h1Y < h2Y + h2Height)) && (h1X + h1Width > h2X && h1X + h1Width < h2X + 10)){
+        if((yMaxIsBetween || yMinIsBetween) && xMaxIsBetweenIntervalLeft){
             return true;
         }
         //Checks collision from right
-        if(((h1Y + h1Height > h2Y && h1Y + h1Height < h2Y + h2Height) || (h1Y > h2Y && h1Y < h2Y + h2Height)) && (h1X < h2X + h2Width && h1X > h2X + h2Width - 10)){
+        if((yMaxIsBetween || yMinIsBetween) && xMinIsBetweenIntervalRight){
             return true;
         }
 
