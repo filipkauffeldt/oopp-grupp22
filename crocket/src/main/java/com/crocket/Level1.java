@@ -53,16 +53,6 @@ public class Level1 implements ILevel {
     }
 
     public Level1() {
+        entities.add(new Hoop(30, 30, 22, 100, 100, Direction.NORTH));
     }
-
-    //Defensive copy
-    public Level1(Level1 levelCopy){
-        this.width = levelCopy.width;
-        this.height = levelCopy.height;
-        this.tilemap = levelCopy.tilemap.clone();
-        this.entities = levelCopy.entities;
-        this.movables = levelCopy.movables;
-        this.collidables = levelCopy.collidables;
-    }
-    
 }

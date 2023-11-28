@@ -54,4 +54,7 @@ public class CroquetController implements KeyListener{
         ball.move();
         view.moveBall((int)ball.getxPosition(),(int)ball.getyPosition());
     }
+
+    
+
 }
