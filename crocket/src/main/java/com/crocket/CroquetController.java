@@ -11,7 +11,6 @@ public class CroquetController implements KeyListener{
     private Stone stone;
 
     private DirectionLine directionLine;
-    private int counter = 0;
 
     public CroquetController(CroquetView view, Ball ball, Stone stone, DirectionLine directionLine){
         this.view = view;
