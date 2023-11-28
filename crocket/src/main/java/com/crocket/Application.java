@@ -1,21 +1,26 @@
 package com.crocket;
 import javax.swing.*;
 
-public class Application extends JComponent{
-    private static int delay = 20;
+public class Application {
 
-    static CroquetView frame = new CroquetView();
-      
+    private static final int delay = 20;
+    private static CroquetView frame = CroquetView.getInstance();
+    private static LevelView level1View = new LevelView(new Level1());
+    static DrawEntity ballView = new DrawEntity();
     static Ball ball = new Ball(19,19,100,200,2);
     static DirectionLine directionLine = new DirectionLine(270, 120, 120, 10, 3);
     static CroquetController cc = new CroquetController(frame, ball, directionLine);
     
-    public static void main( String[] args ){
-        init();   
+
+
+    public static void main( String[] args )
+    {
+        init(); 
     }
-    
+
     private static void init(){
-        
+        frame.setLevelView(level1View);
+        frame.setBallToLevel(ballView);
         Thread run = new Thread();
         run.start();
         while(true){
@@ -24,7 +29,7 @@ public class Application extends JComponent{
             }
             catch(Exception ex){}
             cc.update();
-        }
+        }   
+
     }
 }
- 
