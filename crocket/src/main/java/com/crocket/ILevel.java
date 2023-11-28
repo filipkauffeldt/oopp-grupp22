@@ -1,5 +1,7 @@
 package com.crocket;
 
+import java.util.Set;
+
 public interface ILevel {
     public int getLevelHeight();
 
@@ -12,11 +14,5 @@ public interface ILevel {
     public Set<IMovable> getMovables();
 
     public Set<ICollidable> getCollidables();
-
-    public Set<Peg> getPegs();
-
-    public Set<Hoop> getHoops();
-
-    public void validateLevel();
 
 }

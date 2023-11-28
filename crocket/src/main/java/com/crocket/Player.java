@@ -61,6 +61,15 @@ public class Player implements IEventListener{
         
     }
 
+    public void shootBall(double angle, double power) {
+        double sinus = Math.sin(angle);
+        double cosinus = Math.cos(angle);
+        
+        this.ball.startBall(sinus, cosinus, power);
+
+        incrementStrokes();
+    }
+
     public Queue<Entity> getRemainingTargets() {
         return remainingTargets;
     }

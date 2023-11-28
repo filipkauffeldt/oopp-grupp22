@@ -23,7 +23,6 @@ public class LevelView extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         try {
-            level.validateLevel();
             drawLevel(g);
         } catch (IOException | NullPointerException e) {
             JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
