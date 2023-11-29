@@ -13,9 +13,9 @@ public class LevelView extends JLayeredPane {
     private final ILevel level;
     private TextureManager textureManager;
 
-    public LevelView(ILevel level) {
+    public LevelView(ILevel level, TextureManager textureManager) {
         this.level = level;
-        this.textureManager = new TextureManager();
+        this.textureManager = textureManager;
     }
 
 
@@ -32,8 +32,7 @@ public class LevelView extends JLayeredPane {
 
 
     private void drawSurfaceTile(Graphics g, Surface surface, int x, int y) throws IOException {
-        toStringq(surface);
-        g.drawImage(textureManager.getSurfaceTexture(surface), x * 100, y * 100, this);
+        g.drawImage(textureManager.getTexture(surface.name()), x * 100, y * 100, this);
     }
 
     private void drawSurface(Graphics g) throws IOException{
@@ -49,7 +48,7 @@ public class LevelView extends JLayeredPane {
     public void drawEntities(Set<DrawableEntity> drawableEntities) throws IOException {
         JLabel entityLabel;
         for( DrawableEntity entity : drawableEntities){
-            ImageIcon Image = new ImageIcon(textureManager.getEntityTexture(entity.getType()));
+            ImageIcon Image = new ImageIcon(textureManager.getTexture(entity.getTypeName()));
             entityLabel = new JLabel(Image); 
             entityLabel.setBounds(entity.getxPosition(), entity.getyPosition(), entity.getWidth(), entity.getHeight());
             this.add(entityLabel, 0);

@@ -3,7 +3,7 @@
         "EntityTextureList": [
             {
                 "Name": "BALL",
-                "TexturePath": "Assets/Textures/Ball.png"
+                "TexturePath": "crocket/assets/textures/Ball.png"
             },
             {
                 "Name": "HOOPTOP",
@@ -15,11 +15,11 @@
             },
             {
                 "Name": "HOOPLOWER2",
-                "TexturePath": "Assets/Textures/HoopLower2.png"
+                "TexturePath": "crocket/assets/textures/HoopLower2.png"
             },
             {
                 "Name": "STONE",
-                "TexturePath": "Assets/Textures/Stone.png"
+                "TexturePath": "crocket/assets/textures/Stone.png"
             },
             {
                 "Name": "PEG",

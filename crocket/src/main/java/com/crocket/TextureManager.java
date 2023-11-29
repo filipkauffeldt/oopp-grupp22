@@ -24,21 +24,30 @@ public class TextureManager {
         textureCacheMap = new HashMap<>();
     }
 
-    private BufferedImage getTexture(String textureName){
+    public BufferedImage getTexture(String textureName){
         if (!textureCacheMap.containsKey(textureName)) {
             throw new IllegalArgumentException("Invalid texture name");
+        }
+        return textureCacheMap.get(textureName);
     }
 
-    private void updateTextureCache() throws IOException, ParseException {
+    protected void loadTextures() throws IOException, ParseException {
         JSONParser parser = new JSONParser();
-        try(FileReader reader = new FileReader("Textures.json")){
+        try{
+            FileReader reader = new FileReader("crocket\\src\\main\\java\\com\\crocket\\Textures.json");
             JSONArray textureTypes = (JSONArray) parser.parse(reader);
             for (Object type : textureTypes) {
-                 JSONArray TextureObjectList  = (JSONArray) type;
+                JSONObject TextureObject  = (JSONObject) type;
+                JSONArray TextureObjectList = (JSONArray) TextureObject.get("EntityTextureList"); 
+                if (TextureObjectList == null) {
+                    TextureObjectList = (JSONArray) TextureObject.get("SurfaceTextureList");
+                }
                 for(Object object : TextureObjectList){
                     convertTextureToImage(object);
                 }
             }
+        }catch(IllegalArgumentException ex){
+            System.out.println("JSON file is not found");
         }
         
     }
@@ -119,5 +128,6 @@ public class TextureManager {
         }
     }
     */
+
 
 }
