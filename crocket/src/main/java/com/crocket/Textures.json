@@ -1,0 +1,46 @@
+[
+    {
+        "EntityTextureList": [
+            {
+                "Name": "BALL",
+                "TexturePath": "Assets/Textures/Ball.png"
+            },
+            {
+                "Name": "HOOPTOP",
+                "TexturePath": "crocket/assets/textures/HoopTop.png"
+            },
+            {
+                "Name": "HOOPLOWER1",
+                "TexturePath": "crocket/assets/textures/HoopLower1.png"
+            },
+            {
+                "Name": "HOOPLOWER2",
+                "TexturePath": "Assets/Textures/HoopLower2.png"
+            },
+            {
+                "Name": "STONE",
+                "TexturePath": "Assets/Textures/Stone.png"
+            },
+            {
+                "Name": "PEG",
+                "TexturePath": "crocket/assets/textures/Stone.png"
+            }
+        ]   
+    },
+    {
+        "SurfaceTextureList": [
+            {
+                "Name": "GRASS",
+                "TexturePath":  "crocket/assets/textures/GrassTile.png"
+            },
+            {
+                "Name": "ICE",
+                "TexturePath":  "crocket/assets/textures/IceTile.png"
+            },
+            {
+                "Name": "SAND",
+                "TexturePath":  "crocket/assets/textures/SandTile.png"
+            }
+        ]
+    }
+]

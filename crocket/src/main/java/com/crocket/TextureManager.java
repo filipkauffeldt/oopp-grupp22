@@ -1,22 +1,61 @@
 package com.crocket;
 
-import java.awt.image.BufferedImage;
+
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
+import java.awt.image.BufferedImage;
 import java.util.HashMap;
 import java.util.Map;
-
 import javax.imageio.ImageIO;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
 public class TextureManager {
-    private Map<Surface, BufferedImage> surfaceTextureMap;
-    private Map<EntityType, BufferedImage> entityTextureMap;
+
+    private Map<String, BufferedImage> textureCacheMap;
+    //private EnumMap<Surface, BufferedImage> surfaceTextureMap;
+    //private EnumMap<EntityType, BufferedImage> entityTextureMap;
 
     protected TextureManager() {
-        surfaceTextureMap = new HashMap<>();
-        entityTextureMap = new HashMap<>();
+        textureCacheMap = new HashMap<>();
     }
 
+    private BufferedImage getTexture(String textureName){
+        if (!textureCacheMap.containsKey(textureName)) {
+            throw new IllegalArgumentException("Invalid texture name");
+    }
+
+    private void updateTextureCache() throws IOException, ParseException {
+        JSONParser parser = new JSONParser();
+        try(FileReader reader = new FileReader("Textures.json")){
+            JSONArray textureTypes = (JSONArray) parser.parse(reader);
+            for (Object type : textureTypes) {
+                 JSONArray TextureObjectList  = (JSONArray) type;
+                for(Object object : TextureObjectList){
+                    convertTextureToImage(object);
+                }
+            }
+        }
+        
+    }
+
+    private void convertTextureToImage(Object object) throws IOException {
+        JSONObject textureObjectJSON = (JSONObject) object;
+        String textureName = (String) textureObjectJSON.get("Name");
+        String texturePath = (String) textureObjectJSON.get("TexturePath");
+        BufferedImage texture = ImageIO.read(new File(texturePath));
+        textureCacheMap.put(textureName, texture);
+    }
+
+
+
+
+
+    /* 
     private void addSurfaceTexture(Surface surface, BufferedImage textureFile) {
         surfaceTextureMap.put(surface, textureFile);
     }
@@ -46,7 +85,7 @@ public class TextureManager {
     public BufferedImage getEntityTexture(EntityType entityType) {
         return entityTextureMap.get(entityType);
     }
-
+    
     public void updateSurfaceTextures(Surface surface) throws IOException {
         switch (surface) {
             case GRASS:
@@ -63,7 +102,7 @@ public class TextureManager {
         }
     }
 
-    public void updateEntityTextures(EntityType entityType) throws IOException {
+    public void updateEntityTextures(EntityType entityType, int rotation) throws IOException {
         switch (entityType) {
             case BALL:
                 updateEntityTextureMap(entityType, "crocket/assets/textures/Ball.png");
@@ -71,8 +110,14 @@ public class TextureManager {
             case HOOP:
                 updateEntityTextureMap(entityType, "crocket/assets/textures/Hoop.png");
                 break;
+            case PEG:
+
+                break;
+            
             default:
                 throw new IllegalArgumentException("Invalid entity type");
         }
     }
+    */
+
 }

@@ -1,29 +1,27 @@
 package com.crocket;
 
 import java.awt.*;
-import java.awt.image.*;
-import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Set;
 
-import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 
-public class LevelView extends JPanel {
+public class LevelView extends JLayeredPane {
     private final ILevel level;
-    TextureManager textureManager;
+    private TextureManager textureManager;
 
     public LevelView(ILevel level) {
         this.level = level;
         this.textureManager = new TextureManager();
     }
 
+
     @Override
     protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
         try {
             drawSurface(g);
         } catch (IOException | NullPointerException e) {
@@ -34,7 +32,7 @@ public class LevelView extends JPanel {
 
 
     private void drawSurfaceTile(Graphics g, Surface surface, int x, int y) throws IOException {
-        textureManager.updateSurfaceTextures(surface);
+        toStringq(surface);
         g.drawImage(textureManager.getSurfaceTexture(surface), x * 100, y * 100, this);
     }
 
@@ -48,11 +46,17 @@ public class LevelView extends JPanel {
         }
     }
 
-    public void drawEntities(Set<DrawableEntity> drawableEntities) {
+    public void drawEntities(Set<DrawableEntity> drawableEntities) throws IOException {
+        JLabel entityLabel;
         for( DrawableEntity entity : drawableEntities){
-                
+            ImageIcon Image = new ImageIcon(textureManager.getEntityTexture(entity.getType()));
+            entityLabel = new JLabel(Image); 
+            entityLabel.setBounds(entity.getxPosition(), entity.getyPosition(), entity.getWidth(), entity.getHeight());
+            this.add(entityLabel, 0);
             }
         }
+    
+    
     
     
 }

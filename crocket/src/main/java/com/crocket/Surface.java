@@ -4,6 +4,4 @@ public enum Surface {
     ICE,
     SAND,
     GRASS;
-
-
 }

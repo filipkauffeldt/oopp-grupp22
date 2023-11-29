@@ -1,5 +1,4 @@
 package com.crocket;
-import javax.swing.*;
 
 public class Application {
 
