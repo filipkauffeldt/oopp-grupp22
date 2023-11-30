@@ -32,7 +32,6 @@ import java.util.logging.Level;
 public class CroquetView extends JFrame{
     private static CroquetView instance;
     private ImageIcon img = new ImageIcon("crocket/assets/textures/JFrame_Icon.jpg");
-    private ImageIcon meterImg = new ImageIcon("crocket/assets/textures/PowerMeter.jpg");
     private Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
     private String title = "Krocket";
     private DrawBall ball;
