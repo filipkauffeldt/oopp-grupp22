@@ -7,12 +7,14 @@ public interface ILevel {
 
     public int getLevelWidth();
 
-    public Surface[][] getLevelTilemap();
+    public Surface[][] getLevelSurfacemap();
 
     public Set<Entity> getEntities();
 
     public Set<IMovable> getMovables();
 
     public Set<ICollidable> getCollidables();
+
+
 
 }
