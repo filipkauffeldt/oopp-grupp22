@@ -3,6 +3,7 @@ import javax.swing.*;
 
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Toolkit;
 import java.util.logging.Level;
@@ -32,6 +33,7 @@ public class CroquetView extends JFrame{
     private static CroquetView instance;
     private ImageIcon img = new ImageIcon("crocket/assets/textures/JFrame_Icon.jpg");
     private ImageIcon meterImg = new ImageIcon("crocket/assets/textures/PowerMeter.jpg");
+    private Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
     private String title = "Krocket";
     private DrawBall ball;
     private LevelView levelView;
@@ -57,7 +59,6 @@ public class CroquetView extends JFrame{
             levelView.add(line);
             levelView.add(pPanel);
             
-            
         }
         catch(NullPointerException e){
             System.out.println("No container found!");
@@ -81,11 +82,7 @@ public class CroquetView extends JFrame{
         setLocationRelativeTo(null);
         setExtendedState(MAXIMIZED_BOTH); 
 
-       
-        
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        
-        
     }
 
     public static CroquetView getInstance(){
@@ -104,12 +101,27 @@ public class CroquetView extends JFrame{
         stone.setLocation(x, y);
     }
 
-    public void setStone(int x, int y){
-        stone.setLocation(x, y);
-    }
-
     public void moveBall(int x, int y){
         ball.setLocation(x, y);
+    }
+
+    public void setPowerMeterVisibility(boolean vis){
+        pPanel.setVisible(vis);
+    }
+
+    public void incrementIndicator(){
+        pPanel.incrementIndicator();
+        pPanel.repaint();
+    }
+
+    public void decrementIndicator(){
+        pPanel.decrementIndicator();
+        pPanel.repaint();
+    }
+
+    public void resetIndicator(){
+        pPanel.resetIndicator();
+        pPanel.repaint();
     }
 
     public void updateLine(int xPos, int yPos, int xAngle, int yAngle){
@@ -120,7 +132,7 @@ public class CroquetView extends JFrame{
     }
 
     public void updatePowerMeter(){
-        
+        pPanel.setLocation(30, (int)screen.getHeight() - 100);
     }
 
 }
