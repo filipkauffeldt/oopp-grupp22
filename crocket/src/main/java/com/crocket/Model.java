@@ -1,5 +1,6 @@
 package com.crocket;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -152,11 +153,23 @@ public class Model implements IModel {
         directionLine.setDegreeAngle(degrees);
     }
 
+    public void aimRight() {
+        directionLine.incrementDegreeAngle();
+    }
+
+    public void aimLeft() {
+        directionLine.decrementDegreeAngle();
+    }
+
     public void setPlayers(List<Player> players) {
         this.players = players;
     }
 
     public void addPlayer(Player player) {
+        if(players == null) {
+            players = new ArrayList<Player>();
+        }
+        
         players.add(player);
     }
 
