@@ -36,7 +36,7 @@ public class Level1 implements ILevel {
         return width;
     }
 
-    public Surface[][] getLevelTilemap() {
+    public Surface[][] getLevelSurfacemap() {
         return tilemap;
     }
 
