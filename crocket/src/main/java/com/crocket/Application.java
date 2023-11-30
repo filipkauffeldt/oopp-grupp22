@@ -1,5 +1,4 @@
 package com.crocket;
-import javax.swing.*;
 
 public class Application {
 
@@ -7,7 +6,8 @@ public class Application {
     private static CroquetView frame = CroquetView.getInstance();
     private static ILevel Level1 = new Level1();
     private static LevelView level1View = new LevelView();
-    static DrawEntity ballView = new DrawEntity();
+    static DrawBall ballView = new DrawBall();
+
     static DrawStone stoneView = new DrawStone();
     static Ball ball = new Ball(19,19,100,200,2);
     static Stone stone = new Stone(25, 25, 200, 300);
@@ -28,6 +28,7 @@ public class Application {
         frame.setStoneToLevel(stoneView);
         Thread run = new Thread();
         run.start();
+        
         while(true){
             try{
                 Thread.sleep(delay);
