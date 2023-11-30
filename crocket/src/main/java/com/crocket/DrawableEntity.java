@@ -41,8 +41,9 @@ public class DrawableEntity {
         return type;
     }
 
-    public String getTypeName(){
+    public String getTypeName() {
         return type.name();
     }
+
 
 }

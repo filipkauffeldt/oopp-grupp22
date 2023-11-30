@@ -22,7 +22,7 @@ public class DrawLevelTest {
     @Test
     public void testLevelMatrix() {
         ILevel testLevel = new Level1();
-        Surface[][] testMatrix = testLevel.getLevelTilemap();
+        Surface[][] testMatrix = testLevel.getLevelSurfacemap();
         for (Surface[] row : testMatrix) {
             for (Surface surface : row) {
                 assertNotEquals(surface, null);

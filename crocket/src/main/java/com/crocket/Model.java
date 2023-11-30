@@ -105,8 +105,7 @@ public class Model implements IModel {
 
     public Surface[][] getLevelTilemap() {
         validateLevelIsSet();
-
-        return level.getLevelTilemap();
+        return level.getLevelSurfacemap();
     }
 
     public void setLevel(ILevel level) {

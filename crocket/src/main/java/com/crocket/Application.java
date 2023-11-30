@@ -1,11 +1,14 @@
 package com.crocket;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class Application {
 
     private static final int delay = 20;
     private static CroquetView frame = CroquetView.getInstance();
     private static TextureManager textureManager = new TextureManager();
-    private static LevelView level1View = new LevelView();
+    private static LevelView level1View = new LevelView(textureManager);
     static DrawBall ballView = new DrawBall();
 
     static DrawStone stoneView = new DrawStone();
@@ -16,22 +19,25 @@ public class Application {
     
 
 
-    public static void main( String[] args )
+    public static void main( String[] args)
     {
         init(); 
     }
 
     private static void init(){
         try{
-            textureManager.loadTextures();
+             textureManager.loadTextures();
         }
-        catch(Exception ex){
-            System.out.println("Error loading textures!");
-        }
-        level1View.setSurfaceMap(Level1.getLevelSurfacemap(), Level1.getLevelHeight(), Level1.getLevelWidth());
+        catch(Exception ex){}
+        Set<DrawableEntity> drawables = new HashSet<DrawableEntity>();
+        DrawableEntity test= new DrawableEntity(100, 100, 30, 30, 0, EntityType.HOOP);
+        drawables.add(test);
+        Level1 level1 = new Level1(); 
+        level1View.setSurfaceMap(level1.getLevelSurfacemap(), level1.getLevelHeight(), level1.getLevelWidth());
         frame.setLevelView(level1View);
         frame.setBallToLevel(ballView);
         frame.setStoneToLevel(stoneView);
+        level1View.drawEntities(drawables);
         Thread run = new Thread();
         run.start();
         
