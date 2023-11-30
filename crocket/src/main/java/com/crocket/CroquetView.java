@@ -1,12 +1,9 @@
 package com.crocket;
 import javax.swing.*;
 
-import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Graphics;
 import java.awt.Toolkit;
-import java.util.logging.Level;
+
 
 /*
  * Class: CroquetView
