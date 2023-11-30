@@ -35,6 +35,7 @@ public class CroquetView extends JFrame{
     private String title = "Krocket";
     private DrawBall ball;
     private LevelView levelView;
+    private DrawStone stone;
     DrawDirectionLine line = new DrawDirectionLine();
     PowerPanel pPanel = new PowerPanel();
     
@@ -63,8 +64,17 @@ public class CroquetView extends JFrame{
         }
     }
 
-    private CroquetView(){
+    public void setStoneToLevel(DrawStone stone){
+        try{
+            this.stone = stone;
+            levelView.add(stone);
+        }
+        catch(NullPointerException e){
+            System.out.println("No container found!");
+        }
+    }
 
+    private CroquetView(){
         setIconImage(img.getImage());
         setTitle(title);
         setVisible(true);
@@ -88,6 +98,14 @@ public class CroquetView extends JFrame{
 
     public DrawBall getEntity(){
         return ball;
+    }
+
+    public void setStone(int x, int y){
+        stone.setLocation(x, y);
+    }
+
+    public void setStone(int x, int y){
+        stone.setLocation(x, y);
     }
 
     public void moveBall(int x, int y){

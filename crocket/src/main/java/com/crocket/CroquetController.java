@@ -7,6 +7,8 @@ public class CroquetController implements KeyListener{
     
     private CroquetView view;
     private Ball ball;
+    private Stone stone;
+
     private DirectionLine directionLine;
 
     double degreeAngle;
@@ -15,9 +17,16 @@ public class CroquetController implements KeyListener{
     double sinus;
     double cosinus;
 
-    public CroquetController(CroquetView view, Ball ball, DirectionLine directionLine){
+    double degreeAngle;
+    double friction = 0.1;
+    double power;
+    double sinus;
+    double cosinus;
+
+    public CroquetController(CroquetView view, Ball ball, Stone stone, DirectionLine directionLine){
         this.view = view;
         this.ball = ball;
+        this.stone = stone;
         this.directionLine = directionLine;
 
 
@@ -62,13 +71,18 @@ public class CroquetController implements KeyListener{
     }
 
     public void update(){
+        
         ball.move();
         degreeAngle = directionLine.getDegreeAngle();
         degreeAngle = Math.toRadians(degreeAngle);
         sinus = Math.sin(degreeAngle);
         cosinus = Math.cos(degreeAngle);
         
-        view.moveBall((int)ball.getxPosition(),(int)ball.getyPosition());
+        if(CollisionHandler.intersect(ball, stone)){
+            stone.collideWithBall(ball);
+        }
+        view.moveBall((int)ball.getxPosition(), (int)ball.getyPosition());
+        view.setStone((int)stone.getxPosition(), (int)stone.getyPosition());
         view.updateLine((int)ball.getxPosition()+ball.getWidth()/2, (int)ball.getyPosition()+ball.getHeight()/2, (int)(cosinus*50), (int)(sinus*50));
         view.updatePowerMeter();
     
@@ -106,3 +120,4 @@ public class CroquetController implements KeyListener{
         
     }
 }
+

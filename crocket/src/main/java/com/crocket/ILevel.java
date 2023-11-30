@@ -1,5 +1,7 @@
 package com.crocket;
 
+import java.util.Set;
+
 public interface ILevel {
     public int getLevelHeight();
 
@@ -7,6 +9,10 @@ public interface ILevel {
 
     public Surface[][] getLevelTilemap();
 
-    public void validateLevel();
+    public Set<Entity> getEntities();
+
+    public Set<IMovable> getMovables();
+
+    public Set<ICollidable> getCollidables();
 
 }
