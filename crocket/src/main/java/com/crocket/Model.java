@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Set;
 
 public class Model implements IModel {
+    private static final double NO_MOVEMENT_THRESHOLD = 0.1;
+    
     private static Model instance = null;
     private List<Player> players;
     private Set<IMovable> movables;
@@ -18,6 +20,7 @@ public class Model implements IModel {
 
     private int round;
     private boolean ballIsMoving;
+    private boolean shotAllowed;
 
     private Model() {
         directionLine = new DirectionLine(0, 0, 0, 0, 0);
@@ -37,6 +40,8 @@ public class Model implements IModel {
         round++;
 
         activePlayer = players.get(round % players.size());
+
+        shotAllowed = true;
     }
 
     public static EntityType getEntityTypeFromClass(Class<?> type) {
@@ -90,7 +95,11 @@ public class Model implements IModel {
             drawableEntities.add(new DrawableEntity(xPosition, yPosition, width, height, rotation, type));
         }
 
-        if (!ballIsMoving) {
+        if (shotAllowed) {
+            // TODO: Should be fixed. This is an ugly hack to get the direction line to show up. Breaks Law of Demeter.
+            directionLine.setxPosition(activePlayer.getBall().getxPosition());
+            directionLine.setyPosition(activePlayer.getBall().getyPosition());
+
             int xPosition = (int) directionLine.getxPosition();
             int yPosition = (int) directionLine.getyPosition();
             int width = (int) directionLine.getWidth();
@@ -104,10 +113,10 @@ public class Model implements IModel {
         return drawableEntities;
     }
 
-    public Surface[][] getLevelTilemap() {
+    public Surface[][] getLevelSurfacemap() {
         validateLevelIsSet();
 
-        return level.getLevelTilemap();
+        return level.getLevelSurfacemap();
     }
 
     public void setLevel(ILevel level) {
@@ -119,6 +128,7 @@ public class Model implements IModel {
 
         round = 0;
         ballIsMoving = false;
+        shotAllowed = true;
     }
 
     public void update() {
@@ -133,8 +143,10 @@ public class Model implements IModel {
         }
 
         if (ballIsMoving) {
-            if (activePlayer.getBall().getxVelocity() == 0 && activePlayer.getBall().getyVelocity() == 0) {
+            if (activePlayer.getBall().getxVelocity() <= NO_MOVEMENT_THRESHOLD && activePlayer.getBall().getyVelocity() <= NO_MOVEMENT_THRESHOLD) {
                 ballIsMoving = false;
+                activePlayer.getBall().setxVelocity(0);
+                activePlayer.getBall().setyVelocity(0);
                 nextRound();
             }
         }
@@ -145,6 +157,7 @@ public class Model implements IModel {
 
         activePlayer.shootBall(directionLine.getDegreeAngle(), power);
         ballIsMoving = true;
+        shotAllowed = false;
     }
 
     public void updateAim(int degrees) {
@@ -163,18 +176,43 @@ public class Model implements IModel {
 
     public void setPlayers(List<Player> players) {
         this.players = players;
+
+        activePlayer = players.get(0);
+
+        for (Player player : players) {
+            entities.add(player.getBall());
+            movables.add(player.getBall());
+        }
     }
 
     public void addPlayer(Player player) {
-        if(players == null) {
+        if (players == null) {
             players = new ArrayList<Player>();
         }
-        
+
         players.add(player);
+
+        if (activePlayer == null) {
+            activePlayer = player;
+        }
+
+        entities.add(player.getBall());
+        movables.add(player.getBall());
     }
 
     public void clearPlayers() {
         players.clear();
+
+        for (Player player : players) {
+            entities.remove(player.getBall());
+            movables.remove(player.getBall());
+        }
+
+        activePlayer = null;
+    }
+
+    public boolean shotAllowed() {
+        return shotAllowed;
     }
 
 }
