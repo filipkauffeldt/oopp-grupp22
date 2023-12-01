@@ -14,7 +14,7 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 public class TextureManager {
-    
+
     private static final String JSON_FILE_PATH = "crocket\\assets\\textures\\Textures.json";
     private static final String SURFACE_TEXTURE_LIST = "SurfaceTextureList";
     private static final String ENTITY_TEXTURE_LIST = "EntityTextureList";
@@ -33,7 +33,7 @@ public class TextureManager {
         return textureCacheMap.get(textureName);
     }
 
-    protected synchronized void loadTextures() throws IOException {
+    protected synchronized void loadTextures() {
         JSONParser parser = new JSONParser();
         try {
             FileReader reader = new FileReader(JSON_FILE_PATH);
