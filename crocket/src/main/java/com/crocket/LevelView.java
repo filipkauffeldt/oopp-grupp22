@@ -14,9 +14,9 @@ public class LevelView extends JLayeredPane implements ILevelView {
     private TextureManager textureManager;
     private int levelHeight;
     private int levelWidth;
-    private boolean isTexturesLoaded = false;
 
     public LevelView() {
+        setDoubleBuffered(true);
         this.textureManager = new TextureManager();
         this.textureManager.loadTextures();
     }
@@ -66,22 +66,27 @@ public class LevelView extends JLayeredPane implements ILevelView {
         label.setBounds(entity.getxPosition(), entity.getyPosition(), entity.getWidth(), entity.getHeight());
         return label;
     }
-
-    @Override
-    public void paint(Graphics g) {
-        super.paint(g);
-    }
     
     // TODO: FIX THIS HACK TO GET THE DIRECTION LINE TO SHOW UP!
     private void drawDirectionLine(DrawableEntity entity) {
         Graphics g = getGraphics();
-        int startX = entity.getxPosition();
-        int startY = entity.getyPosition();
-        int endX = startX + entity.getWidth(); // Change this if you want the line to be drawn in a different direction
-        int endY = startY; // Change this if you want the line to be drawn in a different direction
-    
-        g.setColor(Color.RED); // Change this to the color you want the line to be
-        g.drawLine(startX, startY, endX, endY);
+        Graphics2D g2 = (Graphics2D) g;
+        g2.setColor(Color.BLACK);
+        g2.setStroke(new BasicStroke(2));
+        int startX = entity.getxPosition() + 19/2;
+        int startY = entity.getyPosition() + 19/2;
+        int endX = startX + 20; // Change this if you want the line to be drawn in a different direction
+        int endY = startY + 20; // Change this if you want the line to be drawn in a different direction
+        double rotationRadians = Math.toRadians(entity.getRotation()+45);
+
+        // Rotate the Graphics2D object
+        g2.rotate(rotationRadians, startX, startY);
+        
+        // Draw the line
+        g2.drawLine(startX, startY, endX, endY);
+        
+        // Dispose the copy of the Graphics object
+        g2.dispose();
     }
 
 
@@ -118,13 +123,14 @@ public class LevelView extends JLayeredPane implements ILevelView {
     }
 
     public void drawEntities(Set<DrawableEntity> entities) {
+        removeAll();
         for (DrawableEntity entity : entities) {
             drawEntity(entity);
         }
+        repaint();
     }
 
     private void drawEntity(DrawableEntity entity) {
-        
         switch (entity.getType()) {
             case HOOP:
                 getHoopTexture(entity);
