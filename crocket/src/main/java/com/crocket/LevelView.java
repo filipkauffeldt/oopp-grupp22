@@ -25,7 +25,6 @@ public class LevelView extends JLayeredPane implements ILevelView {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         try {
-            //Check if this is weird or not 
             drawSurfaces(g);
         } catch (IOException | NullPointerException e) {
             JOptionPane.showMessageDialog(null, e.toString(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -67,26 +66,9 @@ public class LevelView extends JLayeredPane implements ILevelView {
         return label;
     }
     
-    // TODO: FIX THIS HACK TO GET THE DIRECTION LINE TO SHOW UP!
+    // TODO: FIX THIS!!!!
     private void drawDirectionLine(DrawableEntity entity) {
-        Graphics g = getGraphics();
-        Graphics2D g2 = (Graphics2D) g;
-        g2.setColor(Color.BLACK);
-        g2.setStroke(new BasicStroke(2));
-        int startX = entity.getxPosition() + 19/2;
-        int startY = entity.getyPosition() + 19/2;
-        int endX = startX + 20; // Change this if you want the line to be drawn in a different direction
-        int endY = startY + 20; // Change this if you want the line to be drawn in a different direction
-        double rotationRadians = Math.toRadians(entity.getRotation()+45);
-
-        // Rotate the Graphics2D object
-        g2.rotate(rotationRadians, startX, startY);
-        
-        // Draw the line
-        g2.drawLine(startX, startY, endX, endY);
-        
-        // Dispose the copy of the Graphics object
-        g2.dispose();
+     
     }
 
 
