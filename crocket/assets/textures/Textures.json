@@ -35,7 +35,7 @@
             },
             {
                 "Name": "PEG",
-                "TexturePath": "crocket/assets/textures/Stone.png"
+                "TexturePath": "crocket/assets/textures/Peg.png"
             }
         ]   
     },

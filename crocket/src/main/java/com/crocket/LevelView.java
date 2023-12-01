@@ -53,9 +53,9 @@ public class LevelView extends JLayeredPane implements ILevelView {
         add(label, JLayeredPane.MODAL_LAYER);
     }
 
-    private void drawNonLayeredEntity(DrawableEntity entity) {
+    private void drawNoneLayeredEntity(DrawableEntity entity) {
         BufferedImage bufferedImage = textureManager.getTexture(entity.getTypeName());
-        drawLowerLayerEntity(entity, bufferedImage); 
+        drawLowerLayerEntity(entity, bufferedImage);
     }
 
     private JLabel makeLabel(DrawableEntity entity, BufferedImage bufferedImage) {
@@ -68,7 +68,7 @@ public class LevelView extends JLayeredPane implements ILevelView {
         int rotation = entity.getRotation();
         String topHoopTexture;
         String lowerHoopTexture;
-        
+
         switch (rotation) {
             case 0:
                 topHoopTexture = "HOOPTOPHORIZONTAL";
@@ -77,7 +77,7 @@ public class LevelView extends JLayeredPane implements ILevelView {
             case 90:
                 topHoopTexture = "HOOPTOPVERTICAL";
                 lowerHoopTexture = "HOOPLOWERWEST";
-                break;  
+                break;
             case 180:
                 topHoopTexture = "HOOPTOPHORIZONTAL";
                 lowerHoopTexture = "HOOPLOWERSOUTH";
@@ -103,13 +103,13 @@ public class LevelView extends JLayeredPane implements ILevelView {
                     getHoopTexture(entity);
                     continue;
                 case PEG:
-                    drawNonLayeredEntity(entity);
+                    drawNoneLayeredEntity(entity);
                     continue;
                 case BALL:
-                    drawNonLayeredEntity(entity);
+                    drawNoneLayeredEntity(entity);
                     continue;
                 case STONE:
-                    drawNonLayeredEntity(entity);
+                    drawNoneLayeredEntity(entity);
                     continue;
                 default:
                     throw new IllegalArgumentException("Unknown entity class");

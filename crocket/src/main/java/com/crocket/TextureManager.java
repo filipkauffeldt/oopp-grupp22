@@ -14,6 +14,11 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 public class TextureManager {
+    
+    private static final String JSON_FILE_PATH = "crocket\\assets\\textures\\Textures.json";
+    private static final String SURFACE_TEXTURE_LIST = "SurfaceTextureList";
+    private static final String ENTITY_TEXTURE_LIST = "EntityTextureList";
+
 
     private Map<String, BufferedImage> textureCacheMap;
 
@@ -31,17 +36,17 @@ public class TextureManager {
     protected synchronized void loadTextures() throws IOException {
         JSONParser parser = new JSONParser();
         try {
-            FileReader reader = new FileReader("crocket\\assets\\textures\\Textures.json");
+            FileReader reader = new FileReader(JSON_FILE_PATH);
             JSONArray textureTypes = (JSONArray) parser.parse(reader);
             for (Object type : textureTypes) {
                 JSONObject TextureObject = (JSONObject) type;
-                JSONArray TextureObjectList = (JSONArray) TextureObject.get("SurfaceTextureList");
+                JSONArray TextureObjectList = (JSONArray) TextureObject.get(SURFACE_TEXTURE_LIST);
                 if (TextureObjectList != null) {
                     for (Object object : TextureObjectList) {
                         convertDataToImage(object);
                     }
                 }
-                TextureObjectList = (JSONArray) TextureObject.get("EntityTextureList");
+                TextureObjectList = (JSONArray) TextureObject.get(ENTITY_TEXTURE_LIST);
                 if (TextureObjectList != null) {
                     for (Object object : TextureObjectList) {
                         convertDataToImage(object);

@@ -1,7 +1,5 @@
 package com.crocket;
 
-import java.util.HashSet;
-import java.util.Set;
 
 public class Application {
 
@@ -25,25 +23,11 @@ public class Application {
     }
 
     private static void init(){
-        try{
-             textureManager.loadTextures();
-        }
-        catch(Exception ex){}
-        Set<DrawableEntity> drawables = new HashSet<DrawableEntity>();
-        DrawableEntity test = new DrawableEntity(100, 100, 30, 30, 90, EntityType.HOOP);
-        DrawableEntity test2 = new DrawableEntity(180, 100, 30, 30, 90, EntityType.HOOP);
-        DrawableEntity test3 = new DrawableEntity(200, 200, 30, 30, 180, EntityType.HOOP);
-        DrawableEntity test4 = new DrawableEntity(300, 280, 30, 30, 270, EntityType.HOOP);
-        drawables.add(test);
-        drawables.add(test2);
-        drawables.add(test3);
-        drawables.add(test4);
-        Level1 level1 = new Level1(); 
+        ILevel level1 = new Level1();
         level1View.setSurfaceMap(level1.getLevelSurfacemap(), level1.getLevelHeight(), level1.getLevelWidth());
         frame.setLevelView(level1View);
         frame.setBallToLevel(ballView);
         frame.setStoneToLevel(stoneView);
-        level1View.drawEntities(drawables);
         Thread run = new Thread();
         run.start();
         
