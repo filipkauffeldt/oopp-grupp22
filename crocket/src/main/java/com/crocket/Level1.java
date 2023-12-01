@@ -53,6 +53,9 @@ public class Level1 implements ILevel {
     }
 
     public Level1() {
+        Stone s = new Stone(30, 30, 600, 600);
+        collidables.add(s);
+        entities.add(s);
     }
 
     //Defensive copy
