@@ -27,32 +27,46 @@ public class CollisionHandler {
         int h2Width = hitbox2.getWidth();
         int h2Height = hitbox2.getHeight();
 
-        boolean xMaxIsBetween = h1X + h1Width > h2X && h1X + h1Width < h2X + h2Width;
-        boolean xMinIsBetween = h1X > h2X && h1X < h2X + h2Width;
-        boolean yMaxIsBetweenIntervalAbove = h1Y + h1Height > h2Y && h1Y + h1Height < h2Y + h2Height;
-        boolean yMinIsBetweenIntervalBelow = h1Y < h2Y + h2Height && h1Y > h2Y + h2Height;
+        boolean xMax1IsGreaterThanxPos2 = h1X + h1Width > h2X;
+        boolean xMax1IsLesserThanxMax2 = h1X + h1Width < h2X + h2Width;
+        boolean xMin1IsGreaterThanxPos2 = h1X > h2X;
+        boolean xMin1IsLesserThanxMax2 = h1X < h2X + h2Width;
+        boolean yMax1IsGreaterThanyPos2 = h1Y + h1Height > h2Y;
+        boolean yMax1IsLesserThanyMax2 = h1Y + h1Height < h2Y + h2Height;
+        boolean yMin1IsLesserThanyMax2 = h1Y < h2Y + h2Height;
+        boolean yMin1IsGreaterThanyPos2 = h1Y > h2Y;
 
-        boolean yMaxIsBetween = h1Y + h1Height > h2Y && h1Y + h1Height < h2Y + h2Height;
-        boolean yMinIsBetween = h1Y > h2Y && h1Y < h2Y + h2Height;
-        boolean xMaxIsBetweenIntervalLeft = h1X + h1Width > h2X && h1X + h1Width < h2X + h2Width;
-        boolean xMinIsBetweenIntervalRight = h1X < h2X + h2Width && h1X > h2X + h2Width;
+        boolean xMaxIsBetween = xMax1IsGreaterThanxPos2 && xMax1IsLesserThanxMax2;
+        boolean xMinIsBetween = xMin1IsGreaterThanxPos2 && xMin1IsLesserThanxMax2;
+        boolean yMaxIsBetween = yMax1IsGreaterThanyPos2 && yMax1IsLesserThanyMax2;
+        boolean yMinIsBetween = yMin1IsGreaterThanyPos2 && yMin1IsLesserThanyMax2;
 
+        boolean yMaxIsBetweenIntervalAbove = yMax1IsGreaterThanyPos2 && yMax1IsLesserThanyMax2;
+        boolean xMaxIsBetweenIntervalLeft = xMax1IsGreaterThanxPos2 && xMax1IsLesserThanxMax2;
+        boolean yMinIsBetweenIntervalBelow = yMin1IsLesserThanyMax2 && yMin1IsGreaterThanyPos2;
+        boolean xMinIsBetweenIntervalRight = xMin1IsLesserThanxMax2 && xMin1IsGreaterThanxPos2;
 
+        boolean intervalXAxis = xMaxIsBetween || xMinIsBetween;
+        boolean intervalYAxis = yMaxIsBetween || yMinIsBetween;
 
-        //Checks collision from above
-        if((xMaxIsBetween || xMinIsBetween) && yMaxIsBetweenIntervalAbove){
+        boolean intersectFromAbove = intervalXAxis && yMaxIsBetweenIntervalAbove;
+        boolean intersectFromBelow = intervalXAxis && yMinIsBetweenIntervalBelow;
+        boolean intersectFromLeft = intervalYAxis && xMaxIsBetweenIntervalLeft;
+        boolean intersectFromRight = intervalYAxis && xMinIsBetweenIntervalRight;
+
+        if(intersectFromAbove){
             return true;
         }
-        //Checks collision from below
-        if((xMaxIsBetween || xMinIsBetween) && yMinIsBetweenIntervalBelow){
+        
+        if(intersectFromBelow){
            return true;
         }
-        //Checks collision from left
-        if((yMaxIsBetween || yMinIsBetween) && xMaxIsBetweenIntervalLeft){
+
+        if(intersectFromLeft){
             return true;
         }
-        //Checks collision from right
-        if((yMaxIsBetween || yMinIsBetween) && xMinIsBetweenIntervalRight){
+
+        if(intersectFromRight){
             return true;
         }
 
