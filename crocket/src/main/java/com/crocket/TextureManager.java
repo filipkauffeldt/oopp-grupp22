@@ -1,6 +1,5 @@
 package com.crocket;
 
-
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
@@ -22,39 +21,43 @@ public class TextureManager {
         this.textureCacheMap = new HashMap<>();
     }
 
-    public BufferedImage getTexture(String textureName){
-        System.err.println(textureName.hashCode());
+    public BufferedImage getTexture(String textureName) {
         if (!textureCacheMap.containsKey(textureName)) {
             throw new IllegalArgumentException("Invalid texture name " + textureName);
         }
         return textureCacheMap.get(textureName);
     }
 
-    protected void loadTextures() throws IOException{
+    protected synchronized void loadTextures() throws IOException {
         JSONParser parser = new JSONParser();
-        try{
-            FileReader reader = new FileReader("crocket\\src\\main\\java\\com\\crocket\\Textures.json");
+        try {
+            FileReader reader = new FileReader("crocket\\assets\\textures\\Textures.json");
             JSONArray textureTypes = (JSONArray) parser.parse(reader);
             for (Object type : textureTypes) {
-                JSONObject TextureObject  = (JSONObject) type;
-                JSONArray TextureObjectList = (JSONArray) TextureObject.get("EntityTextureList"); 
-                if (TextureObjectList == null) {
-                    TextureObjectList = (JSONArray) TextureObject.get("SurfaceTextureList");
+                JSONObject TextureObject = (JSONObject) type;
+                JSONArray TextureObjectList = (JSONArray) TextureObject.get("SurfaceTextureList");
+                if (TextureObjectList != null) {
+                    for (Object object : TextureObjectList) {
+                        convertDataToImage(object);
+                    }
                 }
-                for(Object object : TextureObjectList){
-                    convertTextureToImage(object);
+                TextureObjectList = (JSONArray) TextureObject.get("EntityTextureList");
+                if (TextureObjectList != null) {
+                    for (Object object : TextureObjectList) {
+                        convertDataToImage(object);
+                    }
                 }
             }
-        }catch(ParseException ex){
+        } catch (ParseException ex) {
             System.out.println("Error parsing textures.json file");
+        } catch (IOException ex) {
+            System.out.println("Error bad path to texture in json file");
         }
-        
     }
 
-    private void convertTextureToImage(Object object) throws IOException {
+    private void convertDataToImage(Object object) throws IOException {
         JSONObject textureObjectJSON = (JSONObject) object;
         String textureName = (String) textureObjectJSON.get("Name");
-        System.out.println(textureName);
         String texturePath = (String) textureObjectJSON.get("TexturePath");
         BufferedImage texture = ImageIO.read(new File(texturePath));
         textureCacheMap.put(textureName, texture);

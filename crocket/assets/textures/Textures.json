@@ -6,16 +6,28 @@
                 "TexturePath": "crocket/assets/textures/Ball.png"
             },
             {
-                "Name": "HOOPTOP",
-                "TexturePath": "crocket/assets/textures/HoopTop.png"
+                "Name": "HOOPTOPHORIZONTAL",
+                "TexturePath": "crocket/assets/textures/HoopTopHorizontal.png"
             },
             {
-                "Name": "HOOPLOWER1",
-                "TexturePath": "crocket/assets/textures/HoopLower1.png"
+                "Name": "HOOPTOPVERTICAL",
+                "TexturePath": "crocket/assets/textures/HoopTopVertical.png"
             },
             {
-                "Name": "HOOPLOWER2",
-                "TexturePath": "crocket/assets/textures/HoopLower2.png"
+                "Name": "HOOPLOWERNORTH",
+                "TexturePath": "crocket/assets/textures/HoopLowerNorth.png"
+            },
+            {
+                "Name": "HOOPLOWERSOUTH",
+                "TexturePath": "crocket/assets/textures/HoopLowerSouth.png"
+            },
+            {
+                "Name": "HOOPLOWEREAST",
+                "TexturePath": "crocket/assets/textures/HoopLowerEast.png"
+            },
+            {
+                "Name": "HOOPLOWERWEST",
+                "TexturePath": "crocket/assets/textures/HoopLowerWest.png"
             },
             {
                 "Name": "STONE",

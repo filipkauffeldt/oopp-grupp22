@@ -24,7 +24,7 @@ public class LevelView extends JLayeredPane implements ILevelView {
         super.paintComponent(g);
         try {
             drawSurfaces(g);
-        } catch (IOException | NullPointerException e ) {
+        } catch (IOException | NullPointerException e) {
             JOptionPane.showMessageDialog(null, e.toString(), "Error", JOptionPane.ERROR_MESSAGE);
             System.exit(1);
         }
@@ -43,62 +43,76 @@ public class LevelView extends JLayeredPane implements ILevelView {
         }
     }
 
-    private void getNonrotatableTexture(DrawableEntity entity) {
-        String typeKey = entity.getTypeName();
-        BufferedImage bufferedImage = textureManager.getTexture(typeKey);
-        JLabel label = new JLabel(new ImageIcon(bufferedImage));
-        label.setBounds(entity.getxPosition(), entity.getyPosition(), entity.getWidth(), entity.getHeight());
-        add(new JLabel(new ImageIcon(bufferedImage)), JLayeredPane.DEFAULT_LAYER);
+    private void drawLowerLayerEntity(DrawableEntity entity, BufferedImage bufferedImage) {
+        JLabel label = makeLabel(entity, bufferedImage);
+        add(label, JLayeredPane.DEFAULT_LAYER);
     }
 
-    private void getRotatableTexture(DrawableEntity entity) {
-        switch (entity.getRotation()) {
-            case 0: // 0 degrees
-                BufferedImage bufferedImage = textureManager.getTexture("HOOPLOWER1");
-                JLabel label = new JLabel(new ImageIcon(bufferedImage));
-                label.setBounds(entity.getxPosition(), entity.getyPosition(), entity.getWidth(), entity.getHeight());
-                add(label, JLayeredPane.DEFAULT_LAYER);
-                bufferedImage = textureManager.getTexture("HOOPTOP");
-                label = new JLabel(new ImageIcon(bufferedImage));
-                label.setBounds(entity.getxPosition(), entity.getyPosition(), entity.getWidth(), entity.getHeight()); 
-                add(label, JLayeredPane.MODAL_LAYER); 
+    private void drawMiddleLayerEntity(DrawableEntity entity, BufferedImage bufferedImage) {
+        JLabel label = makeLabel(entity, bufferedImage);
+        add(label, JLayeredPane.MODAL_LAYER);
+    }
+
+    private void drawNonLayeredEntity(DrawableEntity entity) {
+        BufferedImage bufferedImage = textureManager.getTexture(entity.getTypeName());
+        drawLowerLayerEntity(entity, bufferedImage); 
+    }
+
+    private JLabel makeLabel(DrawableEntity entity, BufferedImage bufferedImage) {
+        JLabel label = new JLabel(new ImageIcon(bufferedImage));
+        label.setBounds(entity.getxPosition(), entity.getyPosition(), entity.getWidth(), entity.getHeight());
+        return label;
+    }
+
+    private void getHoopTexture(DrawableEntity entity) {
+        int rotation = entity.getRotation();
+        String topHoopTexture;
+        String lowerHoopTexture;
+        
+        switch (rotation) {
+            case 0:
+                topHoopTexture = "HOOPTOPHORIZONTAL";
+                lowerHoopTexture = "HOOPLOWERNORTH";
                 break;
-            case 90: // 90 degrees
-            throw new IllegalArgumentException("Unknown entity class");
-            case 180: // 180 degrees
-                bufferedImage = textureManager.getTexture("HOOPLOWER2");
-                label = new JLabel(new ImageIcon(bufferedImage));
-                label.setBounds(entity.getxPosition(), entity.getyPosition(), entity.getWidth(), entity.getHeight());
-                add(label, JLayeredPane.DEFAULT_LAYER);
-                bufferedImage = textureManager.getTexture("HOOPTOP");
-                label = new JLabel(new ImageIcon(bufferedImage));
-                label.setBounds(entity.getxPosition(), entity.getyPosition() - 100, entity.getWidth(), entity.getHeight()); 
-                add(label, JLayeredPane.MODAL_LAYER);
-                break; 
-            case 270: // 270 degrees
-            throw new IllegalArgumentException("Unknown entity class");
+            case 90:
+                topHoopTexture = "HOOPTOPVERTICAL";
+                lowerHoopTexture = "HOOPLOWERWEST";
+                break;  
+            case 180:
+                topHoopTexture = "HOOPTOPHORIZONTAL";
+                lowerHoopTexture = "HOOPLOWERSOUTH";
+                break;
+            case 270:
+                topHoopTexture = "HOOPTOPVERTICAL";
+                lowerHoopTexture = "HOOPLOWEREAST";
+                break;
             default:
-                break;
+                throw new IllegalArgumentException("Invalid rotation");
         }
+        BufferedImage bufferedImage = textureManager.getTexture(lowerHoopTexture);
+        drawLowerLayerEntity(entity, bufferedImage);
+
+        bufferedImage = textureManager.getTexture(topHoopTexture);
+        drawMiddleLayerEntity(entity, bufferedImage);
     }
 
     public void drawEntities(Set<DrawableEntity> entities) {
         for (DrawableEntity entity : entities) {
             switch (entity.getType()) {
                 case HOOP:
-                    getRotatableTexture(entity);
+                    getHoopTexture(entity);
                     continue;
                 case PEG:
-                    getNonrotatableTexture(entity);
+                    drawNonLayeredEntity(entity);
                     continue;
                 case BALL:
-                    getNonrotatableTexture(entity);
+                    drawNonLayeredEntity(entity);
                     continue;
                 case STONE:
-                    getNonrotatableTexture(entity);
+                    drawNonLayeredEntity(entity);
                     continue;
                 default:
-                    continue;
+                    throw new IllegalArgumentException("Unknown entity class");
             }
         }
     }
