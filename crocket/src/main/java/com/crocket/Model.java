@@ -44,6 +44,19 @@ public class Model implements IModel {
         shotAllowed = true;
     }
 
+    private void populatePlayerEntities(List<Player> players) {
+        players.clear();
+        for (Player player : players) {
+            entities.add(player.getBall());
+            movables.add(player.getBall());
+        }
+    }
+
+    private void populatePlayerEntities(Player player) {
+        entities.add(player.getBall());
+        movables.add(player.getBall());
+    }
+
     public static EntityType getEntityTypeFromClass(Class<?> type) {
         if (type == Ball.class) {
             return EntityType.BALL;
@@ -175,14 +188,18 @@ public class Model implements IModel {
     }
 
     public void setPlayers(List<Player> players) {
+        if (players == null) {
+            throw new IllegalArgumentException("Players cannot be null");
+        }
+
+        if (players.size() < 1) {
+            throw new IllegalArgumentException("There must be at least one players");
+        }
         this.players = players;
 
         activePlayer = players.get(0);
 
-        for (Player player : players) {
-            entities.add(player.getBall());
-            movables.add(player.getBall());
-        }
+        populatePlayerEntities(players);
     }
 
     public void addPlayer(Player player) {
@@ -196,8 +213,7 @@ public class Model implements IModel {
             activePlayer = player;
         }
 
-        entities.add(player.getBall());
-        movables.add(player.getBall());
+        populatePlayerEntities(player);
     }
 
     public void clearPlayers() {
