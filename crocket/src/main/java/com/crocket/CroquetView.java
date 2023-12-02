@@ -51,7 +51,6 @@ public class CroquetView extends JFrame{
     public void setBallToLevel(DrawBall ball){
         try{
             this.ball = ball;
-            ball.setSize(19, 19);
             levelView.add(ball);
             levelView.add(line);
             levelView.add(pPanel);
