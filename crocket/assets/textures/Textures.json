@@ -1,6 +1,5 @@
 [
-    {
-        "EntityTextureList": [
+
             {
                 "Name": "BALL",
                 "TexturePath": "crocket/assets/textures/Ball.png"
@@ -36,11 +35,7 @@
             {
                 "Name": "PEG",
                 "TexturePath": "crocket/assets/textures/Peg.png"
-            }
-        ]   
-    },
-    {
-        "SurfaceTextureList": [
+            },
             {
                 "Name": "GRASS",
                 "TexturePath":  "crocket/assets/textures/GrassTile.png"
@@ -53,6 +48,4 @@
                 "Name": "SAND",
                 "TexturePath":  "crocket/assets/textures/SandTile.png"
             }
-        ]
-    }
 ]
