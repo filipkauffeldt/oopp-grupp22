@@ -1,7 +1,10 @@
 package com.crocket;
 
+
 import org.junit.Before;
 import org.junit.Test;
+
+import com.crocket.model.DirectionLine;
 
 import static org.junit.Assert.assertEquals;
 
