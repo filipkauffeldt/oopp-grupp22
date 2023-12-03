@@ -45,7 +45,6 @@ public class Model implements IModel {
     }
 
     private void populatePlayerEntities(List<Player> players) {
-        players.clear();
         for (Player player : players) {
             entities.add(player.getBall());
             movables.add(player.getBall());

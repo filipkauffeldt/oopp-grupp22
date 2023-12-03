@@ -16,8 +16,6 @@ public class DrawDirectionLine extends JPanel {
     DrawDirectionLine(){
         super();
         setOpaque(false);
-        
-        
     }
     
     public int getStartX() {

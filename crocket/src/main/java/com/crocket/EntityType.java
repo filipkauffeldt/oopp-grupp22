@@ -1,7 +1,7 @@
 package com.crocket;
 
 public enum EntityType {
-    BALL,
+    BALL, 
     HOOP,
     PEG,
     STONE,

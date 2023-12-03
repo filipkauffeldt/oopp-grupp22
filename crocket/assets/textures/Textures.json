@@ -1,0 +1,51 @@
+[
+
+            {
+                "Name": "BALL",
+                "TexturePath": "crocket/assets/textures/Ball.png"
+            },
+            {
+                "Name": "HOOPTOPHORIZONTAL",
+                "TexturePath": "crocket/assets/textures/HoopTopHorizontal.png"
+            },
+            {
+                "Name": "HOOPTOPVERTICAL",
+                "TexturePath": "crocket/assets/textures/HoopTopVertical.png"
+            },
+            {
+                "Name": "HOOPLOWERNORTH",
+                "TexturePath": "crocket/assets/textures/HoopLowerNorth.png"
+            },
+            {
+                "Name": "HOOPLOWERSOUTH",
+                "TexturePath": "crocket/assets/textures/HoopLowerSouth.png"
+            },
+            {
+                "Name": "HOOPLOWEREAST",
+                "TexturePath": "crocket/assets/textures/HoopLowerEast.png"
+            },
+            {
+                "Name": "HOOPLOWERWEST",
+                "TexturePath": "crocket/assets/textures/HoopLowerWest.png"
+            },
+            {
+                "Name": "STONE",
+                "TexturePath": "crocket/assets/textures/Stone.png"
+            },
+            {
+                "Name": "PEG",
+                "TexturePath": "crocket/assets/textures/Peg.png"
+            },
+            {
+                "Name": "GRASS",
+                "TexturePath":  "crocket/assets/textures/GrassTile.png"
+            },
+            {
+                "Name": "ICE",
+                "TexturePath":  "crocket/assets/textures/IceTile.png"
+            },
+            {
+                "Name": "SAND",
+                "TexturePath":  "crocket/assets/textures/SandTile.png"
+            }
+]

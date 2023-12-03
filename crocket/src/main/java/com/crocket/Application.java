@@ -10,8 +10,9 @@ public class Application {
     private static ILevel Level1 = new Level1();
     private static LevelView level1View = new LevelView();
 
-    public static void main(String[] args) {
-        init();
+    public static void main( String[] args )
+    {
+        init(); 
     }
 
     private static void init() {
