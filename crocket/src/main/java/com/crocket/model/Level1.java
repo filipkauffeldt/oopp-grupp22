@@ -63,7 +63,7 @@ public class Level1 implements ILevel {
 
     public Level1() {
         Stone s = new Stone(30, 30, 300, 500);
-        Hoop h = new Hoop(30, 30,26,300, 400, Direction.SOUTH);
+        Hoop h = new Hoop(30, 30,26, 2,0, 0, Direction.SOUTH);
         collidables.add(h);
         entities.add(h);
         collidables.add(s);

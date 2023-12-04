@@ -182,7 +182,8 @@ public class Model implements IModel {
         }
 
         if (ballIsMoving) {
-            if (activePlayer.getBall().getxVelocity() <= NO_MOVEMENT_THRESHOLD && activePlayer.getBall().getyVelocity() <= NO_MOVEMENT_THRESHOLD) {
+            if (Math.abs(activePlayer.getBall().getxVelocity()) <= NO_MOVEMENT_THRESHOLD && 
+                Math.abs(activePlayer.getBall().getyVelocity()) <= NO_MOVEMENT_THRESHOLD) {
                 ballIsMoving = false;
                 activePlayer.getBall().setxVelocity(0);
                 activePlayer.getBall().setyVelocity(0);
