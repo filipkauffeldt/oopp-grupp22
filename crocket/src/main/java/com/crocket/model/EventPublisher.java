@@ -5,7 +5,7 @@ import java.util.Set;
 
 import com.crocket.model.interfaces.IEventListener;
 
-public class EventPublisher {
+public class EventPublisher  {
     private static EventPublisher instance = null;
     private Set<IEventListener> listeners;
     

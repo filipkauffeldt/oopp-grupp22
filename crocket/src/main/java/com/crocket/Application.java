@@ -35,8 +35,8 @@ public class Application {
         Ball p2Ball = new Ball(20, 20, 300d, 300d, 20);
 
         // TODO: Implement a way for the end user to decide how many players there should be
-        Player player1 = new Player(p1Ball);
-        Player player2 = new Player(p2Ball);
+        Player player1 = new Player(p1Ball, "Player 1");
+        Player player2 = new Player(p2Ball, "Player 2");
         players.add(player1);
         players.add(player2);
 
