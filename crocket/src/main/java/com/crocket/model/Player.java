@@ -18,6 +18,7 @@ public class Player implements IEventListener{
     private int strokes;
     private int score;
     private boolean finished;
+    private EventPublisher eventPublisher; //EventPublisher for passing through hoops should we could we depend on an interface instead?
     private Queue<Entity> remainingTargets; //Queue of hoops and peg that have not been passed yet
     private Ball ball;
     private List<IPowerUp> powerUps;
