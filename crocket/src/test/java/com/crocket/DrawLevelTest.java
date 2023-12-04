@@ -1,9 +1,14 @@
 package com.crocket;
 
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
 import org.junit.Test;
+
+import com.crocket.model.Level1;
+import com.crocket.model.interfaces.ILevel;
+import com.crocket.shared.Surface;
 
 public class DrawLevelTest {
 
