@@ -1,6 +1,6 @@
 package com.crocket.model;
 
-import static com.crocket.shared.Surface.*;
+import static com.crocket.shared.SurfaceType.*;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -13,7 +13,7 @@ import com.crocket.model.interfaces.ICollidable;
 import com.crocket.model.interfaces.ILevel;
 import com.crocket.model.interfaces.IMovable;
 import com.crocket.shared.Direction;
-import com.crocket.shared.Surface;
+import com.crocket.shared.SurfaceType;
 
 public class Level1 implements ILevel {
     private int width = 25;
@@ -22,7 +22,7 @@ public class Level1 implements ILevel {
     private Set<IMovable> movables = new HashSet<IMovable>();
     private Set<ICollidable> collidables = new HashSet<ICollidable>();
     private Set<Entity> tragetSet = new HashSet<Entity>();
-    private Surface[][] tilemap = {
+    private SurfaceType[][] tilemap = {
             { GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS},
             { GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS },
             { GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS,GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS },
@@ -47,7 +47,7 @@ public class Level1 implements ILevel {
         return width;
     }
 
-    public Surface[][] getLevelSurfacemap() {
+    public SurfaceType[][] getLevelSurfacemap() {
         return tilemap;
     }
 

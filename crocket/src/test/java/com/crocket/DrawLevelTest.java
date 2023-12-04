@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import com.crocket.model.Level1;
 import com.crocket.model.interfaces.ILevel;
-import com.crocket.shared.Surface;
+import com.crocket.shared.SurfaceType;
 
 public class DrawLevelTest {
 
@@ -27,9 +27,9 @@ public class DrawLevelTest {
     @Test
     public void testLevelMatrix() {
         ILevel testLevel = new Level1();
-        Surface[][] testMatrix = testLevel.getLevelSurfacemap();
-        for (Surface[] row : testMatrix) {
-            for (Surface surface : row) {
+        SurfaceType[][] testMatrix = testLevel.getLevelSurfacemap();
+        for (SurfaceType[] row : testMatrix) {
+            for (SurfaceType surface : row) {
                 assertNotEquals(surface, null);
             }
         }

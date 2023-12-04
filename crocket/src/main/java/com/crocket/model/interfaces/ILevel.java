@@ -3,7 +3,7 @@ package com.crocket.model.interfaces;
 import java.util.Set;
 
 import com.crocket.model.entity.Entity;
-import com.crocket.shared.Surface;
+import com.crocket.shared.SurfaceType;
 
 /**
  * The ILevel interface represents a level in the game.
@@ -33,7 +33,7 @@ public interface ILevel {
      * 
      * @return 2D array of Surface objects representing the surface map of the level
      */
-    public Surface[][] getLevelSurfacemap();
+    public SurfaceType[][] getLevelSurfacemap();
 
     /**
      * Returns a set of all entities in the level.

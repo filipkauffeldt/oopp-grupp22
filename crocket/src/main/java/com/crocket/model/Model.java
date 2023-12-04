@@ -16,7 +16,7 @@ import com.crocket.model.interfaces.ILevel;
 import com.crocket.model.interfaces.IModel;
 import com.crocket.model.interfaces.IMovable;
 import com.crocket.shared.EntityType;
-import com.crocket.shared.Surface;
+import com.crocket.shared.SurfaceType;
 
 public class Model implements IModel {
     private static final double NO_MOVEMENT_THRESHOLD = 0.1;
@@ -155,7 +155,7 @@ public class Model implements IModel {
         return drawableEntities;
     }
 
-    public Surface[][] getLevelSurfacemap() {
+    public SurfaceType[][] getLevelSurfacemap() {
         validateLevelIsSet();
 
         return level.getLevelSurfacemap();
