@@ -1,5 +1,5 @@
 
-package com.crocket.model.interfaces;
+package com.crocket.view.interfaces;
 import java.util.Set;
 
 import com.crocket.model.DrawableEntity;

@@ -5,9 +5,9 @@ import java.awt.event.KeyListener;
 import java.util.Set;
 
 import com.crocket.model.DrawableEntity;
-import com.crocket.model.interfaces.ILevelView;
 import com.crocket.model.interfaces.IModel;
 import com.crocket.view.CroquetView;
+import com.crocket.view.interfaces.ILevelView;
 
 public class CroquetController implements KeyListener {
 

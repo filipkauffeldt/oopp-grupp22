@@ -10,8 +10,8 @@ import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
 
 import com.crocket.model.DrawableEntity;
-import com.crocket.model.interfaces.ILevelView;
 import com.crocket.shared.Surface;
+import com.crocket.view.interfaces.ILevelView;
 
 public class LevelView extends JLayeredPane implements ILevelView {
     private Surface[][] levelSurfacemap;
