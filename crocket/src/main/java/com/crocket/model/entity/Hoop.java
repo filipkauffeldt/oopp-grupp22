@@ -39,7 +39,6 @@ public class Hoop extends Entity implements ICollidable {
             CollisionHandler.reflect(ball, direction);
         } else if (passedThrough(ball)) {
             PassTargetEvent event = new PassTargetEvent(ball, this);
-
             eventPublisher.publishEvent(event);
         }
     }

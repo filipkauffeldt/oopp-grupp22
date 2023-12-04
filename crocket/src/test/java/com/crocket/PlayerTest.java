@@ -51,7 +51,7 @@ public class PlayerTest {
     
     @Test
     public void test_hasWon_false() {
-        Player player = new Player(new Ball(20, 20, 20, 20, 2));
+        Player player = new Player(new Ball(20, 20, 20, 20, 2), "Player 1");
         addTargets();
         player.setTargets(targets);
         assertFalse(player.hasWon());
@@ -59,13 +59,13 @@ public class PlayerTest {
 
     @Test 
     public void test_hasWon_true() {
-        Player player = new Player(new Ball(20, 20, 20, 20, 2));
+        Player player = new Player(new Ball(20, 20, 20, 20, 2), "Player 1");
         assertTrue(player.hasWon());
     }
 
     @Test
     public void test_handleEvent_rightHoop() {
-        Player player = new Player(new Ball(20, 20, 20, 20, 2));
+        Player player = new Player(new Ball(20, 20, 20, 20, 2), "Player 1");
         List<Entity> targetList = getTargets();
         addTargets();
         player.setTargets(targets);
@@ -75,7 +75,7 @@ public class PlayerTest {
 
     @Test
     public void test_handleEvent_wrongHoop() {
-        Player player = new Player(new Ball(20, 20, 20, 20, 2));
+        Player player = new Player(new Ball(20, 20, 20, 20, 2), "Player 1");
         List<Entity> targetList = getTargets();
         addTargets();
         player.setTargets(targets);
