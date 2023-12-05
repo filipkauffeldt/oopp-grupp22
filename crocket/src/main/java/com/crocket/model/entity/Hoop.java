@@ -12,7 +12,7 @@ public class Hoop extends Entity implements ICollidable {
     private Direction dir;
 
     private Hitbox innerHitbox;
-    private Hitbox lefHitbox;
+    private Hitbox leftHitbox;
     private Hitbox rightHitbox;
 
     private EventPublisher eventPublisher;
@@ -32,7 +32,7 @@ public class Hoop extends Entity implements ICollidable {
     public void collideWithBall(Ball ball) {
         if (missedTarget(ball)) return;
         if (collidedLeft(ball)) {
-            Direction direction = CollisionHandler.collidedDirection(ball, lefHitbox);
+            Direction direction = CollisionHandler.collidedDirection(ball, leftHitbox);
             CollisionHandler.reflect(ball, direction);
         } else if (collidedRight(ball)) {
             Direction direction = CollisionHandler.collidedDirection(ball, rightHitbox);
@@ -43,53 +43,52 @@ public class Hoop extends Entity implements ICollidable {
         }
     }
 
-    //Makes the posts hitbox for the goal.
-    private void createPostsHitbox(){
-        int hitboxWidth;
-        int hitboxHeight;
-        double xRealativeLeftHitboxPlacement;
-        double yRealativeLeftHitxboxPlacement;
-        double xRealativeRightHitboxPlacement;
-        double yRealativeRightHitxboxPlacement;
-        if(this.dir == EAST || this.dir == WEST){
-            hitboxWidth = 3;
-            hitboxHeight = (this.getHeight() - this.innerWidth)/2;
-            xRealativeLeftHitboxPlacement = this.getWidth()/2 - hitboxWidth + this.getxPosition();
-            xRealativeRightHitboxPlacement = this.getWidth()/2 - hitboxWidth + this.getxPosition(); 
-            yRealativeLeftHitxboxPlacement = this.getHeight() - hitboxHeight + this.getyPosition();
-            yRealativeRightHitxboxPlacement = this.getyPosition();
-        } else {
-            hitboxHeight = 3;
-            hitboxWidth = (this.getWidth() - this.innerWidth)/2;
-            xRealativeLeftHitboxPlacement = hitboxWidth + this.getxPosition();
-            xRealativeRightHitboxPlacement = this.getWidth() - hitboxWidth + this.getxPosition();
-            yRealativeLeftHitxboxPlacement = this.getHeight() - hitboxHeight + this.getyPosition();
-            yRealativeRightHitxboxPlacement = this.getHeight() - hitboxHeight + this.getyPosition();
-        }
-            this.lefHitbox = new Hitbox(hitboxWidth, hitboxHeight, xRealativeLeftHitboxPlacement, yRealativeLeftHitxboxPlacement);
-            this.rightHitbox = new Hitbox(hitboxWidth, hitboxHeight, xRealativeRightHitboxPlacement, yRealativeRightHitxboxPlacement);
+
+
+    private void createPostsHitbox() {
+    if (this.dir == EAST || this.dir == WEST) {
+        createHorizontalPostsHitbox();
+    } else {
+        createVerticalPostsHitbox();
+    }
+}
+
+    private void createHorizontalPostsHitbox() {
+        int hitboxWidth = 3;
+        int hitboxHeight = (this.getHeight() - this.innerWidth) / 2;
+        double xHitboxPlacement = this.getWidth() / 2 - hitboxWidth + this.getxPosition();
+        double yTopHitboxPlacement = this.getHeight() - hitboxHeight + this.getyPosition();
+        double yBottomHitboxPlacement = this.getyPosition();
+
+        this.leftHitbox = new Hitbox(hitboxWidth, hitboxHeight, xHitboxPlacement, yTopHitboxPlacement);
+        this.rightHitbox = new Hitbox(hitboxWidth, hitboxHeight, xHitboxPlacement, yBottomHitboxPlacement);
+    }
+
+    private void createVerticalPostsHitbox() {
+        int hitboxWidth = (this.getWidth() - this.innerWidth) / 2;
+        int hitboxHeight = 3;
+        double xLeftHitboxPlacement = hitboxWidth + this.getxPosition();
+        double xRightHitboxPlacement = this.getWidth() - hitboxWidth + this.getxPosition();
+        double yHitboxPlacement = this.getHeight() - hitboxHeight + this.getyPosition();
+
+        this.leftHitbox = new Hitbox(hitboxWidth, hitboxHeight, xLeftHitboxPlacement, yHitboxPlacement);
+        this.rightHitbox = new Hitbox(hitboxWidth, hitboxHeight, xRightHitboxPlacement, yHitboxPlacement);
     }
 
     //Todo: Make this better. 
-    private Hitbox createScoreHitbox(){
-        double xRealativeHitboxPlacement;
-        double yRealativeHitxboxPlacement;
-        int hitboxWidht;
+    private Hitbox createScoreHitbox() {
+        double xRelativeHitboxPlacement;
+        double yRelativeHitboxPlacement;
+        int hitboxWidth;
         int hitboxHeight;
-        if( this.dir == EAST || this.dir == WEST){
-            xRealativeHitboxPlacement = this.getWidth()/2;  //Might be weird but from above we do not need 
-            yRealativeHitxboxPlacement = (this.getHeight() - this.innerWidth)/2;
-            hitboxWidht = this.innerHeight;
-            hitboxHeight = this.innerWidth;
-            
-        } else {
-            xRealativeHitboxPlacement = (this.getWidth() - this.innerWidth)/2;
-            yRealativeHitxboxPlacement = this.getHeight() - this.innerHeight;
-            hitboxWidht = this.innerWidth;
-            hitboxHeight = this.innerHeight;
-        }
-        return(new Hitbox(hitboxWidht,hitboxHeight,xRealativeHitboxPlacement + this.getxPosition(), yRealativeHitxboxPlacement + this.getyPosition()));
-
+    
+        boolean isEastOrWest = this.dir == EAST || this.dir == WEST;
+        xRelativeHitboxPlacement = isEastOrWest ? this.getWidth() / 2 : (this.getWidth() - this.innerWidth) / 2;
+        yRelativeHitboxPlacement = isEastOrWest ? (this.getHeight() - this.innerWidth) / 2 : this.getHeight() - this.innerHeight;
+        hitboxWidth = isEastOrWest ? this.innerHeight : this.innerWidth;
+        hitboxHeight = isEastOrWest ? this.innerWidth : this.innerHeight;
+    
+        return new Hitbox(hitboxWidth, hitboxHeight, xRelativeHitboxPlacement + this.getxPosition(), yRelativeHitboxPlacement + this.getyPosition());
     }
 
 
@@ -107,6 +106,6 @@ public class Hoop extends Entity implements ICollidable {
     }
 
     private boolean collidedLeft(Ball ball) {
-        return CollisionHandler.intersect(ball, lefHitbox);
+        return CollisionHandler.intersect(ball, leftHitbox);
     }
 }
