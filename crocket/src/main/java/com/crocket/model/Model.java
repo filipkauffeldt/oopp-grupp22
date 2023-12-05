@@ -63,6 +63,9 @@ public class Model implements IModel {
         for (Player player : players) {
             entities.add(player.getBall());
             movables.add(player.getBall());
+            for(Entity target : level.getTargets()){
+                player.addTarget(target);
+            }
             eventPublisher.addListener(player);
         }
     }
@@ -243,6 +246,9 @@ public class Model implements IModel {
 
         populatePlayerEntities(player);
         eventPublisher.addListener(player);
+        for(Entity target : level.getTargets()){
+            player.addTarget(target);
+        }
     }
 
     public void clearPlayers() {
