@@ -2,8 +2,9 @@ package com.crocket.model;
 
 import com.crocket.model.entity.Ball;
 import com.crocket.model.entity.Entity;
+import com.crocket.model.interfaces.ITargetEvent;
 
-public class PassTargetEvent {
+public class PassTargetEvent implements ITargetEvent {
     private Ball ball;
     private Entity target;
 

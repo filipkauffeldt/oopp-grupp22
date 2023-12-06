@@ -4,11 +4,12 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.crocket.model.interfaces.IEventListener;
+import com.crocket.model.interfaces.ITargetEvent;
 
-public class EventPublisher  {
+public class EventPublisher {
     private static EventPublisher instance = null;
     private Set<IEventListener> listeners;
-    
+
     private EventPublisher() {
         listeners = new HashSet<IEventListener>();
     }
@@ -28,7 +29,7 @@ public class EventPublisher  {
         listeners.remove(listener);
     }
 
-    public void publishEvent(PassTargetEvent event) {
+    public void publishEvent(ITargetEvent event) {
         for (IEventListener listener : listeners) {
             listener.handleEvent(event);
         }
