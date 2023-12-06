@@ -24,10 +24,10 @@ import java.util.List;
 
 public class PlayerTest {
     private static Queue<Entity> targets = new LinkedList<Entity>();
-    static final Hoop hoop1 = new Hoop(20, 20, 20, 20, 20, Direction.EAST);
-    static final Hoop hoop2 = new Hoop(10, 20, 10, 20, 20, Direction.WEST);
-    static final Hoop hoop3 = new Hoop(30, 20, 20, 20, 20, Direction.SOUTH);
-    static final Hoop hoop4 = new Hoop(40, 20, 10, 20, 20, Direction.NORTH);
+    static final Hoop hoop1 = new Hoop(20, 20, 20,2, 20, 20, Direction.EAST);
+    static final Hoop hoop2 = new Hoop(10, 20, 10,2, 20, 20, Direction.WEST);
+    static final Hoop hoop3 = new Hoop(30, 20, 20,2, 20, 20, Direction.SOUTH);
+    static final Hoop hoop4 = new Hoop(40, 20, 10,2, 20, 20, Direction.NORTH);
     static final Peg peg    = new Peg(20, 20, 20, 20);
     
     public static List<Entity> getTargets() {

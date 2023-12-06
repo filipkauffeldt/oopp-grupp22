@@ -116,7 +116,7 @@ public class LevelView extends JLayeredPane implements ILevelView {
         repaint();
     }
 
-    private void drawEntity(DrawableEntity entity) {
+    private void drawEntity(DrawableEntity entity ) {
         switch (entity.getType()) {
             case HOOP:
                 getHoopTexture(entity);

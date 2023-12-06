@@ -1,28 +1,42 @@
 package com.crocket.model.entity;
 
 
-import java.awt.geom.Rectangle2D;
 
-class Hitbox extends Rectangle2D.Double {
+class Hitbox {
+    private int width;
+    private int height;
+    private double x;
+    private double y;
 
-    Hitbox(int width, int height,double xPosition, double yPosition) {
-        super(xPosition, yPosition, width, height);
+    public Hitbox(int width, int height, double xPosition, double yPosition) {
+        this.width = width;
+        this.height = height;
+        this.x = xPosition;
+        this.y = yPosition;
     }
 
-    public double getxPosition() {
+    protected double getxPosition() {
         return x;
     }
 
-    public double getyPosition() {
+    protected double getyPosition() {
         return y;
     }
 
-    public void setxPosition(double xPosition) {
+    protected void setxPosition(double xPosition) {
         this.x = xPosition;
     }
 
-    public void setyPosition(double yPosition) {
+    protected void setyPosition(double yPosition) {
         this.y = yPosition;
+    }
+
+    protected int getWidth() {
+        return width;
+    }
+
+    protected int getHeight() {
+        return height;
     }
 
 }
