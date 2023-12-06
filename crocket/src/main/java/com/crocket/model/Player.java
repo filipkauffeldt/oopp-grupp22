@@ -6,7 +6,11 @@ import com.crocket.model.entity.Ball;
 import com.crocket.model.entity.Entity;
 import com.crocket.model.interfaces.IEventListener;
 
+import java.lang.reflect.Array;
 import java.util.LinkedList;
+import java.util.ArrayList;
+import java.util.List;
+import com.crocket.model.interfaces.IPowerUp;
 
 
 public class Player implements IEventListener{
@@ -14,12 +18,14 @@ public class Player implements IEventListener{
     private boolean finished;
     private Queue<Entity> remainingTargets; //Queue of hoops and peg that have not been passed yet
     private Ball ball;
+    private List<IPowerUp> powerUps;
     
     public Player(Ball ball) {
         this.remainingTargets =  new LinkedList<Entity>(); 
         this.strokes = 0;
         this.finished = false;
         this.ball = ball;
+        this.powerUps = new ArrayList<IPowerUp>();
 
     }
 
@@ -45,6 +51,19 @@ public class Player implements IEventListener{
         }
     }
     
+    @Override 
+    public void handleEvent(HitPowerUpEvent event) {
+        if (event.getBall() != ball) return;
+        this.powerUps.add(event.getPowerUp());
+    }
+
+
+    public void applyPowerUp(Integer index) {
+        IPowerUp powerUp = this.powerUps.get(index);
+        powerUp.applyPowerUp(this.ball);
+        this.powerUps.remove(powerUp);
+    } 
+
     public void incrementStrokes() {
         this.strokes++;
     }

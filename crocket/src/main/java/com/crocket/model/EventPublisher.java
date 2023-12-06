@@ -33,4 +33,10 @@ public class EventPublisher {
             listener.handleEvent(event);
         }
     }
+
+    public void publishEvent(HitPowerUpEvent event) {
+        for (IEventListener listener : listeners) {
+            listener.handleEvent(event);
+        }
+    }
 }
