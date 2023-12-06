@@ -5,4 +5,8 @@ public class Ice extends Surface{
     public Ice(int width, int height, int xPosition, int yPosition){
         super(width, height, xPosition, yPosition);
     }
+
+    public double getFriction(){
+        return friction;
+    }
 }

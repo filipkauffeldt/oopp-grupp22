@@ -5,4 +5,9 @@ public class Grass extends Surface{
     public Grass(int width, int height, int xPosition, int yPosition){
         super(width, height, xPosition, yPosition);
     }
+
+    public double getFriction(){
+        return friction;
+    }
+
 }
