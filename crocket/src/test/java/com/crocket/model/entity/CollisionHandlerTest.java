@@ -8,7 +8,7 @@ import static org.junit.Assert.assertEquals;
 
 public class CollisionHandlerTest {
 
-    private Ball ball = new Ball(20, 20, 0, 0, 2);
+    private Ball ball = new Ball(19, 19, 0, 0, 2);
     private Stone stone = new Stone(25, 25, 10, 30);
 
     @Test
