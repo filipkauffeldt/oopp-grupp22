@@ -1,9 +1,11 @@
 package com.crocket.model.entity;
 
 import com.crocket.model.HitPowerUpEvent;
+import com.crocket.model.Model;
 import com.crocket.model.interfaces.ICollidable;
 import com.crocket.model.interfaces.IPowerUp;
 import com.crocket.model.EventPublisher;
+
 
 public class PowerUpEntity extends Entity implements ICollidable{
     
@@ -14,6 +16,7 @@ public class PowerUpEntity extends Entity implements ICollidable{
         super(width, height, xPosition, yPosition);
         this. powerUp = power;
         this.eventPublisher = EventPublisher.getInstance();
+
     }
 
     @Override

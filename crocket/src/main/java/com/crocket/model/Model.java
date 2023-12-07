@@ -9,6 +9,7 @@ import com.crocket.model.entity.Ball;
 import com.crocket.model.entity.Entity;
 import com.crocket.model.entity.Hoop;
 import com.crocket.model.entity.Peg;
+import com.crocket.model.entity.PowerUpEntity;
 import com.crocket.model.entity.Stone;
 import com.crocket.model.interfaces.ICollidable;
 import com.crocket.model.interfaces.ILevel;
@@ -66,6 +67,17 @@ public class Model implements IModel {
     private void populatePlayerEntities(Player player) {
         entities.add(player.getBall());
         movables.add(player.getBall());
+    }
+
+    private void populatePowerUpEntities(List<PowerUpEntity> powerUps) {
+        for (PowerUpEntity powerUp : powerUps) {
+            populatePowerUpEntities(powerUp);
+        }
+    }
+
+    private void populatePowerUpEntities(PowerUpEntity powerUp) {
+        entities.add(powerUp);
+        collidables.add(powerUp);
     }
 
     public static EntityType getEntityTypeFromClass(Class<?> type) {
