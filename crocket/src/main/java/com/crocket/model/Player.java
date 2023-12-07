@@ -85,6 +85,16 @@ public class Player implements IEventListener{
         
     }
 
+    public void addPowerUp(IPowerUp powerUp) {
+        this.powerUps.add(powerUp);
+    }
+
+    public void addPowerUps(List<IPowerUp> powerUps) {
+        for (IPowerUp powerUp : powerUps) {
+            this.addPowerUp(powerUp);
+        }
+    }
+
     public void shootBall(double angle, double power) {
         double sinus = Math.sin(angle);
         double cosinus = Math.cos(angle);
