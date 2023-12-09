@@ -7,6 +7,7 @@ import java.util.Set;
 
 import com.crocket.model.entity.Entity;
 import com.crocket.model.entity.Hoop;
+import com.crocket.model.entity.Peg;
 import com.crocket.model.entity.Stone;
 import com.crocket.model.interfaces.ICollidable;
 import com.crocket.model.interfaces.ILevel;
@@ -71,6 +72,9 @@ public class Level1 implements ILevel {
     public Level1() {
         Stone s = new Stone(30, 30, 300, 500);
         Hoop h = new Hoop(40, 20,32, 4,295, 450, Direction.SOUTH);
+        Peg p = new Peg(5, 40, 309, 100);  
+        collidables.add(p);
+        entities.add(p);
         collidables.add(h);
         entities.add(h);
         hoops.add(h);
