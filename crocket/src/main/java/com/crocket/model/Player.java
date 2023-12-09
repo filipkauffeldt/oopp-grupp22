@@ -5,9 +5,6 @@ import java.util.Queue;
 import com.crocket.model.entity.Ball;
 import com.crocket.model.entity.Entity;
 import com.crocket.model.interfaces.IEventListener;
-import com.crocket.model.interfaces.ITargetEvent;
-
-import java.lang.reflect.Array;
 import java.util.LinkedList;
 import java.util.ArrayList;
 import java.util.List;
@@ -46,7 +43,7 @@ public class Player implements IEventListener{
     //Gets a hoop a ball has passed under and check if it is the next hoop in the queue
     //If it is, it removes it from the queue if not the hoops has been passed in the wrong order
     @Override
-    public void handleEvent(ITargetEvent event) {
+    public void handleEvent(PassTargetEvent event) {
         if (event.getBall() != ball) return;
         
         Entity target = event.getTarget();
@@ -70,7 +67,7 @@ public class Player implements IEventListener{
         this.powerUps.remove(powerUp);
     } 
 
-    }
+    
     
 
     private void incrementScore() {
