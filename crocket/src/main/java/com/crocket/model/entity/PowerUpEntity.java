@@ -15,7 +15,6 @@ public class PowerUpEntity extends Entity implements ICollidable{
         super(width, height, xPosition, yPosition);
         this.powerUp = power;
         this.eventPublisher = EventPublisher.getInstance();
-
     }
 
     @Override
@@ -23,9 +22,7 @@ public class PowerUpEntity extends Entity implements ICollidable{
        if (CollisionHandler.intersect(ball, this)) {
             HitPowerUpEvent event = new HitPowerUpEvent(ball, powerUp);
             eventPublisher.publishEvent(event);
-        
         }
-        
     }
 
     public IPowerUp getpowerUp(){
