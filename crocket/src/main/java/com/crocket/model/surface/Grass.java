@@ -1,9 +1,9 @@
 package com.crocket.model.surface;
 
 public class Grass extends Surface{
-    private double friction = 0.1;
-    public Grass(){
-        super();
+    private final double friction = 0.99;
+    public Grass(int xPosition, int yPosition){
+        super(xPosition, yPosition);
     }
 
     public double getFriction(){

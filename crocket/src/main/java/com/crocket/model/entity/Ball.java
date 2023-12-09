@@ -7,6 +7,7 @@ public class Ball extends Entity implements IMovable{
     private String powerUp;
     private double xVelocity;
     private double yVelocity;
+    private double friction = 1;
 
     public Ball(int width, int height, double xPosition, double yPosition, double mass) {
         super(width, height, xPosition, yPosition);
@@ -36,6 +37,14 @@ public class Ball extends Entity implements IMovable{
         this.yVelocity = yVelocity;
     }
 
+    public void setFriction(double frictionConstant) {
+        if (frictionConstant > 1) {
+            throw new IllegalArgumentException("Friction contant must be less than one");
+        }
+        
+        this.friction = frictionConstant;
+    }
+
     public void startBall(double cosinus, double sinus, double power){
         double newXVelocity;
         double newYVelocity;
@@ -47,6 +56,9 @@ public class Ball extends Entity implements IMovable{
     }
 
     public void move(){
+        xVelocity *= friction;
+        yVelocity *= friction;
+
         double newxPosition = getxPosition() + xVelocity;
         double newyPosition = getyPosition() + yVelocity;
         this.setxPosition(newxPosition);
