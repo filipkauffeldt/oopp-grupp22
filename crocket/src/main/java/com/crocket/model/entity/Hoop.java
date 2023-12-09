@@ -90,17 +90,18 @@ public class Hoop extends Entity implements ICollidable {
         return !CollisionHandler.intersect(ball, this);
     }
 
-    private boolean passedThrough(Ball ball) {
-        return (CollisionHandler.intersect(ball, innerHitbox)
-                && CollisionHandler.collidedDirection(ball, innerHitbox) == dir);
+    private boolean collidedLeft(Ball ball) {
+        return CollisionHandler.intersect(ball, leftHitbox);
     }
 
     private boolean collidedRight(Ball ball) {
         return CollisionHandler.intersect(ball, rightHitbox);
     }
 
-    private boolean collidedLeft(Ball ball) {
-        return CollisionHandler.intersect(ball, leftHitbox);
+    private boolean passedThrough(Ball ball) {
+        return CollisionHandler.intersect(ball, innerHitbox) 
+            && (CollisionHandler.northSouthCollisionDirection(ball) == this.dir
+                || CollisionHandler.eastWestCollisionDirection(ball) == this.dir);
     }
 
     public Hitbox getLeftHitbox() {

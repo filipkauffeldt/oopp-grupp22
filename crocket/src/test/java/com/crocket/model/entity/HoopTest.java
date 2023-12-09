@@ -25,7 +25,7 @@ public class HoopTest {
     }
 
     @Test
-    public void collide_with_ball_east_top() {
+    public void collide_with_ball_east_top_side() {
         Ball ball = getTestBall(10, 0);
         Hoop hoop = getVerticalTestHoop(0, 0);
         ball.setxVelocity(-2.5);
@@ -36,7 +36,7 @@ public class HoopTest {
     }
 
    @Test
-    public void collide_with_ball_east_bottom() {
+    public void collide_with_ball_east_bottom_side() {
         Ball ball = getTestBall(10, 15);
         Hoop hoop = getVerticalTestHoop(0, 0);
         ball.setxVelocity(-2.5);

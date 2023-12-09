@@ -21,6 +21,8 @@ public class Level1 implements ILevel {
     private Set<IMovable> movables = new HashSet<IMovable>();
     private Set<ICollidable> collidables = new HashSet<ICollidable>();
     private Set<Entity> hoops = new HashSet<Entity>();
+    private int startXBallPos; 
+    private int startYBallPos;
     private Surface[][] tilemap = {
             { GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS},
             { GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS },
@@ -68,13 +70,14 @@ public class Level1 implements ILevel {
 
     public Level1() {
         Stone s = new Stone(30, 30, 300, 500);
-        Hoop h = new Hoop(40, 20,32, 4,285, 450, Direction.SOUTH);
+        Hoop h = new Hoop(40, 20,32, 4,295, 450, Direction.SOUTH);
         collidables.add(h);
         entities.add(h);
         hoops.add(h);
         collidables.add(s);
         entities.add(s);
     }
+
 
     //Defensive copy
     public Level1(Level1 levelCopy){

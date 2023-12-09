@@ -109,8 +109,8 @@ public class Player implements IEventListener{
     }
 
     public void shootBall(double angle, double power) {
-        double sinus = Math.sin(angle);
-        double cosinus = Math.cos(angle);
+        double sinus = Math.sin(Math.toRadians(angle));
+        double cosinus = Math.cos(Math.toRadians(angle));
         
         this.ball.startBall(sinus, cosinus, power);
 
