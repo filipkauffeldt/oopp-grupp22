@@ -60,15 +60,11 @@ public class Player implements IEventListener{
         this.powerUps.add(event.getPowerUp());
     }
 
-
     public void applyPowerUp(Integer index) {
         IPowerUp powerUp = this.powerUps.get(index);
         powerUp.applyPowerUp(this.ball);
         this.powerUps.remove(powerUp);
     } 
-
-    
-    
 
     private void incrementScore() {
         this.score++;
@@ -78,7 +74,6 @@ public class Player implements IEventListener{
         this.strokes++;
     }
 
-    //Setters and getters
     public void resestStrokes() {
         this.strokes = 0;
     }
