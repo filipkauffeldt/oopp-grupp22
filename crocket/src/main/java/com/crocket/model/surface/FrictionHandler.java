@@ -7,7 +7,7 @@ public class FrictionHandler {
         double ballxVelocity = ball.getxVelocity();
         double ballyVelocity = ball.getyVelocity();
 
-        double frictionConstant = SurfaceHandler.checkSurface(ball, surface);
+        double frictionConstant = SurfaceHandler.getFrictionConstant(ball, surface);
         int directionAngle = directionLine.getDegreeAngle();
 
         double cosinus = Math.cos(Math.toRadians(directionAngle));

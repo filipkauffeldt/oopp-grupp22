@@ -1,36 +1,24 @@
 package com.crocket.model.surface;
 
 import com.crocket.model.entity.Ball;
+import com.crocket.model.interfaces.ILevel;
+import com.crocket.shared.SurfaceType;
 
 class SurfaceHandler {
-    public static boolean intersects(Ball ball, Surface surface){
+    public static SurfaceType intersects(Ball ball, Surface surface, ILevel level){
         double middleXPositionBall = ball.getxPosition() + ball.getWidth()/2 + 1;
         double middleYPositionBall = ball.getyPosition() + ball.getHeight()/2 + 1;
+        int tX = (int) Math.floor(middleXPositionBall / surface.getSize());
+        int tY = (int) Math.floor(middleYPositionBall / surface.getSize());
 
-        int sX = surface.getxPosition();
-        int sY = surface.getyPosition();
-        int sW = surface.getWidth();
-        int sH = surface.getHeight();
-
-        if(sX <= middleXPositionBall && middleXPositionBall <= sX + sW){
-            if(sY <= middleYPositionBall && middleYPositionBall <= sY + sH){
-                return true;
-            }
-        }
-        return false;
+        SurfaceType[][] tilemap = level.getLevelSurfacemap();
+        return tilemap[tY][tX];
     }
 
-    public static double checkSurface(Ball ball, Surface surface){
+    public static double getFrictionConstant(Ball ball, Surface surface){
         double friction = 1;
         if(intersects(ball, surface)){
-            if(surface instanceof Grass){
-                friction = ((Grass) surface).getFriction();
-            } else if(surface instanceof Sand){
-                friction = ((Sand) surface).getFriction();
-            } else if(surface instanceof Ice){
-                friction = ((Ice) surface).getFriction();
-            }
-            throw new IllegalArgumentException("Unknown surface class");
+            friction = surface.getFriction();
         }
         return friction;
     }

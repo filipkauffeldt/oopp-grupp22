@@ -18,6 +18,7 @@ import com.crocket.shared.SurfaceType;
 public class Level1 implements ILevel {
     private int width = 25;
     private int height = 15;
+    
     private Set<Entity> entities = new HashSet<Entity>();
     private Set<IMovable> movables = new HashSet<IMovable>();
     private Set<ICollidable> collidables = new HashSet<ICollidable>();
@@ -78,6 +79,20 @@ public class Level1 implements ILevel {
         tragetSet.add(h);
         collidables.add(s);
         entities.add(s);
+        int width_of_tilemap = tilemap[0].length;
+        int height_of_tilemap = tilemap.length;
+        for(int i = 0; i < height_of_tilemap; i++){
+            for(int j = 0; j < width_of_tilemap; j++){
+                switch(tilemap[j][i]){
+                    case GRASS:
+                        break;
+                    case ICE:
+                        break;
+                    case SAND:
+                        break;
+                }
+            }
+        }
     }
 
 
