@@ -31,7 +31,7 @@ public class Application {
         ILevel level = new Level1();
         List<Player> players = new ArrayList<Player>();
 
-        Ball p1Ball = new Ball(19, 19, 300d, 300d, 20);
+        Ball p1Ball = new Ball(19, 19, 600d, 550d, 20);
         Ball p2Ball = new Ball(19, 19, 300d, 300d, 20);
 
         // TODO: Implement a way for the end user to decide how many players there should be

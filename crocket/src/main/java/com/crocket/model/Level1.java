@@ -12,8 +12,12 @@ import com.crocket.model.entity.Stone;
 import com.crocket.model.interfaces.ICollidable;
 import com.crocket.model.interfaces.ILevel;
 import com.crocket.model.interfaces.IMovable;
+import com.crocket.model.surface.Grass;
+import com.crocket.model.surface.Ice;
+import com.crocket.model.surface.Sand;
 import com.crocket.shared.Direction;
 import com.crocket.shared.SurfaceType;
+import com.crocket.model.surface.Surface;
 
 public class Level1 implements ILevel {
     private int width = 25;
@@ -79,20 +83,6 @@ public class Level1 implements ILevel {
         tragetSet.add(h);
         collidables.add(s);
         entities.add(s);
-        int width_of_tilemap = tilemap[0].length;
-        int height_of_tilemap = tilemap.length;
-        for(int i = 0; i < height_of_tilemap; i++){
-            for(int j = 0; j < width_of_tilemap; j++){
-                switch(tilemap[j][i]){
-                    case GRASS:
-                        break;
-                    case ICE:
-                        break;
-                    case SAND:
-                        break;
-                }
-            }
-        }
     }
 
 
