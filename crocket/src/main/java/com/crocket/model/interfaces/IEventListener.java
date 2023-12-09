@@ -16,6 +16,4 @@ public interface IEventListener {
     public void handleEvent(PassTargetEvent event);
     
     public void handleEvent(HitPowerUpEvent event);
-
-
 }
