@@ -56,7 +56,7 @@ public class SurfaceHandler {
     }
 
     private void applyFriction(Ball ball, Surface surface) {
-        double friction = getFrictionConstant(ball, surface);
+        double friction = getFrictionConstant(surface);
         ball.setFriction(friction);
     }
 
@@ -75,7 +75,7 @@ public class SurfaceHandler {
         return false;
     }
 
-    private double getFrictionConstant(Ball ball, Surface surface) {
+    private double getFrictionConstant(Surface surface) {
         double friction = surface.getFriction();
         return friction;
     }

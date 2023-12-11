@@ -43,9 +43,8 @@ public class Ball extends Entity implements IMovable{
 
     public void setFriction(double frictionConstant) {
         if (frictionConstant > 1) {
-            throw new IllegalArgumentException("Friction contant must be less than one");
+            throw new IllegalArgumentException("Friction constant must be less than one");
         }
-        
         this.friction = frictionConstant;
     }
 

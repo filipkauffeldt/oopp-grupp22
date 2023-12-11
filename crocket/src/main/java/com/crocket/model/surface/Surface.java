@@ -1,7 +1,7 @@
 package com.crocket.model.surface;
 
 public abstract class Surface {
-    private int size = 100;
+    private static final int SIZE = 100;
     private int xPosition;
     private int yPosition;
 
@@ -13,7 +13,7 @@ public abstract class Surface {
     public abstract double getFriction();
 
     public int getSize(){
-        return size;
+        return SIZE;
     }
 
     public int getxPosition(){
@@ -22,13 +22,5 @@ public abstract class Surface {
 
     public int getyPosition(){
         return yPosition;
-    }
-
-    public void setxPosition(int xPosition){
-        this.xPosition = xPosition;
-    }
-
-    public void setyPosition(int yPosition){
-        this.yPosition = yPosition;
     }
 }

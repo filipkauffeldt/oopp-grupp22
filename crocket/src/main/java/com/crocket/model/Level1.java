@@ -12,12 +12,8 @@ import com.crocket.model.entity.Stone;
 import com.crocket.model.interfaces.ICollidable;
 import com.crocket.model.interfaces.ILevel;
 import com.crocket.model.interfaces.IMovable;
-import com.crocket.model.surface.Grass;
-import com.crocket.model.surface.Ice;
-import com.crocket.model.surface.Sand;
 import com.crocket.shared.Direction;
 import com.crocket.shared.SurfaceType;
-import com.crocket.model.surface.Surface;
 
 public class Level1 implements ILevel {
     private int width = 25;
