@@ -64,6 +64,14 @@ public class Player implements IEventListener{
         this.powerUps.remove(powerUp);
     } 
 
+    public boolean passHoop(Entity hoop) {
+        if (this.remainingTargets.peek() == hoop) {
+            this.remainingTargets.poll();
+            return true;
+        }
+        return false;
+    }
+
     public void incrementStrokes() {
         this.strokes++;
     }
