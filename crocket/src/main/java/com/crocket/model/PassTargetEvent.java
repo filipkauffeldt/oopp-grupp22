@@ -3,7 +3,7 @@ package com.crocket.model;
 import com.crocket.model.entity.Ball;
 import com.crocket.model.entity.Entity;
 
-public class PassTargetEvent {
+public class PassTargetEvent{
     private Ball ball;
     private Entity target;
 

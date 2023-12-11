@@ -37,7 +37,8 @@ public class LevelView extends JLayeredPane implements ILevelView {
     }
 
     private void drawSurfaceTile(Graphics g, Surface surface, int x, int y) throws IOException {
-        g.drawImage(textureManager.getTexture(surface.name()), x * 100, y * 100, this);
+        BufferedImage surfaceImage = textureManager.getTexture(surface.name());
+        g.drawImage(surfaceImage, x*surfaceImage.getWidth(), y*surfaceImage.getHeight(), this);
     }
 
     public void drawSurfaces(Graphics g) throws IOException {

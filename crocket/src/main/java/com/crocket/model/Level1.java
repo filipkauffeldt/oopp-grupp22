@@ -7,6 +7,7 @@ import java.util.Set;
 
 import com.crocket.model.entity.Entity;
 import com.crocket.model.entity.Hoop;
+import com.crocket.model.entity.Peg;
 import com.crocket.model.entity.Stone;
 import com.crocket.model.interfaces.ICollidable;
 import com.crocket.model.interfaces.ILevel;
@@ -20,6 +21,7 @@ public class Level1 implements ILevel {
     private Set<Entity> entities = new HashSet<Entity>();
     private Set<IMovable> movables = new HashSet<IMovable>();
     private Set<ICollidable> collidables = new HashSet<ICollidable>();
+    private Set<Entity> tragetSet = new HashSet<Entity>();
     private Surface[][] tilemap = {
             { GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS},
             { GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS },
@@ -61,14 +63,23 @@ public class Level1 implements ILevel {
         return collidables;
     }
 
+    public Set<Entity> getTargets() {
+        return tragetSet;
+    }
+
     public Level1() {
-        Stone s = new Stone(30, 30, 600, 600);
-        Hoop h = new Hoop(30, 30,26,500, 500, Direction.NORTH);
+        Stone s = new Stone(30, 30, 300, 500);
+        Hoop h = new Hoop(40, 20,32, 4,295, 450, Direction.SOUTH);
+        Peg p = new Peg(5, 40, 309, 100);  
+        collidables.add(p);
+        entities.add(p);
         collidables.add(h);
         entities.add(h);
+        tragetSet.add(h);
         collidables.add(s);
         entities.add(s);
     }
+
 
     //Defensive copy
     public Level1(Level1 levelCopy){

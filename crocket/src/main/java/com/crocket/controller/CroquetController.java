@@ -81,7 +81,4 @@ public class CroquetController implements KeyListener {
 
         levelView.drawEntities(drawableEntities);
     }
-
-    
-
 }

@@ -1,40 +1,42 @@
 package com.crocket.model.entity;
 
+
+
 class Hitbox {
-    private double xPosition;
-    private double yPosition;
-    
     private int width;
     private int height;
-    
-    Hitbox(int width, int height, double xPosition, double yPosition) {
+    private double x;
+    private double y;
+
+    public Hitbox(int width, int height, double xPosition, double yPosition) {
         this.width = width;
         this.height = height;
-        this.xPosition = xPosition;
-        this.yPosition = yPosition;
+        this.x = xPosition;
+        this.y = yPosition;
     }
-    
-    public double getxPosition() {
-        return xPosition;
+
+    protected double getxPosition() {
+        return x;
     }
-    
-    public void setxPosition(double xPosition) {
-        this.xPosition = xPosition;
+
+    protected double getyPosition() {
+        return y;
     }
-    
-    public double getyPosition() {
-        return yPosition;
+
+    protected void setxPosition(double xPosition) {
+        this.x = xPosition;
     }
-    
-    public void setyPosition(double yPosition) {
-        this.yPosition = yPosition;
+
+    protected void setyPosition(double yPosition) {
+        this.y = yPosition;
     }
-    
-    public int getWidth() {
+
+    protected int getWidth() {
         return width;
     }
-    
-    public int getHeight() {
+
+    protected int getHeight() {
         return height;
     }
+
 }

@@ -27,6 +27,7 @@ public class Model implements IModel {
     private Set<Entity> entities;
     private Set<ICollidable> collidables;
     private ILevel level;
+    private EventPublisher eventPublisher;
 
     private Player activePlayer;
     private DirectionLine directionLine;
@@ -39,6 +40,7 @@ public class Model implements IModel {
         directionLine = new DirectionLine(0, 0, 0, 0, 0);
         round = 0;
         ballIsMoving = false;
+        eventPublisher = EventPublisher.getInstance();
     }
 
     private void validateLevelIsSet() {
@@ -61,6 +63,10 @@ public class Model implements IModel {
         for (Player player : players) {
             entities.add(player.getBall());
             movables.add(player.getBall());
+            for(Entity target : level.getTargets()){
+                player.addTarget(target);
+            }
+            eventPublisher.addListener(player);
         }
     }
 
@@ -179,7 +185,8 @@ public class Model implements IModel {
         }
 
         if (ballIsMoving) {
-            if (activePlayer.getBall().getxVelocity() <= NO_MOVEMENT_THRESHOLD && activePlayer.getBall().getyVelocity() <= NO_MOVEMENT_THRESHOLD) {
+            if (Math.abs(activePlayer.getBall().getxVelocity()) <= NO_MOVEMENT_THRESHOLD && 
+                Math.abs(activePlayer.getBall().getyVelocity()) <= NO_MOVEMENT_THRESHOLD) {
                 ballIsMoving = false;
                 activePlayer.getBall().setxVelocity(0);
                 activePlayer.getBall().setyVelocity(0);
@@ -216,13 +223,14 @@ public class Model implements IModel {
         }
 
         if (players.size() < 1) {
-            throw new IllegalArgumentException("There must be at least one players");
+            throw new IllegalArgumentException("There must be at least one player");
         }
         this.players = players;
 
         activePlayer = players.get(0);
 
         populatePlayerEntities(players);
+        
     }
 
     public void addPlayer(Player player) {
@@ -237,6 +245,10 @@ public class Model implements IModel {
         }
 
         populatePlayerEntities(player);
+        eventPublisher.addListener(player);
+        for(Entity target : level.getTargets()){
+            player.addTarget(target);
+        }
     }
 
     public void clearPlayers() {
@@ -245,6 +257,7 @@ public class Model implements IModel {
         for (Player player : players) {
             entities.remove(player.getBall());
             movables.remove(player.getBall());
+            eventPublisher.removeListener(player);
         }
 
         activePlayer = null;

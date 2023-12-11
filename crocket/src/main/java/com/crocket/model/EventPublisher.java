@@ -8,7 +8,7 @@ import com.crocket.model.interfaces.IEventListener;
 public class EventPublisher {
     private static EventPublisher instance = null;
     private Set<IEventListener> listeners;
-    
+
     private EventPublisher() {
         listeners = new HashSet<IEventListener>();
     }

@@ -5,8 +5,6 @@ import java.util.Queue;
 import com.crocket.model.entity.Ball;
 import com.crocket.model.entity.Entity;
 import com.crocket.model.interfaces.IEventListener;
-
-import java.lang.reflect.Array;
 import java.util.LinkedList;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,17 +12,19 @@ import com.crocket.model.interfaces.IPowerUp;
 
 
 public class Player implements IEventListener{
+    private String name;
     private int strokes;
     private boolean finished;
     private Queue<Entity> remainingTargets; //Queue of hoops and peg that have not been passed yet
     private Ball ball;
     private List<IPowerUp> powerUps;
     
-    public Player(Ball ball) {
+    public Player(Ball ball, String name) {
         this.remainingTargets =  new LinkedList<Entity>(); 
         this.strokes = 0;
         this.finished = false;
         this.ball = ball;
+        this.name = name;   
         this.powerUps = new ArrayList<IPowerUp>();
 
     }
@@ -48,6 +48,7 @@ public class Player implements IEventListener{
         Entity target = event.getTarget();
         if (this.remainingTargets.peek() == target) {
             this.remainingTargets.poll();
+            System.out.println("Score!");
         }
     }
     
@@ -56,7 +57,6 @@ public class Player implements IEventListener{
         if (event.getBall() != ball) return;
         this.powerUps.add(event.getPowerUp());
     }
-
 
     public void applyPowerUp(Integer index) {
         IPowerUp powerUp = this.powerUps.get(index);
@@ -68,7 +68,6 @@ public class Player implements IEventListener{
         this.strokes++;
     }
 
-    //Setters and getters
     public void resestStrokes() {
         this.strokes = 0;
     }
@@ -96,8 +95,8 @@ public class Player implements IEventListener{
     }
 
     public void shootBall(double angle, double power) {
-        double sinus = Math.sin(angle);
-        double cosinus = Math.cos(angle);
+        double sinus = Math.sin(Math.toRadians(angle));
+        double cosinus = Math.cos(Math.toRadians(angle));
         
         this.ball.startBall(sinus, cosinus, power);
 

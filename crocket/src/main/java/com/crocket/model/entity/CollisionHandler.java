@@ -6,6 +6,7 @@ import com.crocket.model.interfaces.IMovable;
 import com.crocket.shared.Direction;
 
 class CollisionHandler {
+
     public static boolean intersect(Entity entity1, Entity entity2) {
         Hitbox e1Hitbox = entity1.getHitbox();
         Hitbox e2Hitbox = entity2.getHitbox();
@@ -30,7 +31,13 @@ class CollisionHandler {
         int h2Width = hitbox2.getWidth();
         int h2Height = hitbox2.getHeight();
 
-        boolean xMax1IsGreaterThanxPos2 = h1X + h1Width > h2X;
+        return (h1X + h1Width > h2X &&
+                h1Y + h1Height > h2Y &&
+                h1X < h2X + h2Width &&
+                h1Y < h2Y + h2Height);
+
+
+        /*boolean xMax1IsGreaterThanxPos2 = h1X + h1Width > h2X;
         boolean xMax1IsLesserThanxMax2 = h1X + h1Width < h2X + h2Width;
         boolean xMin1IsGreaterThanxPos2 = h1X > h2X;
         boolean xMin1IsLesserThanxMax2 = h1X < h2X + h2Width;
@@ -38,42 +45,46 @@ class CollisionHandler {
         boolean yMax1IsLesserThanyMax2 = h1Y + h1Height < h2Y + h2Height;
         boolean yMin1IsLesserThanyMax2 = h1Y < h2Y + h2Height;
         boolean yMin1IsGreaterThanyPos2 = h1Y > h2Y;
-
+        
         boolean xMaxIsBetween = xMax1IsGreaterThanxPos2 && xMax1IsLesserThanxMax2;
         boolean xMinIsBetween = xMin1IsGreaterThanxPos2 && xMin1IsLesserThanxMax2;
         boolean yMaxIsBetween = yMax1IsGreaterThanyPos2 && yMax1IsLesserThanyMax2;
         boolean yMinIsBetween = yMin1IsGreaterThanyPos2 && yMin1IsLesserThanyMax2;
-
-        boolean yMaxIsBetweenIntervalAbove = yMax1IsGreaterThanyPos2 && yMax1IsLesserThanyMax2;
-        boolean xMaxIsBetweenIntervalLeft = xMax1IsGreaterThanxPos2 && xMax1IsLesserThanxMax2;
-        boolean yMinIsBetweenIntervalBelow = yMin1IsLesserThanyMax2 && yMin1IsGreaterThanyPos2;
-        boolean xMinIsBetweenIntervalRight = xMin1IsLesserThanxMax2 && xMin1IsGreaterThanxPos2;
-
+        
+        boolean yMaxIsBetweenIntervalAbove = yMax1IsGreaterThanyPos2 &&
+        yMax1IsLesserThanyMax2;
+        boolean xMaxIsBetweenIntervalLeft = xMax1IsGreaterThanxPos2 &&
+        xMax1IsLesserThanxMax2;
+        boolean yMinIsBetweenIntervalBelow = yMin1IsLesserThanyMax2 &&
+        yMin1IsGreaterThanyPos2;
+        boolean xMinIsBetweenIntervalRight = xMin1IsLesserThanxMax2 &&
+        xMin1IsGreaterThanxPos2;
+        
         boolean intervalXAxis = xMaxIsBetween || xMinIsBetween;
         boolean intervalYAxis = yMaxIsBetween || yMinIsBetween;
-
+          
         boolean intersectFromAbove = intervalXAxis && yMaxIsBetweenIntervalAbove;
         boolean intersectFromBelow = intervalXAxis && yMinIsBetweenIntervalBelow;
         boolean intersectFromLeft = intervalYAxis && xMaxIsBetweenIntervalLeft;
         boolean intersectFromRight = intervalYAxis && xMinIsBetweenIntervalRight;
-
-        if (intersectFromAbove) {
-            return true;
-        }
-
-        if (intersectFromBelow) {
-            return true;
-        }
-
-        if (intersectFromLeft) {
-            return true;
-        }
-
-        if (intersectFromRight) {
-            return true;
-        }
-
-        return false;
+          
+         if (intersectFromAbove) {
+         return true;
+         }
+          
+         if (intersectFromBelow) {
+          return true;
+          }
+          
+          if (intersectFromLeft) {
+          return true;
+          }
+          
+          if (intersectFromRight) {
+          return true;
+          }
+          
+          return false;*/
     }
 
     static void reflect(IMovable entity, Direction direction) {
@@ -119,18 +130,18 @@ class CollisionHandler {
         }
     }
 
-    static Direction collidedDirection(Entity entity, Hitbox hitbox) {
-        Hitbox eHitbox = entity.getHitbox();
+    static Direction collidedDirection(Entity entity1, Hitbox hitbox) {
+        Hitbox e1Hitbox = entity1.getHitbox();
 
-        double eX = eHitbox.getxPosition();
-        double eY = eHitbox.getyPosition();
+        double e1X = e1Hitbox.getxPosition();
+        double e1Y = e1Hitbox.getyPosition();
 
-        double hX = hitbox.getxPosition();
-        double hY = hitbox.getyPosition();
+        double e2X = hitbox.getxPosition();
+        double e2Y = hitbox.getyPosition();
 
-        if (intersect(entity, hitbox)) {
-            double xDistance = eX - hX;
-            double yDistance = eY - hY;
+        if (intersect(entity1, hitbox)) {
+            double xDistance = e1X - e2X;
+            double yDistance = e1Y - e2Y;
 
             if (Math.abs(xDistance) > Math.abs(yDistance)) {
                 if (xDistance > 0) {
@@ -179,6 +190,36 @@ class CollisionHandler {
         }
     }
 
+    static Direction northSouthCollisionDirection(Entity entity) {
+        Hitbox eHitbox = entity.getHitbox();
+
+        double eY = eHitbox.getyPosition();
+        double ePrevY = entity.getPrevYPosition();
+        if(eY - ePrevY == 0){
+            return Direction.NONE;
+        }
+        else if (eY > ePrevY) {
+            return Direction.NORTH;
+        } else {
+            return Direction.SOUTH;
+        }
+    }
+
+    static Direction eastWestCollisionDirection(Entity entity) {
+        Hitbox eHitbox = entity.getHitbox();
+
+        double eX = eHitbox.getxPosition();
+        double ePrevX = entity.getPrevXPosition();
+        if(eX - ePrevX == 0){
+            return Direction.NONE;
+        }
+        else if (eX > ePrevX) {
+            return Direction.EAST;
+        } else {
+            return Direction.WEST;
+        }
+    }
+
     // public static void elasticCollision(Entity entity1, Entity entity2){
     // //Normal or distance between center of both objects.
     // double dx = entity1.getxPosition() - entity2.getxPosition();
@@ -223,4 +264,5 @@ class CollisionHandler {
     // entity2.setxVelocity(newXVelocityEntity2);
     // entity2.setyVelocity(newYVelocityEntity2);
     // }
+
 }

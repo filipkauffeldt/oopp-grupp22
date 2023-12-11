@@ -10,15 +10,15 @@ public class CollisionHandlerTest {
 
     private Ball ball = new Ball(20, 20, 0, 0, 2);
     private Stone stone = new Stone(25, 25, 10, 30);
-    
+
     @Test
     public void test_if_collision_works_from_up() {
         ball.setxVelocity(1);
         ball.setyVelocity(1);
         Direction directionCollision = Direction.SOUTH;
-        for(int i = 0; i < 100 ; i++){
+        for (int i = 0; i < 100; i++) {
             ball.move();
-            if(CollisionHandler.intersect(ball, stone)){
+            if (CollisionHandler.intersect(ball, stone)) {
                 directionCollision = CollisionHandler.collidedDirection(ball, stone);
                 break;
             }
@@ -32,9 +32,9 @@ public class CollisionHandlerTest {
         ball.setxVelocity(1);
         ball.setyVelocity(1);
         Direction directionCollision = Direction.SOUTH;
-        for(int i = 0; i < 100 ; i++){
+        for (int i = 0; i < 100; i++) {
             ball.move();
-            if(CollisionHandler.intersect(ball, stone)){
+            if (CollisionHandler.intersect(ball, stone)) {
                 directionCollision = CollisionHandler.collidedDirection(ball, stone);
                 break;
             }
@@ -48,9 +48,9 @@ public class CollisionHandlerTest {
         ball.setxVelocity(-1);
         ball.setyVelocity(1);
         Direction directionCollision = Direction.SOUTH;
-        for(int i = 0; i < 100 ; i++){
+        for (int i = 0; i < 100; i++) {
             ball.move();
-            if(CollisionHandler.intersect(ball, stone)){
+            if (CollisionHandler.intersect(ball, stone)) {
                 directionCollision = CollisionHandler.collidedDirection(ball, stone);
                 break;
             }
@@ -65,9 +65,9 @@ public class CollisionHandlerTest {
         ball.setxVelocity(1);
         ball.setyVelocity(-1);
         Direction directionCollision = Direction.NORTH;
-        for(int i = 0; i < 100 ; i++){
+        for (int i = 0; i < 100; i++) {
             ball.move();
-            if(CollisionHandler.intersect(ball, stone)){
+            if (CollisionHandler.intersect(ball, stone)) {
                 directionCollision = CollisionHandler.collidedDirection(ball, stone);
                 break;
             }
@@ -79,9 +79,9 @@ public class CollisionHandlerTest {
     public void test_if_reflection_works_from_up() {
         ball.setxVelocity(1);
         ball.setyVelocity(1);
-        for(int i = 0; i < 100 ; i++){
+        for (int i = 0; i < 100; i++) {
             ball.move();
-            if(CollisionHandler.intersect(ball, stone)){
+            if (CollisionHandler.intersect(ball, stone)) {
                 Direction directionCollision = CollisionHandler.collidedDirection(ball, stone);
                 CollisionHandler.reflect(ball, directionCollision);
                 break;
@@ -95,9 +95,9 @@ public class CollisionHandlerTest {
         ball.setxPosition(-30);
         ball.setxVelocity(1);
         ball.setyVelocity(1);
-        for(int i = 0; i < 100 ; i++){
+        for (int i = 0; i < 100; i++) {
             ball.move();
-            if(CollisionHandler.intersect(ball, stone)){
+            if (CollisionHandler.intersect(ball, stone)) {
                 Direction directionCollision = CollisionHandler.collidedDirection(ball, stone);
                 CollisionHandler.reflect(ball, directionCollision);
                 break;
@@ -107,14 +107,14 @@ public class CollisionHandlerTest {
     }
 
     @Test
-    public void test_if_reflection_works_from_right(){
+    public void test_if_reflection_works_from_right() {
         ball.setxPosition(70);
         ball.setxVelocity(-1);
         ball.setyVelocity(1);
 
-        for(int i = 0; i < 100 ; i++){
+        for (int i = 0; i < 100; i++) {
             ball.move();
-            if(CollisionHandler.intersect(ball, stone)){
+            if (CollisionHandler.intersect(ball, stone)) {
                 Direction directionCollision = CollisionHandler.collidedDirection(ball, stone);
                 CollisionHandler.reflect(ball, directionCollision);
                 break;
@@ -122,15 +122,16 @@ public class CollisionHandlerTest {
         }
         assertEquals(1, ball.getxVelocity(), 0.1);
     }
+
     @Test
-    public void test_if_reflection_works_from_bottom(){
+    public void test_if_reflection_works_from_bottom() {
         ball.setxPosition(0);
         ball.setyPosition(60);
         ball.setxVelocity(1);
         ball.setyVelocity(-1);
-        for(int i = 0; i < 100 ; i++){
+        for (int i = 0; i < 100; i++) {
             ball.move();
-            if(CollisionHandler.intersect(ball, stone)){
+            if (CollisionHandler.intersect(ball, stone)) {
                 Direction directionCollision = CollisionHandler.collidedDirection(ball, stone);
                 CollisionHandler.reflect(ball, directionCollision);
                 break;

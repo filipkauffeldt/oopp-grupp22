@@ -79,7 +79,7 @@ public interface IModel {
     public void setPlayers(List<Player> players);
 
     /**
-     * Adds a Player to the model's List of Player.
+     * Adds a Player to the model's List of Players.
      * 
      * @param player
      */

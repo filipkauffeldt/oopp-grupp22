@@ -24,10 +24,10 @@ import java.util.List;
 
 public class PlayerTest {
     private static Queue<Entity> targets = new LinkedList<Entity>();
-    static final Hoop hoop1 = new Hoop(20, 20, 20, 20, 20, Direction.EAST);
-    static final Hoop hoop2 = new Hoop(10, 20, 10, 20, 20, Direction.WEST);
-    static final Hoop hoop3 = new Hoop(30, 20, 20, 20, 20, Direction.SOUTH);
-    static final Hoop hoop4 = new Hoop(40, 20, 10, 20, 20, Direction.NORTH);
+    static final Hoop hoop1 = new Hoop(20, 20, 20,2, 20, 20, Direction.EAST);
+    static final Hoop hoop2 = new Hoop(10, 20, 10,2, 20, 20, Direction.WEST);
+    static final Hoop hoop3 = new Hoop(30, 20, 20,2, 20, 20, Direction.SOUTH);
+    static final Hoop hoop4 = new Hoop(40, 20, 10,2, 20, 20, Direction.NORTH);
     static final Peg peg    = new Peg(20, 20, 20, 20);
     
     public static List<Entity> getTargets() {
@@ -51,7 +51,7 @@ public class PlayerTest {
     
     @Test
     public void test_hasWon_false() {
-        Player player = new Player(new Ball(20, 20, 20, 20, 2));
+        Player player = new Player(new Ball(20, 20, 20, 20, 2), "Player 1");
         addTargets();
         player.setTargets(targets);
         assertFalse(player.hasWon());
@@ -59,13 +59,13 @@ public class PlayerTest {
 
     @Test 
     public void test_hasWon_true() {
-        Player player = new Player(new Ball(20, 20, 20, 20, 2));
+        Player player = new Player(new Ball(20, 20, 20, 20, 2), "Player 1");
         assertTrue(player.hasWon());
     }
 
     @Test
     public void test_handleEvent_rightHoop() {
-        Player player = new Player(new Ball(20, 20, 20, 20, 2));
+        Player player = new Player(new Ball(20, 20, 20, 20, 2), "Player 1");
         List<Entity> targetList = getTargets();
         addTargets();
         player.setTargets(targets);
@@ -75,7 +75,7 @@ public class PlayerTest {
 
     @Test
     public void test_handleEvent_wrongHoop() {
-        Player player = new Player(new Ball(20, 20, 20, 20, 2));
+        Player player = new Player(new Ball(20, 20, 20, 20, 2), "Player 1");
         List<Entity> targetList = getTargets();
         addTargets();
         player.setTargets(targets);
