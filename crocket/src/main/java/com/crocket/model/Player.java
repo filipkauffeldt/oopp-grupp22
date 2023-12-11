@@ -14,7 +14,6 @@ import com.crocket.model.interfaces.IPowerUp;
 public class Player implements IEventListener{
     private String name;
     private int strokes;
-    private int score;
     private boolean finished;
     private Queue<Entity> remainingTargets; //Queue of hoops and peg that have not been passed yet
     private Ball ball;
@@ -49,7 +48,6 @@ public class Player implements IEventListener{
         Entity target = event.getTarget();
         if (this.remainingTargets.peek() == target) {
             this.remainingTargets.poll();
-            this.incrementScore();
             System.out.println("Score!");
         }
     }
