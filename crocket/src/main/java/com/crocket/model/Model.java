@@ -3,6 +3,7 @@ package com.crocket.model;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import com.crocket.model.entity.Ball;
@@ -12,6 +13,7 @@ import com.crocket.model.entity.Peg;
 import com.crocket.model.entity.PowerUpEntity;
 import com.crocket.model.entity.Stone;
 import com.crocket.model.interfaces.ICollidable;
+import com.crocket.model.interfaces.IEventListener;
 import com.crocket.model.interfaces.ILevel;
 import com.crocket.model.interfaces.IModel;
 import com.crocket.model.interfaces.IMovable;
@@ -19,9 +21,9 @@ import com.crocket.model.surface.SurfaceHandler;
 import com.crocket.shared.EntityType;
 import com.crocket.shared.SurfaceType;
 
-public class Model implements IModel {
+public class Model implements IModel, IEventListener {
     private static final double NO_MOVEMENT_THRESHOLD = 0.1;
-    
+
     private static Model instance = null;
     private List<Player> players;
     private Set<IMovable> movables;
@@ -62,20 +64,32 @@ public class Model implements IModel {
         shotAllowed = true;
     }
 
+    public void handleEvent(PassTargetEvent event) {
+        if (event.getBall() != activePlayer.getBall())
+            return;
+
+        Entity target = event.getTarget();
+        playerPassedHoop(activePlayer, target);
+    }
+
+    private void playerPassedHoop(Player player, Entity hoop) {
+        player.passHoop(hoop);
+    }
+
     private void populatePlayerEntities(List<Player> players) {
         for (Player player : players) {
-            entities.add(player.getBall());
-            movables.add(player.getBall());
-            for(Entity target : level.getTargets()){
-                player.addTarget(target);
-            }
-            eventPublisher.addListener(player);
+            populatePlayerEntities(player);
         }
     }
 
     private void populatePlayerEntities(Player player) {
         entities.add(player.getBall());
         movables.add(player.getBall());
+
+        for(Entity target : level.getTargets()){
+            player.addTarget(target);
+        }
+        eventPublisher.addListener(player);
     }
 
     private void populatePowerUpEntities(List<PowerUpEntity> powerUps) {
@@ -141,7 +155,8 @@ public class Model implements IModel {
         }
 
         if (shotAllowed) {
-            // TODO: Should be fixed. This is an ugly hack to get the direction line to show up. Breaks Law of Demeter.
+            // TODO: Should be fixed. This is an ugly hack to get the direction line to show
+            // up. Breaks Law of Demeter.
             directionLine.setxPosition(activePlayer.getBall().getxPosition());
             directionLine.setyPosition(activePlayer.getBall().getyPosition());
 
