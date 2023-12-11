@@ -12,7 +12,6 @@ import com.crocket.model.entity.Peg;
 import com.crocket.model.entity.PowerUpEntity;
 import com.crocket.model.entity.Stone;
 import com.crocket.model.interfaces.ICollidable;
-import com.crocket.model.interfaces.ILevel;
 import com.crocket.model.interfaces.IModel;
 import com.crocket.model.interfaces.IMovable;
 import com.crocket.model.surface.SurfaceHandler;
@@ -27,7 +26,7 @@ public class Model implements IModel {
     private Set<IMovable> movables;
     private Set<Entity> entities;
     private Set<ICollidable> collidables;
-    private ILevel level;
+    private Level level;
     private EventPublisher eventPublisher;
 
     private Player activePlayer;
@@ -164,7 +163,7 @@ public class Model implements IModel {
         return level.getLevelSurfacemap();
     }
 
-    public void setLevel(ILevel level) {
+    public void setLevel(Level level) {
         this.level = level;
 
         entities = level.getEntities();

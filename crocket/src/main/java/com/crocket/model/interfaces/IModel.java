@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Set;
 
 import com.crocket.model.DrawableEntity;
+import com.crocket.model.Level;
 import com.crocket.model.Player;
 import com.crocket.shared.SurfaceType;
 
@@ -34,7 +35,7 @@ public interface IModel {
      * 
      * @param level
      */
-    public void setLevel(ILevel level);
+    public void setLevel(Level level);
 
     /**
      * Restarts the current level.
