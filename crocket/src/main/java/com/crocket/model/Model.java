@@ -1,6 +1,7 @@
 package com.crocket.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -16,6 +17,7 @@ import com.crocket.model.interfaces.ICollidable;
 import com.crocket.model.interfaces.IEventListener;
 import com.crocket.model.interfaces.ILevel;
 import com.crocket.model.interfaces.IModel;
+import com.crocket.model.interfaces.IModelVisualiser;
 import com.crocket.model.interfaces.IMovable;
 import com.crocket.model.interfaces.IPowerUp;
 import com.crocket.model.surface.SurfaceHandler;
@@ -34,6 +36,8 @@ public class Model implements IModel, IEventListener {
     private ILevel level;
     private EventPublisher eventPublisher;
 
+    private Set<IModelVisualiser> subscribers;
+
     private Player activePlayer;
     private DirectionLine directionLine;
     private SurfaceHandler surfaceHandler;
@@ -42,12 +46,33 @@ public class Model implements IModel, IEventListener {
     private boolean ballIsMoving;
     private boolean shotAllowed;
 
+    private boolean running;
+    private static final int DELAY = 20;
+
     private Model() {
         directionLine = new DirectionLine(0, 0, 0, 0, 0);
         surfaceHandler = SurfaceHandler.getInstance();
         round = 0;
         ballIsMoving = false;
         eventPublisher = EventPublisher.getInstance();
+        ballOwner = new HashMap<Ball, Player>();
+        subscribers = new HashSet<IModelVisualiser>();
+    }
+
+    public void start() {
+        running = true;
+
+        while (running) {
+            try {
+                Thread.sleep(DELAY);
+            } catch (Exception ex) {
+            }
+            update();
+        }
+    }
+
+    public void stop() {
+        running = false;
     }
 
     private void validateLevelIsSet() {
@@ -82,6 +107,16 @@ public class Model implements IModel, IEventListener {
         player.addPowerUp(powerUp);
     }
 
+    @Override
+    public void addSubscriber(IModelVisualiser subscriber) {
+        subscribers.add(subscriber);
+    }
+
+    @Override
+    public void removeSubscriber(IModelVisualiser subscriber) {
+        subscribers.remove(subscriber);
+    }
+
     private void populatePlayerEntities(List<Player> players) {
         for (Player player : players) {
             populatePlayerEntities(player);
@@ -93,7 +128,7 @@ public class Model implements IModel, IEventListener {
         movables.add(player.getBall());
         ballOwner.put(player.getBall(), player);
 
-        for(Entity target : level.getTargets()){
+        for (Entity target : level.getTargets()) {
             player.addTarget(target);
         }
     }
@@ -212,14 +247,16 @@ public class Model implements IModel, IEventListener {
         }
 
         if (ballIsMoving) {
-            if (Math.abs(activePlayer.getBall().getxVelocity()) <= NO_MOVEMENT_THRESHOLD && 
-                Math.abs(activePlayer.getBall().getyVelocity()) <= NO_MOVEMENT_THRESHOLD) {
+            if (Math.abs(activePlayer.getBall().getxVelocity()) <= NO_MOVEMENT_THRESHOLD &&
+                    Math.abs(activePlayer.getBall().getyVelocity()) <= NO_MOVEMENT_THRESHOLD) {
                 ballIsMoving = false;
                 activePlayer.getBall().setxVelocity(0);
                 activePlayer.getBall().setyVelocity(0);
                 nextRound();
             }
         }
+
+        subscribers.forEach(subscriber -> subscriber.update(getDrawableEntities()));
     }
 
     public void shootBall(int power) {
@@ -257,7 +294,7 @@ public class Model implements IModel, IEventListener {
         activePlayer = players.get(0);
 
         populatePlayerEntities(players);
-        
+
     }
 
     public void addPlayer(Player player) {
@@ -272,7 +309,7 @@ public class Model implements IModel, IEventListener {
         }
 
         populatePlayerEntities(player);
-        for(Entity target : level.getTargets()){
+        for (Entity target : level.getTargets()) {
             player.addTarget(target);
         }
     }
@@ -292,5 +329,4 @@ public class Model implements IModel, IEventListener {
     public boolean shotAllowed() {
         return shotAllowed;
     }
-
 }
