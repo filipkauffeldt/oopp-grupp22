@@ -17,6 +17,7 @@ import com.crocket.model.interfaces.IEventListener;
 import com.crocket.model.interfaces.ILevel;
 import com.crocket.model.interfaces.IModel;
 import com.crocket.model.interfaces.IMovable;
+import com.crocket.model.interfaces.IPowerUp;
 import com.crocket.model.surface.SurfaceHandler;
 import com.crocket.shared.EntityType;
 import com.crocket.shared.SurfaceType;
@@ -29,6 +30,7 @@ public class Model implements IModel, IEventListener {
     private Set<IMovable> movables;
     private Set<Entity> entities;
     private Set<ICollidable> collidables;
+    private Map<Ball, Player> ballOwner;
     private ILevel level;
     private EventPublisher eventPublisher;
 
@@ -64,16 +66,20 @@ public class Model implements IModel, IEventListener {
         shotAllowed = true;
     }
 
+    @Override
     public void handleEvent(PassTargetEvent event) {
-        if (event.getBall() != activePlayer.getBall())
-            return;
-
+        Player player = ballOwner.get(event.getBall());
         Entity target = event.getTarget();
-        playerPassedHoop(activePlayer, target);
+
+        player.passTarget(target);
     }
 
-    private void playerPassedHoop(Player player, Entity hoop) {
-        player.passHoop(hoop);
+    @Override
+    public void handleEvent(HitPowerUpEvent event) {
+        Player player = ballOwner.get(event.getBall());
+        IPowerUp powerUp = event.getPowerUp();
+
+        player.addPowerUp(powerUp);
     }
 
     private void populatePlayerEntities(List<Player> players) {
@@ -85,11 +91,11 @@ public class Model implements IModel, IEventListener {
     private void populatePlayerEntities(Player player) {
         entities.add(player.getBall());
         movables.add(player.getBall());
+        ballOwner.put(player.getBall(), player);
 
         for(Entity target : level.getTargets()){
             player.addTarget(target);
         }
-        eventPublisher.addListener(player);
     }
 
     private void populatePowerUpEntities(List<PowerUpEntity> powerUps) {
@@ -266,7 +272,6 @@ public class Model implements IModel, IEventListener {
         }
 
         populatePlayerEntities(player);
-        eventPublisher.addListener(player);
         for(Entity target : level.getTargets()){
             player.addTarget(target);
         }
@@ -278,7 +283,7 @@ public class Model implements IModel, IEventListener {
         for (Player player : players) {
             entities.remove(player.getBall());
             movables.remove(player.getBall());
-            eventPublisher.removeListener(player);
+            ballOwner.remove(player.getBall());
         }
 
         activePlayer = null;
