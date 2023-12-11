@@ -5,30 +5,30 @@ package com.crocket.model.entity;
 class Hitbox {
     private int width;
     private int height;
-    private double x;
-    private double y;
+    private double xPosition;
+    private double yPosition;
 
     public Hitbox(int width, int height, double xPosition, double yPosition) {
         this.width = width;
         this.height = height;
-        this.x = xPosition;
-        this.y = yPosition;
+        this.xPosition = xPosition;
+        this.yPosition = yPosition;
     }
 
     protected double getxPosition() {
-        return x;
+        return xPosition;
     }
 
     protected double getyPosition() {
-        return y;
+        return yPosition;
     }
 
     protected void setxPosition(double xPosition) {
-        this.x = xPosition;
+        this.xPosition = xPosition;
     }
 
     protected void setyPosition(double yPosition) {
-        this.y = yPosition;
+        this.yPosition = yPosition;
     }
 
     protected int getWidth() {

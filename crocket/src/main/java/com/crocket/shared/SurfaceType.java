@@ -1,6 +1,6 @@
 package com.crocket.shared;
 
-public enum Surface {
+public enum SurfaceType {
     ICE,
     SAND,
     GRASS;

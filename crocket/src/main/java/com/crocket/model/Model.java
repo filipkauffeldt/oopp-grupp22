@@ -15,8 +15,9 @@ import com.crocket.model.interfaces.ICollidable;
 import com.crocket.model.interfaces.ILevel;
 import com.crocket.model.interfaces.IModel;
 import com.crocket.model.interfaces.IMovable;
+import com.crocket.model.surface.SurfaceHandler;
 import com.crocket.shared.EntityType;
-import com.crocket.shared.Surface;
+import com.crocket.shared.SurfaceType;
 
 public class Model implements IModel {
     private static final double NO_MOVEMENT_THRESHOLD = 0.1;
@@ -31,6 +32,7 @@ public class Model implements IModel {
 
     private Player activePlayer;
     private DirectionLine directionLine;
+    private SurfaceHandler surfaceHandler;
 
     private int round;
     private boolean ballIsMoving;
@@ -38,6 +40,7 @@ public class Model implements IModel {
 
     private Model() {
         directionLine = new DirectionLine(0, 0, 0, 0, 0);
+        surfaceHandler = SurfaceHandler.getInstance();
         round = 0;
         ballIsMoving = false;
         eventPublisher = EventPublisher.getInstance();
@@ -155,7 +158,7 @@ public class Model implements IModel {
         return drawableEntities;
     }
 
-    public Surface[][] getLevelSurfacemap() {
+    public SurfaceType[][] getLevelSurfacemap() {
         validateLevelIsSet();
 
         return level.getLevelSurfacemap();
@@ -168,6 +171,8 @@ public class Model implements IModel {
         movables = level.getMovables();
         collidables = level.getCollidables();
 
+        surfaceHandler.setSurfaceMap(level.getLevelSurfacemap());
+
         round = 0;
         ballIsMoving = false;
         shotAllowed = true;
@@ -175,6 +180,7 @@ public class Model implements IModel {
 
     public void update() {
         validateLevelIsSet();
+        surfaceHandler.updateFriction(activePlayer.getBall());
 
         for (IMovable movable : movables) {
             movable.move();
