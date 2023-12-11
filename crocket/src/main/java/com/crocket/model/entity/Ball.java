@@ -29,6 +29,10 @@ public class Ball extends Entity implements IMovable{
         return mass;
     }
 
+    public double getFriction(){
+        return friction;
+    }
+
     public void setxVelocity(double xVelocity){
         this.xVelocity = xVelocity;
     }

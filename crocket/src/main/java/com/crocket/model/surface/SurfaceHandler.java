@@ -20,6 +20,10 @@ public class SurfaceHandler {
         return instance;
     }
 
+    public Set<Surface> getSurfaceMap() {
+        return surfaceMap;
+    }
+
     public void setSurfaceMap(SurfaceType[][] tilemap){
         Set<Surface> classSurfaceMap = new HashSet<Surface>();
         for(int i = 0; i < tilemap.length; i++){
@@ -73,7 +77,6 @@ public class SurfaceHandler {
 
     private double getFrictionConstant(Ball ball, Surface surface) {
         double friction = surface.getFriction();
-        System.out.println(friction);
         return friction;
     }
 }
