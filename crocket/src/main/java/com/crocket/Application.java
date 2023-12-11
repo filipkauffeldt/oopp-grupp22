@@ -16,17 +16,15 @@ import java.util.ArrayList;
 
 public class Application {
 
-    private static final int delay = 20;
-    private static CroquetView frame = CroquetView.getInstance();
-    private static ILevel Level1 = new Level1();
-    private static LevelView level1View = new LevelView();
-
-    public static void main( String[] args )
-    {
-        init(); 
+    public static void main(String[] args) {
+        init();
     }
 
     private static void init() {
+        CroquetView frame = CroquetView.getInstance();
+        ILevel Level1 = new Level1();
+        LevelView level1View = new LevelView();
+
         IModel model = Model.getInstance();
         ILevel level = new Level1();
         List<Player> players = new ArrayList<Player>();
@@ -43,20 +41,13 @@ public class Application {
         model.setLevel(level);
         model.setPlayers(players);
 
-        CroquetController controller = new CroquetController(frame, level1View, model);
+        CroquetController controller = new CroquetController(frame, model);
         level1View.setSurfaceMap(Level1.getLevelSurfacemap(), Level1.getLevelHeight(), Level1.getLevelWidth());
         frame.setLevelView(level1View);
         Thread run = new Thread();
         run.start();
 
-        while (true) {
-            try {
-                Thread.sleep(delay);
-            } catch (Exception ex) {
-            }
-            controller.update();
-
-        }
-
+        model.addSubscriber(level1View);
+        model.start();
     }
 }
