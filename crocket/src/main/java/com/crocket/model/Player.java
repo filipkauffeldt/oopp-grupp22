@@ -64,10 +64,6 @@ public class Player implements IEventListener{
         this.powerUps.remove(powerUp);
     } 
 
-    private void incrementScore() {
-        this.score++;
-    }
-
     public void incrementStrokes() {
         this.strokes++;
     }

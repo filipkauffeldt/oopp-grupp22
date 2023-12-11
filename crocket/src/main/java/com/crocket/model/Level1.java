@@ -21,9 +21,7 @@ public class Level1 implements ILevel {
     private Set<Entity> entities = new HashSet<Entity>();
     private Set<IMovable> movables = new HashSet<IMovable>();
     private Set<ICollidable> collidables = new HashSet<ICollidable>();
-    private Set<Entity> hoops = new HashSet<Entity>();
-    private int startXBallPos; 
-    private int startYBallPos;
+    private Set<Entity> tragetSet = new HashSet<Entity>();
     private Surface[][] tilemap = {
             { GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS},
             { GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS },
@@ -66,7 +64,7 @@ public class Level1 implements ILevel {
     }
 
     public Set<Entity> getTargets() {
-        return hoops;
+        return tragetSet;
     }
 
     public Level1() {
@@ -77,7 +75,7 @@ public class Level1 implements ILevel {
         entities.add(p);
         collidables.add(h);
         entities.add(h);
-        hoops.add(h);
+        tragetSet.add(h);
         collidables.add(s);
         entities.add(s);
     }

@@ -4,7 +4,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.crocket.model.interfaces.IEventListener;
-import com.crocket.model.interfaces.ITargetEvent;
 
 public class EventPublisher {
     private static EventPublisher instance = null;
