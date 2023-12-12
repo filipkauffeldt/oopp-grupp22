@@ -256,7 +256,9 @@ public class Model implements IModel, IEventListener {
             }
         }
 
-        subscribers.forEach(subscriber -> subscriber.update(getDrawableEntities()));
+        for (IModelVisualiser subscriber : subscribers) {
+            subscriber.update(getDrawableEntities());
+        }
     }
 
     public void shootBall(int power) {
