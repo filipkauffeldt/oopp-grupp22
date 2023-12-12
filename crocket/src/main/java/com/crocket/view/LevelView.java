@@ -14,8 +14,6 @@ import com.crocket.model.interfaces.IModelVisualiser;
 import com.crocket.shared.SurfaceType;
 import com.crocket.view.interfaces.ILevelView;
 
-
-
 public class LevelView extends JLayeredPane implements ILevelView, IModelVisualiser {
     private SurfaceType[][] levelSurfacemap;
     private TextureManager textureManager;

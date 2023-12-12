@@ -45,10 +45,10 @@ public class CroquetController implements KeyListener {
 
                     if (!powerIsMax) {
                         power += 1;
-                        ((LevelView) levelView).incrementPowerIndicator();
+                        view.incrementIndicator();;
                     } else {
                         power -= 1;
-                        ((LevelView) levelView).decrementPowerIndicator();
+                        view.decrementIndicator();
                     }
                 }
                 break;
@@ -59,7 +59,7 @@ public class CroquetController implements KeyListener {
         if (ke.getKeyCode() == KeyEvent.VK_SPACE && model.shotAllowed()) {
             model.shootBall((int) power);
             power = 1;
-            ((LevelView) levelView).resetPowerIndicator();
+            view.resetIndicator();
         }
     }
 

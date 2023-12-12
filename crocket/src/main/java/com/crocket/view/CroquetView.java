@@ -1,9 +1,6 @@
 package com.crocket.view;
-import javax.swing.*;
-
-import java.awt.Dimension;
-import java.awt.Toolkit;
-
+import javax.swing.JFrame;
+import javax.swing.ImageIcon;
 
 /*
  * Class: CroquetView
@@ -29,13 +26,8 @@ import java.awt.Toolkit;
 public class CroquetView extends JFrame{
     private static CroquetView instance;
     private ImageIcon img = new ImageIcon("crocket/assets/textures/JFrame_Icon.jpg");
-    private Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
     private String title = "Krocket";
     private LevelView levelView;
-    DrawDirectionLine line = new DrawDirectionLine();
-    PowerPanel pPanel = new PowerPanel();
-    
-    
     
     public void setLevelView(LevelView level) {
         if (getContentPane() != null) {
@@ -46,16 +38,12 @@ public class CroquetView extends JFrame{
         revalidate();
     }
 
-
-
     private CroquetView(){
         setIconImage(img.getImage());
         setTitle(title);
         setVisible(true);
         setLocationRelativeTo(null);
         setExtendedState(MAXIMIZED_BOTH); 
-        
-
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
@@ -67,27 +55,15 @@ public class CroquetView extends JFrame{
         return instance;
     }
 
-    public void setPowerMeterVisibility(boolean vis){
-        pPanel.setVisible(vis);
-    }
-
     public void incrementIndicator(){
-        pPanel.incrementIndicator();
-        pPanel.repaint();
+        levelView.incrementPowerIndicator();
     }
 
     public void decrementIndicator(){
-        pPanel.decrementIndicator();
-        pPanel.repaint();
+        levelView.decrementPowerIndicator();
     }
 
     public void resetIndicator(){
-        pPanel.resetIndicator();
-        pPanel.repaint();
+        levelView.resetPowerIndicator();
     }
-
-    public void updatePowerMeter(){
-        pPanel.setLocation(30, (int)screen.getHeight() - 100);
-    }
-
 }

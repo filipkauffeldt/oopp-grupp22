@@ -82,10 +82,10 @@ public class Player {
     }
 
     public void shootBall(double angle, double power) {
-        double sinus = Math.sin(Math.toRadians(angle));
-        double cosinus = Math.cos(Math.toRadians(angle));
+        double sinus = Math.sin(angle);
+        double cosinus = Math.cos(angle);
 
-        this.ball.startBall(sinus, cosinus, power);
+        this.ball.startBall(cosinus, sinus, power);
 
         incrementStrokes();
     }
