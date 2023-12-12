@@ -4,8 +4,9 @@ import java.util.List;
 import java.util.Set;
 
 import com.crocket.model.DrawableEntity;
+import com.crocket.model.Level;
 import com.crocket.model.Player;
-import com.crocket.shared.Surface;
+import com.crocket.shared.SurfaceType;
 
 /**
  * Facade for the model of the game.
@@ -24,9 +25,9 @@ public interface IModel {
     /**
      * Returns the tilemap representation of the surfaces in the current level.
      * 
-     * @return Surface[][] levelTilemap
+     * @return SurfaceType[][] levelTilemap
      */
-    public Surface[][] getLevelSurfacemap();
+    public SurfaceType[][] getLevelSurfacemap();
 
     /**
      * Sets the current level and populates the entities set with the entities from
@@ -34,7 +35,7 @@ public interface IModel {
      * 
      * @param level
      */
-    public void setLevel(ILevel level);
+    public void setLevel(Level level);
 
     /**
      * Restarts the current level.
@@ -79,7 +80,7 @@ public interface IModel {
     public void setPlayers(List<Player> players);
 
     /**
-     * Adds a Player to the model's List of Player.
+     * Adds a Player to the model's List of Players.
      * 
      * @param player
      */

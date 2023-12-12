@@ -6,11 +6,11 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 public class BallTest {
-    private Ball ball = new Ball(20, 20, 20, 20, 2);
+    private Ball ball = new Ball(19, 19, 20, 20, 2);
 
     @Before
     public void reset_ball(){
-        ball = new Ball(20, 20, 20, 20, 2);
+        ball = new Ball(19, 19, 20, 20, 2);
     }
 
     @Test

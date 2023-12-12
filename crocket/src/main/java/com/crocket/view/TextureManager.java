@@ -44,7 +44,7 @@ public class TextureManager {
 
     public BufferedImage getTexture(String textureName) {
         if (!textureCacheMap.containsKey(textureName)) {
-            throw new IllegalArgumentException("Invalid texture name " + textureName);
+            throw new IllegalArgumentException("Invalid texture name: " + textureName);
         }
         return textureCacheMap.get(textureName);
     }

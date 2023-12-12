@@ -1,6 +1,8 @@
 package com.crocket.model.entity;
 
 public abstract class Entity {
+    private double prevXPosition;
+    private double prevYPosition;
     private double xPosition;
     private double yPosition;
     private int width;
@@ -12,6 +14,8 @@ public abstract class Entity {
     {
         this.width = width;
         this.height = height;
+        this.prevXPosition = xPosition;
+        this.prevYPosition = yPosition;
         this.xPosition = xPosition;
         this.yPosition = yPosition;
 
@@ -35,15 +39,25 @@ public abstract class Entity {
     }
 
     public void setxPosition(double xPosition){
+        this.prevXPosition = this.getxPosition();
         this.xPosition = xPosition;
     }
 
     public void setyPosition(double yPosition){
+        this.prevYPosition = this.getyPosition();
         this.yPosition = yPosition;
     }
 
+    public double getPrevXPosition() {
+        return prevXPosition;
+    }
+
+    public double getPrevYPosition() {
+        return prevYPosition;
+    }
+
     public Hitbox getHitbox() {
-        return hitbox;
+        return new Hitbox(width, height, xPosition, yPosition);
     }
 
 }

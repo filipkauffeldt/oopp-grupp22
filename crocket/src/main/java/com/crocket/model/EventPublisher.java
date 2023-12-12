@@ -8,7 +8,7 @@ import com.crocket.model.interfaces.IEventListener;
 public class EventPublisher {
     private static EventPublisher instance = null;
     private Set<IEventListener> listeners;
-    
+
     private EventPublisher() {
         listeners = new HashSet<IEventListener>();
     }
@@ -29,6 +29,12 @@ public class EventPublisher {
     }
 
     public void publishEvent(PassTargetEvent event) {
+        for (IEventListener listener : listeners) {
+            listener.handleEvent(event);
+        }
+    }
+
+    public void publishEvent(HitPowerUpEvent event) {
         for (IEventListener listener : listeners) {
             listener.handleEvent(event);
         }

@@ -6,12 +6,12 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 public class StoneTest {
-    private Ball ball = new Ball(20, 20, 0, 0, 2);
+    private Ball ball = new Ball(19, 19, 0, 0, 2);
     private Stone stone = new Stone(25, 25, 30, 30);
     
     @Before
     public void reset_ball(){
-        ball = new Ball(20, 20, 0, 0, 2);
+        ball = new Ball(19, 19, 0, 0, 2);
     }
 
     // Already tested most of the methods in CollisionHandlerTest. Only to see if everything works together.
@@ -30,6 +30,6 @@ public class StoneTest {
         for(int i = 0; i < 10; i++){
             ball.move();
         }
-        assertEquals(1, ball.getyPosition(), 0.0001);
+        assertEquals(2, ball.getyPosition(), 0.0001);
     }
 }

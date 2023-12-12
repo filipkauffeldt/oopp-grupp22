@@ -10,11 +10,11 @@ import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
 
 import com.crocket.model.DrawableEntity;
-import com.crocket.shared.Surface;
+import com.crocket.shared.SurfaceType;
 import com.crocket.view.interfaces.ILevelView;
 
 public class LevelView extends JLayeredPane implements ILevelView {
-    private Surface[][] levelSurfacemap;
+    private SurfaceType[][] levelSurfacemap;
     private TextureManager textureManager;
     private int levelHeight;
     private int levelWidth;
@@ -36,14 +36,15 @@ public class LevelView extends JLayeredPane implements ILevelView {
         }
     }
 
-    private void drawSurfaceTile(Graphics g, Surface surface, int x, int y) throws IOException {
-        g.drawImage(textureManager.getTexture(surface.name()), x * 100, y * 100, this);
+    private void drawSurfaceTile(Graphics g, SurfaceType surface, int x, int y) throws IOException {
+        BufferedImage surfaceImage = textureManager.getTexture(surface.name());
+        g.drawImage(surfaceImage, x*surfaceImage.getWidth(), y*surfaceImage.getHeight(), this);
     }
 
     public void drawSurfaces(Graphics g) throws IOException {
         for (int y = 0; y < levelHeight; y++) {
             for (int x = 0; x < levelWidth; x++) {
-                Surface surface = levelSurfacemap[y][x];
+                SurfaceType surface = levelSurfacemap[y][x];
                 drawSurfaceTile(g, surface, x, y);
             }
         }
@@ -145,7 +146,7 @@ public class LevelView extends JLayeredPane implements ILevelView {
         }
     }
 
-    public void setSurfaceMap(Surface[][] levelSurfacemap, int levelHeight, int levelWidth) {
+    public void setSurfaceMap(SurfaceType[][] levelSurfacemap, int levelHeight, int levelWidth) {
         this.levelSurfacemap = levelSurfacemap;
         this.levelHeight = levelHeight;
         this.levelWidth = levelWidth;
