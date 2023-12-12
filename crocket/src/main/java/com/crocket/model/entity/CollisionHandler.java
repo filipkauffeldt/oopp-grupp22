@@ -36,55 +36,56 @@ class CollisionHandler {
                 h1X < h2X + h2Width &&
                 h1Y < h2Y + h2Height);
 
-
-        /*boolean xMax1IsGreaterThanxPos2 = h1X + h1Width > h2X;
-        boolean xMax1IsLesserThanxMax2 = h1X + h1Width < h2X + h2Width;
-        boolean xMin1IsGreaterThanxPos2 = h1X > h2X;
-        boolean xMin1IsLesserThanxMax2 = h1X < h2X + h2Width;
-        boolean yMax1IsGreaterThanyPos2 = h1Y + h1Height > h2Y;
-        boolean yMax1IsLesserThanyMax2 = h1Y + h1Height < h2Y + h2Height;
-        boolean yMin1IsLesserThanyMax2 = h1Y < h2Y + h2Height;
-        boolean yMin1IsGreaterThanyPos2 = h1Y > h2Y;
-        
-        boolean xMaxIsBetween = xMax1IsGreaterThanxPos2 && xMax1IsLesserThanxMax2;
-        boolean xMinIsBetween = xMin1IsGreaterThanxPos2 && xMin1IsLesserThanxMax2;
-        boolean yMaxIsBetween = yMax1IsGreaterThanyPos2 && yMax1IsLesserThanyMax2;
-        boolean yMinIsBetween = yMin1IsGreaterThanyPos2 && yMin1IsLesserThanyMax2;
-        
-        boolean yMaxIsBetweenIntervalAbove = yMax1IsGreaterThanyPos2 &&
-        yMax1IsLesserThanyMax2;
-        boolean xMaxIsBetweenIntervalLeft = xMax1IsGreaterThanxPos2 &&
-        xMax1IsLesserThanxMax2;
-        boolean yMinIsBetweenIntervalBelow = yMin1IsLesserThanyMax2 &&
-        yMin1IsGreaterThanyPos2;
-        boolean xMinIsBetweenIntervalRight = xMin1IsLesserThanxMax2 &&
-        xMin1IsGreaterThanxPos2;
-        
-        boolean intervalXAxis = xMaxIsBetween || xMinIsBetween;
-        boolean intervalYAxis = yMaxIsBetween || yMinIsBetween;
-          
-        boolean intersectFromAbove = intervalXAxis && yMaxIsBetweenIntervalAbove;
-        boolean intersectFromBelow = intervalXAxis && yMinIsBetweenIntervalBelow;
-        boolean intersectFromLeft = intervalYAxis && xMaxIsBetweenIntervalLeft;
-        boolean intersectFromRight = intervalYAxis && xMinIsBetweenIntervalRight;
-          
-         if (intersectFromAbove) {
-         return true;
-         }
-          
-         if (intersectFromBelow) {
-          return true;
-          }
-          
-          if (intersectFromLeft) {
-          return true;
-          }
-          
-          if (intersectFromRight) {
-          return true;
-          }
-          
-          return false;*/
+        /*
+         * boolean xMax1IsGreaterThanxPos2 = h1X + h1Width > h2X;
+         * boolean xMax1IsLesserThanxMax2 = h1X + h1Width < h2X + h2Width;
+         * boolean xMin1IsGreaterThanxPos2 = h1X > h2X;
+         * boolean xMin1IsLesserThanxMax2 = h1X < h2X + h2Width;
+         * boolean yMax1IsGreaterThanyPos2 = h1Y + h1Height > h2Y;
+         * boolean yMax1IsLesserThanyMax2 = h1Y + h1Height < h2Y + h2Height;
+         * boolean yMin1IsLesserThanyMax2 = h1Y < h2Y + h2Height;
+         * boolean yMin1IsGreaterThanyPos2 = h1Y > h2Y;
+         * 
+         * boolean xMaxIsBetween = xMax1IsGreaterThanxPos2 && xMax1IsLesserThanxMax2;
+         * boolean xMinIsBetween = xMin1IsGreaterThanxPos2 && xMin1IsLesserThanxMax2;
+         * boolean yMaxIsBetween = yMax1IsGreaterThanyPos2 && yMax1IsLesserThanyMax2;
+         * boolean yMinIsBetween = yMin1IsGreaterThanyPos2 && yMin1IsLesserThanyMax2;
+         * 
+         * boolean yMaxIsBetweenIntervalAbove = yMax1IsGreaterThanyPos2 &&
+         * yMax1IsLesserThanyMax2;
+         * boolean xMaxIsBetweenIntervalLeft = xMax1IsGreaterThanxPos2 &&
+         * xMax1IsLesserThanxMax2;
+         * boolean yMinIsBetweenIntervalBelow = yMin1IsLesserThanyMax2 &&
+         * yMin1IsGreaterThanyPos2;
+         * boolean xMinIsBetweenIntervalRight = xMin1IsLesserThanxMax2 &&
+         * xMin1IsGreaterThanxPos2;
+         * 
+         * boolean intervalXAxis = xMaxIsBetween || xMinIsBetween;
+         * boolean intervalYAxis = yMaxIsBetween || yMinIsBetween;
+         * 
+         * boolean intersectFromAbove = intervalXAxis && yMaxIsBetweenIntervalAbove;
+         * boolean intersectFromBelow = intervalXAxis && yMinIsBetweenIntervalBelow;
+         * boolean intersectFromLeft = intervalYAxis && xMaxIsBetweenIntervalLeft;
+         * boolean intersectFromRight = intervalYAxis && xMinIsBetweenIntervalRight;
+         * 
+         * if (intersectFromAbove) {
+         * return true;
+         * }
+         * 
+         * if (intersectFromBelow) {
+         * return true;
+         * }
+         * 
+         * if (intersectFromLeft) {
+         * return true;
+         * }
+         * 
+         * if (intersectFromRight) {
+         * return true;
+         * }
+         * 
+         * return false;
+         */
     }
 
     static void reflect(IMovable entity, Direction direction) {
@@ -97,96 +98,45 @@ class CollisionHandler {
             entity.setyVelocity(-yVelocity);
         }
     }
+    
+    private static double getXDistance(Hitbox hitbox1, Hitbox hitbox2) {
+        double h1X = hitbox1.getxPosition();
+        double h2X = hitbox2.getxPosition();
+
+        return h1X - h2X;
+    }
+
+    private static double getYDistance(Hitbox hitbox1, Hitbox hitbox2) {
+        double h1Y = hitbox1.getyPosition();
+        double h2Y = hitbox2.getyPosition();
+
+        return h1Y - h2Y;
+    }
 
     static Direction collidedDirection(Entity entity1, Entity entity2) {
         Hitbox e1Hitbox = entity1.getHitbox();
         Hitbox e2Hitbox = entity2.getHitbox();
 
-        double e1X = e1Hitbox.getxPosition();
-        double e1Y = e1Hitbox.getyPosition();
-
-        double e2X = e2Hitbox.getxPosition();
-        double e2Y = e2Hitbox.getyPosition();
-
-        if (intersect(entity1, entity2)) {
-            double xDistance = e1X - e2X;
-            double yDistance = e1Y - e2Y;
-
-            if (Math.abs(xDistance) > Math.abs(yDistance)) {
-                if (xDistance > 0) {
-                    return Direction.EAST;
-                } else {
-                    return Direction.WEST;
-                }
-            } else {
-                if (yDistance > 0) {
-                    return Direction.SOUTH;
-                } else {
-                    return Direction.NORTH;
-                }
-            }
-        } else {
-            throw new IllegalArgumentException("Entities do not intersect");
-        }
+        return collidedDirection(e1Hitbox, e2Hitbox);
     }
 
     static Direction collidedDirection(Entity entity1, Hitbox hitbox) {
         Hitbox e1Hitbox = entity1.getHitbox();
-
-        double e1X = e1Hitbox.getxPosition();
-        double e1Y = e1Hitbox.getyPosition();
-
-        double e2X = hitbox.getxPosition();
-        double e2Y = hitbox.getyPosition();
-
-        if (intersect(entity1, hitbox)) {
-            double xDistance = e1X - e2X;
-            double yDistance = e1Y - e2Y;
-
-            if (Math.abs(xDistance) > Math.abs(yDistance)) {
-                if (xDistance > 0) {
-                    return Direction.EAST;
-                } else {
-                    return Direction.WEST;
-                }
-            } else {
-                if (yDistance > 0) {
-                    return Direction.SOUTH;
-                } else {
-                    return Direction.NORTH;
-                }
-            }
-        } else {
-            throw new IllegalArgumentException("Entities do not intersect");
-        }
+        return collidedDirection(e1Hitbox, hitbox);
     }
 
     static Direction collidedDirection(Hitbox hitbox1, Hitbox hitbox2) {
-        double h1X = hitbox1.getxPosition();
-        double h1Y = hitbox1.getyPosition();
-
-        double h2X = hitbox2.getxPosition();
-        double h2Y = hitbox2.getyPosition();
-
-        if (intersect(hitbox1, hitbox2)) {
-            double xDistance = h1X - h2X;
-            double yDistance = h1Y - h2Y;
-
-            if (Math.abs(xDistance) > Math.abs(yDistance)) {
-                if (xDistance > 0) {
-                    return Direction.EAST;
-                } else {
-                    return Direction.WEST;
-                }
-            } else {
-                if (yDistance > 0) {
-                    return Direction.SOUTH;
-                } else {
-                    return Direction.NORTH;
-                }
-            }
-        } else {
+        if (!intersect(hitbox1, hitbox2)) {
             throw new IllegalArgumentException("Entities do not intersect");
+        }
+
+        double xDistance = getXDistance(hitbox1, hitbox2);
+        double yDistance = getYDistance(hitbox1, hitbox2);
+
+        if (Math.abs(xDistance) > Math.abs(yDistance)) {
+            return xDistance > 0 ? Direction.EAST : Direction.WEST;
+        } else {
+            return yDistance > 0 ? Direction.SOUTH : Direction.NORTH;
         }
     }
 
@@ -195,10 +145,9 @@ class CollisionHandler {
 
         double eY = eHitbox.getyPosition();
         double ePrevY = entity.getPrevYPosition();
-        if(eY - ePrevY == 0){
+        if (eY - ePrevY == 0) {
             return Direction.NONE;
-        }
-        else if (eY > ePrevY) {
+        } else if (eY > ePrevY) {
             return Direction.NORTH;
         } else {
             return Direction.SOUTH;
@@ -210,10 +159,9 @@ class CollisionHandler {
 
         double eX = eHitbox.getxPosition();
         double ePrevX = entity.getPrevXPosition();
-        if(eX - ePrevX == 0){
+        if (eX - ePrevX == 0) {
             return Direction.NONE;
-        }
-        else if (eX > ePrevX) {
+        } else if (eX > ePrevX) {
             return Direction.EAST;
         } else {
             return Direction.WEST;

@@ -3,11 +3,11 @@ package com.crocket;
 import java.util.List;
 
 import com.crocket.controller.CroquetController;
+import com.crocket.model.Level;
 import com.crocket.model.Level1;
 import com.crocket.model.Model;
 import com.crocket.model.Player;
 import com.crocket.model.entity.Ball;
-import com.crocket.model.interfaces.ILevel;
 import com.crocket.model.interfaces.IModel;
 import com.crocket.view.CroquetView;
 import com.crocket.view.LevelView;
@@ -15,9 +15,9 @@ import com.crocket.view.LevelView;
 import java.util.ArrayList;
 
 public class Application {
-
-    public static void main(String[] args) {
-        init();
+    public static void main( String[] args )
+    {
+        init(); 
     }
 
     private static void init() {
@@ -26,7 +26,7 @@ public class Application {
         LevelView level1View = new LevelView();
 
         IModel model = Model.getInstance();
-        ILevel level = new Level1();
+        Level level = new Level1();
         List<Player> players = new ArrayList<Player>();
 
         Ball p1Ball = new Ball(19, 19, 600d, 550d, 20);

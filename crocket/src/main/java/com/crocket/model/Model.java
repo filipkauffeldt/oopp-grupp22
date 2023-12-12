@@ -15,7 +15,6 @@ import com.crocket.model.entity.PowerUpEntity;
 import com.crocket.model.entity.Stone;
 import com.crocket.model.interfaces.ICollidable;
 import com.crocket.model.interfaces.IEventListener;
-import com.crocket.model.interfaces.ILevel;
 import com.crocket.model.interfaces.IModel;
 import com.crocket.model.interfaces.IModelVisualiser;
 import com.crocket.model.interfaces.IMovable;
@@ -32,8 +31,10 @@ public class Model implements IModel, IEventListener {
     private Set<IMovable> movables;
     private Set<Entity> entities;
     private Set<ICollidable> collidables;
+  
     private Map<Ball, Player> ballOwner;
-    private ILevel level;
+  
+    private Level level;
     private EventPublisher eventPublisher;
 
     private Set<IModelVisualiser> subscribers;
@@ -220,7 +221,7 @@ public class Model implements IModel, IEventListener {
         return level.getLevelSurfacemap();
     }
 
-    public void setLevel(ILevel level) {
+    public void setLevel(Level level) {
         this.level = level;
 
         entities = level.getEntities();
