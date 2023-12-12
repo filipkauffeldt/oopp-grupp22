@@ -70,11 +70,18 @@ public class LevelView extends JLayeredPane implements ILevelView {
         return label;
     }
     
-    // TODO: FIX THIS!!!!
     private void drawDirectionLine(DrawableEntity entity) {
-     
+        DrawDirectionLine panel = new DrawDirectionLine();
+        panel.setBounds(entity.getxPosition()-panel.getWidth()/2 +10, entity.getyPosition()-panel.getHeight()/2 +10, panel.getWidth(), panel.getHeight());
+        add(panel, JLayeredPane.DEFAULT_LAYER);
+        panel.changeAngle(entity.getCosinus(), entity.getSinus());
+        panel.repaint();
     }
 
+    //#TODO Implement this
+    private void drawPowerMeter(){
+        
+    }
 
     private void getHoopTexture(DrawableEntity entity) {
         int rotation = entity.getRotation();

@@ -70,7 +70,7 @@ public class Player implements IEventListener{
         double sinus = Math.sin(angle);
         double cosinus = Math.cos(angle);
         
-        this.ball.startBall(sinus, cosinus, power);
+        this.ball.startBall(cosinus, sinus, power);
 
         incrementStrokes();
     }

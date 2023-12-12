@@ -31,9 +31,7 @@ public class CroquetView extends JFrame{
     private ImageIcon img = new ImageIcon("crocket/assets/textures/JFrame_Icon.jpg");
     private Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
     private String title = "Krocket";
-    private DrawBall ball;
     private LevelView levelView;
-    private DrawStone stone;
     DrawDirectionLine line = new DrawDirectionLine();
     PowerPanel pPanel = new PowerPanel();
     
@@ -48,28 +46,7 @@ public class CroquetView extends JFrame{
         revalidate();
     }
 
-    public void setBallToLevel(DrawBall ball){
-        try{
-            this.ball = ball;
-            levelView.add(ball);
-            levelView.add(line);
-            levelView.add(pPanel);
-            
-        }
-        catch(NullPointerException e){
-            System.out.println("No container found!");
-        }
-    }
 
-    public void setStoneToLevel(DrawStone stone){
-        try{
-            this.stone = stone;
-            levelView.add(stone);
-        }
-        catch(NullPointerException e){
-            System.out.println("No container found!");
-        }
-    }
 
     private CroquetView(){
         setIconImage(img.getImage());
@@ -77,6 +54,7 @@ public class CroquetView extends JFrame{
         setVisible(true);
         setLocationRelativeTo(null);
         setExtendedState(MAXIMIZED_BOTH); 
+        
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
@@ -87,18 +65,6 @@ public class CroquetView extends JFrame{
             
         }
         return instance;
-    }
-
-    public DrawBall getEntity(){
-        return ball;
-    }
-
-    public void setStone(int x, int y){
-        stone.setLocation(x, y);
-    }
-
-    public void moveBall(int x, int y){
-        ball.setLocation(x, y);
     }
 
     public void setPowerMeterVisibility(boolean vis){
@@ -118,13 +84,6 @@ public class CroquetView extends JFrame{
     public void resetIndicator(){
         pPanel.resetIndicator();
         pPanel.repaint();
-    }
-
-    public void updateLine(int xPos, int yPos, int xAngle, int yAngle){
-        line.setSize(100, 100);
-        line.setLocation(xPos-line.getStartX(), yPos-line.getStartY());
-        line.changeAngle(xAngle + (line.getStartX()), yAngle + (line.getStartY()));
-        line.repaint();
     }
 
     public void updatePowerMeter(){

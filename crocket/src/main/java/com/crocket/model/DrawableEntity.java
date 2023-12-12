@@ -10,7 +10,7 @@ public class DrawableEntity {
     private int rotation;
     private EntityType type;
     
-    public DrawableEntity(int xPosition, int yPosition, int width, int height, int rotation,  EntityType type) {
+    public DrawableEntity(int xPosition, int yPosition, int width, int height, int rotation, EntityType type) {
         this.xPosition = xPosition;
         this.yPosition = yPosition;
         this.width = width;
@@ -35,8 +35,16 @@ public class DrawableEntity {
         return height;
     }
 
-    public int getRotation() {
+    public int getRotation(){
         return rotation;
+    }
+    
+    public double getCosinus(){
+        return Math.cos(Math.toRadians(rotation));
+    }
+
+    public double getSinus(){
+        return Math.sin(Math.toRadians(rotation));
     }
 
     public EntityType getType() {

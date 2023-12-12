@@ -8,6 +8,8 @@ import javax.swing.JPanel;
 
 public class DrawDirectionLine extends JPanel {
     
+    private final int width = 100;
+    private final int height = 100;
     private int startX = 50;
     private int startY = 50;
     private int endX;
@@ -16,19 +18,20 @@ public class DrawDirectionLine extends JPanel {
     DrawDirectionLine(){
         super();
         setOpaque(false);
-    }
-    
-    public int getStartX() {
-        return startX;
+        
     }
 
-    public int getStartY() {
-        return startY;
+    public void changeAngle(double x, double y){
+        endX = (int)(x * 10000);
+        endY = (int)(y * 10000);
     }
 
-    public void changeAngle(int x, int y){
-        endX = x;
-        endY = y;
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
     }
 
     @Override

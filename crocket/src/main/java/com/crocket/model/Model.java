@@ -107,7 +107,7 @@ public class Model implements IModel {
         validateLevelIsSet();
 
         Set<DrawableEntity> drawableEntities = new HashSet<DrawableEntity>();
-
+        
         for (Entity entity : entities) {
             int xPosition = (int) entity.getxPosition();
             int yPosition = (int) entity.getyPosition();
@@ -179,7 +179,7 @@ public class Model implements IModel {
     public void shootBall(int power) {
         validateLevelIsSet();
 
-        activePlayer.shootBall(directionLine.getDegreeAngle(), power);
+        activePlayer.shootBall(Math.toRadians(directionLine.getDegreeAngle()), power);
         ballIsMoving = true;
         shotAllowed = false;
     }
