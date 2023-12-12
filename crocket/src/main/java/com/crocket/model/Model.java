@@ -38,7 +38,7 @@ public class Model implements IModel {
     private boolean shotAllowed;
 
     private Model() {
-        directionLine = new DirectionLine(0, 0, 0, 0, 0);
+        directionLine = new DirectionLine(0, 0, 0);
         surfaceHandler = SurfaceHandler.getInstance();
         round = 0;
         ballIsMoving = false;
@@ -152,6 +152,8 @@ public class Model implements IModel {
             EntityType type = getEntityTypeFromClass(directionLine.getClass());
 
             drawableEntities.add(new DrawableEntity(xPosition, yPosition, width, height, rotation, type));
+            
+            
         }
 
         return drawableEntities;

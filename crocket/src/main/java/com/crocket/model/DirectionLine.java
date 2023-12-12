@@ -2,17 +2,15 @@ package com.crocket.model;
 
 public class DirectionLine {
     private int degreeAngle;
-    private double height;
-    private double width;
+    private final double height = 100;
+    private final double width = 100;
     private double xPosition;
     private double yPosition;
 
-    public DirectionLine(int degreeAngle, double xPosition, double yPosition, double height, double width){
+    public DirectionLine(int degreeAngle, double xPosition, double yPosition){
         setDegreeAngle(degreeAngle);
         this.xPosition = xPosition;
         this.yPosition = yPosition;
-        this.height = height;
-        this.width = width;
     }
 
     public int getDegreeAngle() {

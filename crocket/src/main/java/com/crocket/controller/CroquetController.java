@@ -7,6 +7,7 @@ import java.util.Set;
 import com.crocket.model.DrawableEntity;
 import com.crocket.model.interfaces.IModel;
 import com.crocket.view.CroquetView;
+import com.crocket.view.LevelView;
 import com.crocket.view.interfaces.ILevelView;
 
 public class CroquetController implements KeyListener {
@@ -43,7 +44,6 @@ public class CroquetController implements KeyListener {
                 break;
             case KeyEvent.VK_SPACE:
                 if (model.shotAllowed()) {
-                    view.setPowerMeterVisibility(true);
                     if (power >= maxPower) {
                         powerIsMax = true;
                     } else if (power <= 1) {
@@ -52,10 +52,10 @@ public class CroquetController implements KeyListener {
 
                     if (!powerIsMax) {
                         power += 1;
-                        view.incrementIndicator();
+                        ((LevelView) levelView).incrementPowerIndicator();
                     } else {
                         power -= 1;
-                        view.decrementIndicator();
+                        ((LevelView) levelView).decrementPowerIndicator();
                     }
                 }
                 break;
@@ -66,7 +66,7 @@ public class CroquetController implements KeyListener {
         if (ke.getKeyCode() == KeyEvent.VK_SPACE && model.shotAllowed()) {
             model.shootBall((int) power);
             power = 1;
-            view.resetIndicator();
+            ((LevelView) levelView).resetPowerIndicator();
         }
     }
 

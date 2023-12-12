@@ -14,6 +14,8 @@ public class PowerPanel extends JPanel {
     
     private ImageIcon powerImg = new ImageIcon("crocket/assets/textures/PowerMeter.png");
     private JLabel powerLabel = new JLabel();
+    private int width = 200;
+    private int height = 50;
     private int[] x = new int[] {0,3,6};
     private int[] y = new int[] {55,25,55};
     
@@ -23,7 +25,15 @@ public class PowerPanel extends JPanel {
         add(powerLabel);
         setOpaque(false);
         setLocation(100, 100);
-        setVisible(false);
+        //setVisible(false);
+    }
+    
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
     }
 
     public void resetIndicator(){

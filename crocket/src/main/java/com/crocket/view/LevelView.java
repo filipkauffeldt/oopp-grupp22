@@ -13,11 +13,16 @@ import com.crocket.model.DrawableEntity;
 import com.crocket.shared.SurfaceType;
 import com.crocket.view.interfaces.ILevelView;
 
+
+
 public class LevelView extends JLayeredPane implements ILevelView {
     private SurfaceType[][] levelSurfacemap;
     private TextureManager textureManager;
     private int levelHeight;
     private int levelWidth;
+    private PowerPanel pPanel = new PowerPanel();
+
+    Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 
     public LevelView() {
         setDoubleBuffered(true);
@@ -74,14 +79,30 @@ public class LevelView extends JLayeredPane implements ILevelView {
     private void drawDirectionLine(DrawableEntity entity) {
         DrawDirectionLine panel = new DrawDirectionLine();
         panel.setBounds(entity.getxPosition()-panel.getWidth()/2 +10, entity.getyPosition()-panel.getHeight()/2 +10, panel.getWidth(), panel.getHeight());
-        add(panel, JLayeredPane.DEFAULT_LAYER);
+        
         panel.changeAngle(entity.getCosinus(), entity.getSinus());
+        add(panel, JLayeredPane.DEFAULT_LAYER);
         panel.repaint();
     }
 
-    //#TODO Implement this
     private void drawPowerMeter(){
-        
+        pPanel.setBounds((int)screen.getWidth()/100, 90 * (int)screen.getHeight()/100, pPanel.getWidth(), pPanel.getHeight());
+        add(pPanel, MODAL_LAYER);
+    }
+
+    public void incrementPowerIndicator(){
+        pPanel.incrementIndicator();
+        pPanel.repaint();
+    }
+
+    public void decrementPowerIndicator(){
+        pPanel.decrementIndicator();
+        pPanel.repaint();
+    }
+
+    public void resetPowerIndicator(){
+        pPanel.resetIndicator();
+        pPanel.repaint();
     }
 
     private void getHoopTexture(DrawableEntity entity) {
@@ -140,6 +161,7 @@ public class LevelView extends JLayeredPane implements ILevelView {
                 return;
             case DIRECTIONLINE:
                 drawDirectionLine(entity);
+                drawPowerMeter();
                 return;
             default:
                 throw new IllegalArgumentException("Unknown entity class: " + entity.getTypeName());
