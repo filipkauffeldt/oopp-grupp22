@@ -64,22 +64,22 @@ public class PlayerTest {
     }
 
     @Test
-    public void test_handleEvent_rightHoop() {
+    public void test_passTarget_rightHoop() {
         Player player = new Player(new Ball(20, 20, 20, 20, 2), "Player 1");
         List<Entity> targetList = getTargets();
         addTargets();
         player.setTargets(targets);
-        player.handleEvent(new PassTargetEvent(player.getBall(), targetList.get(0)));
+        player.passTarget(targetList.get(0));
         assertNotEquals(player.getRemainingTargets(), targets);
     }   
 
     @Test
-    public void test_handleEvent_wrongHoop() {
+    public void test_passTarget_wrongHoop() {
         Player player = new Player(new Ball(20, 20, 20, 20, 2), "Player 1");
         List<Entity> targetList = getTargets();
         addTargets();
         player.setTargets(targets);
-        player.handleEvent(new PassTargetEvent(new Ball(20, 20, 20, 20, 2), targetList.get(1)));
+        player.passTarget(targetList.get(1));
         assertEquals(player.getRemainingTargets(), targets);
     }
 

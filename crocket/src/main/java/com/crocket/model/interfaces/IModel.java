@@ -16,6 +16,30 @@ import com.crocket.shared.SurfaceType;
 public interface IModel {
 
     /**
+     * Starts the model and runs the game loop.
+     */
+    public void start();
+
+    /**
+     * Stops the model and ends the game loop.
+     */
+    public void stop();
+
+    /**
+     * Adds a subscriber to the model. The subscriber will be notified when there is a new set of drawable entities.
+     * 
+     * @param subscriber
+     */
+    public void addSubscriber(IModelVisualiser subscriber);
+
+    /**
+     * Removes a subscriber from the model. The subscriber will no longer be notified when there is a new set of drawable entities.
+     * 
+     * @param subscriber
+     */
+    public void removeSubscriber(IModelVisualiser subscriber);
+
+    /**
      * Returns a drawable representation of the entities in the current level.
      * 
      * @return Set<DrawableEntity> drawableEntities

@@ -1,8 +1,10 @@
 package com.crocket.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import com.crocket.model.entity.Ball;
@@ -12,22 +14,30 @@ import com.crocket.model.entity.Peg;
 import com.crocket.model.entity.PowerUpEntity;
 import com.crocket.model.entity.Stone;
 import com.crocket.model.interfaces.ICollidable;
+import com.crocket.model.interfaces.IEventListener;
 import com.crocket.model.interfaces.IModel;
+import com.crocket.model.interfaces.IModelVisualiser;
 import com.crocket.model.interfaces.IMovable;
+import com.crocket.model.interfaces.IPowerUp;
 import com.crocket.model.surface.SurfaceHandler;
 import com.crocket.shared.EntityType;
 import com.crocket.shared.SurfaceType;
 
-public class Model implements IModel {
+public class Model implements IModel, IEventListener {
     private static final double NO_MOVEMENT_THRESHOLD = 0.1;
-    
+
     private static Model instance = null;
     private List<Player> players;
     private Set<IMovable> movables;
     private Set<Entity> entities;
     private Set<ICollidable> collidables;
+  
+    private Map<Ball, Player> ballOwner;
+  
     private Level level;
     private EventPublisher eventPublisher;
+
+    private Set<IModelVisualiser> subscribers;
 
     private Player activePlayer;
     private DirectionLine directionLine;
@@ -37,12 +47,33 @@ public class Model implements IModel {
     private boolean ballIsMoving;
     private boolean shotAllowed;
 
+    private boolean running;
+    private static final int DELAY = 20;
+
     private Model() {
         directionLine = new DirectionLine(0, 0, 0);
         surfaceHandler = SurfaceHandler.getInstance();
         round = 0;
         ballIsMoving = false;
         eventPublisher = EventPublisher.getInstance();
+        ballOwner = new HashMap<Ball, Player>();
+        subscribers = new HashSet<IModelVisualiser>();
+    }
+
+    public void start() {
+        running = true;
+
+        while (running) {
+            try {
+                Thread.sleep(DELAY);
+            } catch (Exception ex) {
+            }
+            update();
+        }
+    }
+
+    public void stop() {
+        running = false;
     }
 
     private void validateLevelIsSet() {
@@ -61,20 +92,46 @@ public class Model implements IModel {
         shotAllowed = true;
     }
 
+    @Override
+    public void handleEvent(PassTargetEvent event) {
+        Player player = ballOwner.get(event.getBall());
+        Entity target = event.getTarget();
+
+        player.passTarget(target);
+    }
+
+    @Override
+    public void handleEvent(HitPowerUpEvent event) {
+        Player player = ballOwner.get(event.getBall());
+        IPowerUp powerUp = event.getPowerUp();
+
+        player.addPowerUp(powerUp);
+    }
+
+    @Override
+    public void addSubscriber(IModelVisualiser subscriber) {
+        subscribers.add(subscriber);
+    }
+
+    @Override
+    public void removeSubscriber(IModelVisualiser subscriber) {
+        subscribers.remove(subscriber);
+    }
+
     private void populatePlayerEntities(List<Player> players) {
         for (Player player : players) {
-            entities.add(player.getBall());
-            movables.add(player.getBall());
-            for(Entity target : level.getTargets()){
-                player.addTarget(target);
-            }
-            eventPublisher.addListener(player);
+            populatePlayerEntities(player);
         }
     }
 
     private void populatePlayerEntities(Player player) {
         entities.add(player.getBall());
         movables.add(player.getBall());
+        ballOwner.put(player.getBall(), player);
+
+        for (Entity target : level.getTargets()) {
+            player.addTarget(target);
+        }
     }
 
     private void populatePowerUpEntities(List<PowerUpEntity> powerUps) {
@@ -140,7 +197,8 @@ public class Model implements IModel {
         }
 
         if (shotAllowed) {
-            // TODO: Should be fixed. This is an ugly hack to get the direction line to show up. Breaks Law of Demeter.
+            // TODO: Should be fixed. This is an ugly hack to get the direction line to show
+            // up. Breaks Law of Demeter.
             directionLine.setxPosition(activePlayer.getBall().getxPosition());
             directionLine.setyPosition(activePlayer.getBall().getyPosition());
 
@@ -192,13 +250,17 @@ public class Model implements IModel {
         }
 
         if (ballIsMoving) {
-            if (Math.abs(activePlayer.getBall().getxVelocity()) <= NO_MOVEMENT_THRESHOLD && 
-                Math.abs(activePlayer.getBall().getyVelocity()) <= NO_MOVEMENT_THRESHOLD) {
+            if (Math.abs(activePlayer.getBall().getxVelocity()) <= NO_MOVEMENT_THRESHOLD &&
+                    Math.abs(activePlayer.getBall().getyVelocity()) <= NO_MOVEMENT_THRESHOLD) {
                 ballIsMoving = false;
                 activePlayer.getBall().setxVelocity(0);
                 activePlayer.getBall().setyVelocity(0);
                 nextRound();
             }
+        }
+
+        for (IModelVisualiser subscriber : subscribers) {
+            subscriber.update(getDrawableEntities());
         }
     }
 
@@ -237,7 +299,7 @@ public class Model implements IModel {
         activePlayer = players.get(0);
 
         populatePlayerEntities(players);
-        
+
     }
 
     public void addPlayer(Player player) {
@@ -252,8 +314,7 @@ public class Model implements IModel {
         }
 
         populatePlayerEntities(player);
-        eventPublisher.addListener(player);
-        for(Entity target : level.getTargets()){
+        for (Entity target : level.getTargets()) {
             player.addTarget(target);
         }
     }
@@ -264,7 +325,7 @@ public class Model implements IModel {
         for (Player player : players) {
             entities.remove(player.getBall());
             movables.remove(player.getBall());
-            eventPublisher.removeListener(player);
+            ballOwner.remove(player.getBall());
         }
 
         activePlayer = null;
@@ -273,5 +334,4 @@ public class Model implements IModel {
     public boolean shotAllowed() {
         return shotAllowed;
     }
-
 }
