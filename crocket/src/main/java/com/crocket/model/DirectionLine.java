@@ -1,7 +1,5 @@
 package com.crocket.model;
 
-import com.crocket.model.entity.Ball;
-
 import com.crocket.model.interfaces.IEntityVisitable;
 import com.crocket.model.interfaces.IEntityVisitor;
 
