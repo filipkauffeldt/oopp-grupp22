@@ -19,12 +19,13 @@ public class LevelView extends JLayeredPane implements ILevelView, IModelVisuali
     private TextureManager textureManager;
     private int levelHeight;
     private int levelWidth;
-    private PowerPanel powerPanel = new PowerPanel();
+    private PowerPanel powerPanel;
 
     public LevelView() {
         setDoubleBuffered(true);
         this.textureManager = new TextureManager();
         this.textureManager.loadTextures();
+        powerPanel = new PowerPanel();
     }
 
     @Override
@@ -75,7 +76,7 @@ public class LevelView extends JLayeredPane implements ILevelView, IModelVisuali
     
     private void drawDirectionLine(DrawableEntity entity) {
         DrawDirectionLine panel = new DrawDirectionLine();
-        panel.setBounds(entity.getxPosition(), entity.getyPosition(), panel.getWidth(), panel.getHeight());
+        panel.setBounds(entity.getxPosition(), entity.getyPosition(), DrawDirectionLine.WIDTH, DrawDirectionLine.HEIGHT);
         
         panel.changeAngle(entity.getCosinus(), entity.getSinus());
         add(panel, JLayeredPane.DEFAULT_LAYER);
