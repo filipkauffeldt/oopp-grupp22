@@ -2,7 +2,10 @@ package com.crocket.model;
 
 import com.crocket.model.entity.Ball;
 
-public class DirectionLine {
+import com.crocket.model.interfaces.IEntityVisitable;
+import com.crocket.model.interfaces.IEntityVisitor;
+
+public class DirectionLine implements IEntityVisitable {
     private int degreeAngle;
     private final double HEIGHT = 100;
     private final double WIDTH = 100;
@@ -65,5 +68,9 @@ public class DirectionLine {
         degreeAngle -= 5;
 
         setDegreeAngle(degreeAngle);
+    }
+
+    public void accept(IEntityVisitor visitor) {
+        visitor.visit(this);
     }
 }

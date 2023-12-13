@@ -1,6 +1,9 @@
 package com.crocket.model.entity;
 
-public abstract class Entity {
+import com.crocket.model.interfaces.IEntityVisitable;
+import com.crocket.model.interfaces.IEntityVisitor;
+
+public abstract class Entity implements IEntityVisitable {
     private double prevXPosition;
     private double prevYPosition;
     private double xPosition;
@@ -60,4 +63,7 @@ public abstract class Entity {
         return new Hitbox(width, height, xPosition, yPosition);
     }
 
+    public void accept(IEntityVisitor visitor) {
+        visitor.visit(this);
+    }
 }

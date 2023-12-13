@@ -9,10 +9,7 @@ import java.util.Set;
 
 import com.crocket.model.entity.Ball;
 import com.crocket.model.entity.Entity;
-import com.crocket.model.entity.Hoop;
-import com.crocket.model.entity.Peg;
 import com.crocket.model.entity.PowerUpEntity;
-import com.crocket.model.entity.Stone;
 import com.crocket.model.interfaces.ICollidable;
 import com.crocket.model.interfaces.IEventListener;
 import com.crocket.model.interfaces.IModel;
@@ -20,7 +17,6 @@ import com.crocket.model.interfaces.IModelVisualiser;
 import com.crocket.model.interfaces.IMovable;
 import com.crocket.model.interfaces.IPowerUp;
 import com.crocket.model.surface.SurfaceHandler;
-import com.crocket.shared.EntityType;
 import com.crocket.shared.SurfaceType;
 
 public class Model implements IModel, IEventListener {
@@ -145,22 +141,6 @@ public class Model implements IModel, IEventListener {
         collidables.add(powerUp);
     }
 
-    public static EntityType getEntityTypeFromClass(Class<?> type) {
-        if (type == Ball.class) {
-            return EntityType.BALL;
-        } else if (type == Hoop.class) {
-            return EntityType.HOOP;
-        } else if (type == Peg.class) {
-            return EntityType.PEG;
-        } else if (type == Stone.class) {
-            return EntityType.STONE;
-        } else if (type == DirectionLine.class) {
-            return EntityType.DIRECTIONLINE;
-        } else {
-            throw new IllegalArgumentException("Unknown entity class");
-        }
-    }
-
     public void restartLevel() {
         validateLevelIsSet();
 
@@ -183,34 +163,21 @@ public class Model implements IModel, IEventListener {
     public Set<DrawableEntity> getDrawableEntities() {
         validateLevelIsSet();
 
-        Set<DrawableEntity> drawableEntities = new HashSet<DrawableEntity>();
-        
-        for (Entity entity : entities) {
-            int xPosition = (int) entity.getxPosition();
-            int yPosition = (int) entity.getyPosition();
-            int width = entity.getWidth();
-            int height = entity.getHeight();
-            int rotation = 0;
-            EntityType type = getEntityTypeFromClass(entity.getClass());
+        EntityDrawableVisitor visitor = new EntityDrawableVisitor();
 
-            drawableEntities.add(new DrawableEntity(xPosition, yPosition, width, height, rotation, type));
+        for (Entity entity : entities) {
+            entity.accept(visitor);
         }
 
         if (shotAllowed) {
             // TODO: Should be fixed. This is an ugly hack to get the direction line to show
             // up. Breaks Law of Demeter.
-            directionLine.setPositionToBall(activePlayer.getBall());
-            
-            int xPosition = (int) directionLine.getxPosition();
-            int yPosition = (int) directionLine.getyPosition();
-            int width = (int) directionLine.getWidth();
-            int height = (int) directionLine.getHeight();
-            int rotation = directionLine.getDegreeAngle();
-            EntityType type = getEntityTypeFromClass(directionLine.getClass());
+            directionLine.setxPosition(activePlayer.getBall().getxPosition());
+            directionLine.setyPosition(activePlayer.getBall().getyPosition());
 
-            drawableEntities.add(new DrawableEntity(xPosition, yPosition, width, height, rotation, type));
+            directionLine.accept(visitor);
         }
-        return drawableEntities;
+        return visitor.getDrawableEntities();
     }
 
     public SurfaceType[][] getLevelSurfacemap() {
