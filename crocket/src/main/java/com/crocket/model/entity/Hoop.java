@@ -3,6 +3,7 @@ package com.crocket.model.entity;
 import com.crocket.model.EventPublisher;
 import com.crocket.model.PassTargetEvent;
 import com.crocket.model.interfaces.ICollidable;
+import com.crocket.model.interfaces.IEntityVisitor;
 import com.crocket.shared.Direction;
 import static com.crocket.shared.Direction.*;
 
@@ -105,13 +106,20 @@ public class Hoop extends Entity implements ICollidable {
     }
 
     public Hitbox getLeftHitbox() {
-        return new Hitbox(leftHitbox.getWidth(), leftHitbox.getHeight(), leftHitbox.getxPosition(),
-                leftHitbox.getyPosition());
+        return this.leftHitbox;
     }
 
     public Hitbox getRightHitbox() {
-        return new Hitbox(rightHitbox.getWidth(), rightHitbox.getHeight(), rightHitbox.getxPosition(),
-                rightHitbox.getyPosition());
+        return this.rightHitbox;
     }
 
+    public Direction getDirection() {
+        return this.dir;
+    }
+
+    // Weird bug should work in entity but IEntityVisitor does not use the overloaded method
+    @Override 
+    public void accept(IEntityVisitor visitor) {
+        visitor.visit(this);
+    }
 }

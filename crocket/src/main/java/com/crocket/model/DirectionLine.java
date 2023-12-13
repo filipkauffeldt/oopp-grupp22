@@ -1,6 +1,9 @@
 package com.crocket.model;
 
-public class DirectionLine {
+import com.crocket.model.interfaces.IEntityVisitable;
+import com.crocket.model.interfaces.IEntityVisitor;
+
+public class DirectionLine implements IEntityVisitable {
     private int degreeAngle;
     private double height;
     private double width;
@@ -60,5 +63,9 @@ public class DirectionLine {
         degreeAngle -= 5;
 
         setDegreeAngle(degreeAngle);
+    }
+
+    public void accept(IEntityVisitor visitor) {
+        visitor.visit(this);
     }
 }

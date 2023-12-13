@@ -3,8 +3,6 @@ package com.crocket.model.surface;
 import com.crocket.model.entity.Ball;
 import com.crocket.shared.SurfaceType;
 import com.crocket.model.Level1;
-
-import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

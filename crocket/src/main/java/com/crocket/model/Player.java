@@ -4,7 +4,6 @@ import java.util.Queue;
 
 import com.crocket.model.entity.Ball;
 import com.crocket.model.entity.Entity;
-import com.crocket.model.interfaces.IEventListener;
 import java.util.LinkedList;
 import java.util.ArrayList;
 import java.util.List;
