@@ -14,7 +14,7 @@ public class DirectionLine {
         setDegreeAngle(degreeAngle);
         this.xPosition = xPosition;
         this.yPosition = yPosition;
-    }
+    } 
 
     public int getDegreeAngle() {
         return degreeAngle;
@@ -26,8 +26,8 @@ public class DirectionLine {
 
     public double getyPosition() {
         return yPosition;
-    }
-
+    } 
+ 
     public double getHeight() {
         return HEIGHT;
     }
