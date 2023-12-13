@@ -100,6 +100,5 @@ public class Player {
 
     public Ball getBall() {
         return ball;
-
     }
 }

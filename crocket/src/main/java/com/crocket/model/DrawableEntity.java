@@ -35,15 +35,15 @@ public class DrawableEntity {
         return height;
     }
 
-    public int getRotation(){
+    public int getRotation() {
         return rotation;
     }
     
-    public double getCosinus(){
+    public double getCosinus() {
         return Math.cos(Math.toRadians(rotation));
     }
 
-    public double getSinus(){
+    public double getSinus() {
         return Math.sin(Math.toRadians(rotation));
     }
 

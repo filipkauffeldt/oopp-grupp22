@@ -1,5 +1,6 @@
 package com.crocket.view;
 import javax.swing.JFrame;
+
 import javax.swing.ImageIcon;
 
 /*
@@ -14,13 +15,6 @@ import javax.swing.ImageIcon;
  * 
  * Methods:
  * setLevelView: Sets the current level view to the specified LevelView object. Clears the frame
- * setBallToLevel: Sets the ball to the specified DrawEntity object.
- * 
- * 
- * Problems:
- * CroquetView can only have one DrawEntity object at a time. Might be problems later when we add multiplayer. 
- * 
- * 
  */
 
 public class CroquetView extends JFrame{
@@ -42,7 +36,6 @@ public class CroquetView extends JFrame{
         setIconImage(img.getImage());
         setTitle(title);
         setVisible(true);
-        setLocationRelativeTo(null);
         setExtendedState(MAXIMIZED_BOTH); 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }

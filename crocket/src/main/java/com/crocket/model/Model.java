@@ -199,9 +199,8 @@ public class Model implements IModel, IEventListener {
         if (shotAllowed) {
             // TODO: Should be fixed. This is an ugly hack to get the direction line to show
             // up. Breaks Law of Demeter.
-            directionLine.setxPosition(activePlayer.getBall().getxPosition());
-            directionLine.setyPosition(activePlayer.getBall().getyPosition());
-
+            directionLine.setPositionToBall(activePlayer.getBall());
+            
             int xPosition = (int) directionLine.getxPosition();
             int yPosition = (int) directionLine.getyPosition();
             int width = (int) directionLine.getWidth();
@@ -210,10 +209,7 @@ public class Model implements IModel, IEventListener {
             EntityType type = getEntityTypeFromClass(directionLine.getClass());
 
             drawableEntities.add(new DrawableEntity(xPosition, yPosition, width, height, rotation, type));
-            
-            
         }
-
         return drawableEntities;
     }
 

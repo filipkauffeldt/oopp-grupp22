@@ -8,39 +8,39 @@ import javax.swing.JPanel;
 
 public class DrawDirectionLine extends JPanel {
     
-    private final int width = 100;
-    private final int height = 100;
-    private int startX = 50;
-    private int startY = 50;
+    private final int WIDTH = 100;
+    private final int HEIGHT = 100;
+    private final int STARTX = 50;
+    private final int STARTY = 50;
+    private final int LINE_COEFFICIENT = 1000;
     private int endX;
     private int endY;
 
-    DrawDirectionLine(){
+    DrawDirectionLine() {
         super();
         setOpaque(false);
-        
     }
 
-    public void changeAngle(double x, double y){
-        endX = (int)(x * 10000);
-        endY = (int)(y * 10000);
+    public void changeAngle(double x, double y) {
+        endX = (int)(LINE_COEFFICIENT * x);
+        endY = (int)(LINE_COEFFICIENT * y);
     }
 
     public int getWidth() {
-        return width;
+        return WIDTH;
     }
 
     public int getHeight() {
-        return height;
+        return HEIGHT;
     }
 
     @Override
-    public void paintComponent(Graphics g){
+    public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
         g2.setColor(Color.BLACK);
         g2.setStroke(new BasicStroke(2));
-        g2.drawLine(startX, startY, endX, endY);
+        g2.drawLine(STARTX, STARTY, endX, endY);
         
     }
 }

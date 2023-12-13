@@ -19,9 +19,7 @@ public class LevelView extends JLayeredPane implements ILevelView, IModelVisuali
     private TextureManager textureManager;
     private int levelHeight;
     private int levelWidth;
-    private PowerPanel pPanel = new PowerPanel();
-
-    Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+    private PowerPanel powerPanel = new PowerPanel();
 
     public LevelView() {
         setDoubleBuffered(true);
@@ -77,31 +75,31 @@ public class LevelView extends JLayeredPane implements ILevelView, IModelVisuali
     
     private void drawDirectionLine(DrawableEntity entity) {
         DrawDirectionLine panel = new DrawDirectionLine();
-        panel.setBounds(entity.getxPosition()-panel.getWidth()/2 +10, entity.getyPosition()-panel.getHeight()/2 +10, panel.getWidth(), panel.getHeight());
+        panel.setBounds(entity.getxPosition(), entity.getyPosition(), panel.getWidth(), panel.getHeight());
         
         panel.changeAngle(entity.getCosinus(), entity.getSinus());
         add(panel, JLayeredPane.DEFAULT_LAYER);
         panel.repaint();
     }
 
-    private void drawPowerMeter(){
-        pPanel.setBounds((int)screen.getWidth()/100, 90 * (int)screen.getHeight()/100, pPanel.getWidth(), pPanel.getHeight());
-        add(pPanel, MODAL_LAYER);
+    private void drawPowerMeter() {
+        powerPanel.setBounds(powerPanel.getXPOS(), powerPanel.getYPOS(), powerPanel.getWidth(), powerPanel.getHeight());
+        add(powerPanel, MODAL_LAYER);
     }
 
-    public void incrementPowerIndicator(){
-        pPanel.incrementIndicator();
-        pPanel.repaint();
+    public void incrementPowerIndicator() {
+        powerPanel.incrementIndicator();
+        powerPanel.repaint();
     }
 
-    public void decrementPowerIndicator(){
-        pPanel.decrementIndicator();
-        pPanel.repaint();
+    public void decrementPowerIndicator() {
+        powerPanel.decrementIndicator();
+        powerPanel.repaint();
     }
 
-    public void resetPowerIndicator(){
-        pPanel.resetIndicator();
-        pPanel.repaint();
+    public void resetPowerIndicator() {
+        powerPanel.resetIndicator();
+        powerPanel.repaint();
     }
 
     private void getHoopTexture(DrawableEntity entity) {

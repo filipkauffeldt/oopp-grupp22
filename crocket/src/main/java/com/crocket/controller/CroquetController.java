@@ -45,7 +45,7 @@ public class CroquetController implements KeyListener {
 
                     if (!powerIsMax) {
                         power += 1;
-                        view.incrementIndicator();;
+                        view.incrementIndicator();
                     } else {
                         power -= 1;
                         view.decrementIndicator();
