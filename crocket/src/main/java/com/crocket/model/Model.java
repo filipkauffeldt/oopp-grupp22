@@ -33,7 +33,7 @@ public class Model implements IModel, IEventListener {
     private Level level;
     private EventPublisher eventPublisher;
 
-    private Set<IModelVisualiser> subscribers;
+    private Set<IModelVisualiser> visualiserSubscribers;
 
     private Player activePlayer;
     private DirectionLine directionLine;
@@ -53,7 +53,7 @@ public class Model implements IModel, IEventListener {
         ballIsMoving = false;
         eventPublisher = EventPublisher.getInstance();
         ballOwner = new HashMap<Ball, Player>();
-        subscribers = new HashSet<IModelVisualiser>();
+        visualiserSubscribers = new HashSet<IModelVisualiser>();
     }
 
     public void start() {
@@ -93,7 +93,17 @@ public class Model implements IModel, IEventListener {
         Player player = ballOwner.get(event.getBall());
         Entity target = event.getTarget();
 
-        player.passTarget(target);
+        boolean passed = player.passTarget(target);
+
+        if (!passed) {
+            return;
+        }
+
+        if (player.hasWon()) {
+            for (IModelVisualiser subscriber : visualiserSubscribers) {
+                subscriber.notifyPlayerWon(player.getName());
+            }
+        }
     }
 
     @Override
@@ -106,12 +116,12 @@ public class Model implements IModel, IEventListener {
 
     @Override
     public void addSubscriber(IModelVisualiser subscriber) {
-        subscribers.add(subscriber);
+        visualiserSubscribers.add(subscriber);
     }
 
     @Override
     public void removeSubscriber(IModelVisualiser subscriber) {
-        subscribers.remove(subscriber);
+        visualiserSubscribers.remove(subscriber);
     }
 
     private void populatePlayerEntities(List<Player> players) {
@@ -217,7 +227,7 @@ public class Model implements IModel, IEventListener {
             }
         }
 
-        for (IModelVisualiser subscriber : subscribers) {
+        for (IModelVisualiser subscriber : visualiserSubscribers) {
             subscriber.update(getDrawableEntities());
         }
     }

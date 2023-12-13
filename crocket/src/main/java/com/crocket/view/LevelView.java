@@ -140,6 +140,9 @@ public class LevelView extends JLayeredPane implements ILevelView, IModelVisuali
         drawEntities(entities);
     }
 
+    public void notifyPlayerWon(String name) {
+    }
+
     public void drawEntities(Set<DrawableEntity> entities) {
         removeAll();
         for (DrawableEntity entity : entities) {

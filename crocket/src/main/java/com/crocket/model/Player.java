@@ -100,4 +100,8 @@ public class Player {
     public Ball getBall() {
         return ball;
     }
+
+    public String getName() {
+        return name;
+    }
 }
