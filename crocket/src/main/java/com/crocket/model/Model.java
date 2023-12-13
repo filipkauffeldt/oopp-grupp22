@@ -164,9 +164,8 @@ public class Model implements IModel, IEventListener {
         validateLevelIsSet();
 
         EntityDrawableVisitor visitor = new EntityDrawableVisitor();
-
         for (Entity entity : entities) {
-            entity.accept(visitor);
+            entity.accept(visitor); 
         }
 
         if (shotAllowed) {
