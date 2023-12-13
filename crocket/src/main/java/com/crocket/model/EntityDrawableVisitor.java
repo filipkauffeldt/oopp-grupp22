@@ -14,7 +14,6 @@ import com.crocket.shared.EntityType;
 import com.crocket.shared.Direction;
 
 public class EntityDrawableVisitor implements IEntityVisitor { 
-
     private Set<DrawableEntity> drawableEntities;
 
     protected EntityDrawableVisitor() {
