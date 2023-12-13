@@ -79,7 +79,8 @@ public class EntityDrawableVisitor implements IEntityVisitor {
     }
 
     public void visit(DirectionLine directionLine) {
-        addDrawableEntity(directionLine, 0);
+        int rotation = directionLine.getDegreeAngle();
+        addDrawableEntity(directionLine, rotation);
     }
 
     public Set<DrawableEntity> getDrawableEntities() {

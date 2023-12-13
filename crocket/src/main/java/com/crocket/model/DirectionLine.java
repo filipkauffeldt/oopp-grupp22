@@ -1,9 +1,9 @@
 package com.crocket.model;
 
-import com.crocket.model.interfaces.IEntityVisitable;
+import com.crocket.model.entity.Ball;
 import com.crocket.model.interfaces.IEntityVisitor;
 
-public class DirectionLine implements IEntityVisitable {
+public class DirectionLine {
     private int degreeAngle;
     private final double HEIGHT = 100;
     private final double WIDTH = 100;
