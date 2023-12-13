@@ -15,7 +15,11 @@ import com.crocket.shared.Direction;
 
 public class EntityDrawableVisitor implements IEntityVisitor { 
 
-    Set<DrawableEntity> drawableEntities = new HashSet<DrawableEntity>();
+    private Set<DrawableEntity> drawableEntities;
+
+    protected EntityDrawableVisitor() {
+        drawableEntities = new HashSet<DrawableEntity>();   
+    }
 
     private static EntityType getEntityTypeFromClass(Class<?> type) {
         if (type == Ball.class) {
@@ -51,7 +55,7 @@ public class EntityDrawableVisitor implements IEntityVisitor {
         drawableEntities.add(new DrawableEntity(xPosition, yPosition, width, height, rotation, type));
     }
 
-    private int convertDirectionToDegress(Direction direction) {
+    private int toDegrees(Direction direction) {
         switch (direction) {
             case NORTH  :
                 return 0;
@@ -71,7 +75,7 @@ public class EntityDrawableVisitor implements IEntityVisitor {
     }
 
     public void visit(Hoop hoop) {
-        int rotation = convertDirectionToDegress(hoop.getDirection());
+        int rotation = toDegrees(hoop.getDirection());
         addDrawableEntity(hoop, rotation);
     }
 

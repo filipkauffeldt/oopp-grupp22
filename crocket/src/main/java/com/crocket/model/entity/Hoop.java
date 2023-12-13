@@ -106,11 +106,11 @@ public class Hoop extends Entity implements ICollidable {
     }
 
     public Hitbox getLeftHitbox() {
-        return this.leftHitbox;
+        return new Hitbox(leftHitbox.getWidth(), leftHitbox.getHeight(), leftHitbox.getxPosition(), leftHitbox.getyPosition());
     }
 
     public Hitbox getRightHitbox() {
-        return this.rightHitbox;
+        return new Hitbox(rightHitbox.getWidth(), rightHitbox.getHeight(), rightHitbox.getxPosition(),rightHitbox.getyPosition());
     }
 
     public Direction getDirection() {
