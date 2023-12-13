@@ -1,9 +1,7 @@
 package com.crocket.view;
-import javax.swing.*;
+import javax.swing.JFrame;
 
-import java.awt.Dimension;
-import java.awt.Toolkit;
-
+import javax.swing.ImageIcon;
 
 /*
  * Class: CroquetView
@@ -17,27 +15,13 @@ import java.awt.Toolkit;
  * 
  * Methods:
  * setLevelView: Sets the current level view to the specified LevelView object. Clears the frame
- * setBallToLevel: Sets the ball to the specified DrawEntity object.
- * 
- * 
- * Problems:
- * CroquetView can only have one DrawEntity object at a time. Might be problems later when we add multiplayer. 
- * 
- * 
  */
 
 public class CroquetView extends JFrame{
     private static CroquetView instance;
     private ImageIcon img = new ImageIcon("crocket/assets/textures/JFrame_Icon.jpg");
-    private Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
     private String title = "Krocket";
-    private DrawBall ball;
     private LevelView levelView;
-    private DrawStone stone;
-    DrawDirectionLine line = new DrawDirectionLine();
-    PowerPanel pPanel = new PowerPanel();
-    
-    
     
     public void setLevelView(LevelView level) {
         if (getContentPane() != null) {
@@ -48,36 +32,11 @@ public class CroquetView extends JFrame{
         revalidate();
     }
 
-    public void setBallToLevel(DrawBall ball){
-        try{
-            this.ball = ball;
-            levelView.add(ball);
-            levelView.add(line);
-            levelView.add(pPanel);
-            
-        }
-        catch(NullPointerException e){
-            System.out.println("No container found!");
-        }
-    }
-
-    public void setStoneToLevel(DrawStone stone){
-        try{
-            this.stone = stone;
-            levelView.add(stone);
-        }
-        catch(NullPointerException e){
-            System.out.println("No container found!");
-        }
-    }
-
     private CroquetView(){
         setIconImage(img.getImage());
         setTitle(title);
         setVisible(true);
-        setLocationRelativeTo(null);
         setExtendedState(MAXIMIZED_BOTH); 
-
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
@@ -89,46 +48,15 @@ public class CroquetView extends JFrame{
         return instance;
     }
 
-    public DrawBall getEntity(){
-        return ball;
-    }
-
-    public void setStone(int x, int y){
-        stone.setLocation(x, y);
-    }
-
-    public void moveBall(int x, int y){
-        ball.setLocation(x, y);
-    }
-
-    public void setPowerMeterVisibility(boolean vis){
-        pPanel.setVisible(vis);
-    }
-
     public void incrementIndicator(){
-        pPanel.incrementIndicator();
-        pPanel.repaint();
+        levelView.incrementPowerIndicator();
     }
 
     public void decrementIndicator(){
-        pPanel.decrementIndicator();
-        pPanel.repaint();
+        levelView.decrementPowerIndicator();
     }
 
     public void resetIndicator(){
-        pPanel.resetIndicator();
-        pPanel.repaint();
+        levelView.resetPowerIndicator();
     }
-
-    public void updateLine(int xPos, int yPos, int xAngle, int yAngle){
-        line.setSize(100, 100);
-        line.setLocation(xPos-line.getStartX(), yPos-line.getStartY());
-        line.changeAngle(xAngle + (line.getStartX()), yAngle + (line.getStartY()));
-        line.repaint();
-    }
-
-    public void updatePowerMeter(){
-        pPanel.setLocation(30, (int)screen.getHeight() - 100);
-    }
-
 }

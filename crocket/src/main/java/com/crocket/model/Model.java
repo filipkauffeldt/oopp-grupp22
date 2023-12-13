@@ -51,7 +51,7 @@ public class Model implements IModel, IEventListener {
     private static final int DELAY = 20;
 
     private Model() {
-        directionLine = new DirectionLine(0, 0, 0, 0, 0);
+        directionLine = new DirectionLine(0, 0, 0);
         surfaceHandler = SurfaceHandler.getInstance();
         round = 0;
         ballIsMoving = false;
@@ -184,7 +184,7 @@ public class Model implements IModel, IEventListener {
         validateLevelIsSet();
 
         Set<DrawableEntity> drawableEntities = new HashSet<DrawableEntity>();
-
+        
         for (Entity entity : entities) {
             int xPosition = (int) entity.getxPosition();
             int yPosition = (int) entity.getyPosition();
@@ -199,9 +199,8 @@ public class Model implements IModel, IEventListener {
         if (shotAllowed) {
             // TODO: Should be fixed. This is an ugly hack to get the direction line to show
             // up. Breaks Law of Demeter.
-            directionLine.setxPosition(activePlayer.getBall().getxPosition());
-            directionLine.setyPosition(activePlayer.getBall().getyPosition());
-
+            directionLine.setPositionToBall(activePlayer.getBall());
+            
             int xPosition = (int) directionLine.getxPosition();
             int yPosition = (int) directionLine.getyPosition();
             int width = (int) directionLine.getWidth();
@@ -211,7 +210,6 @@ public class Model implements IModel, IEventListener {
 
             drawableEntities.add(new DrawableEntity(xPosition, yPosition, width, height, rotation, type));
         }
-
         return drawableEntities;
     }
 
@@ -265,7 +263,7 @@ public class Model implements IModel, IEventListener {
     public void shootBall(int power) {
         validateLevelIsSet();
 
-        activePlayer.shootBall(directionLine.getDegreeAngle(), power);
+        activePlayer.shootBall(Math.toRadians(directionLine.getDegreeAngle()), power);
         ballIsMoving = true;
         shotAllowed = false;
     }

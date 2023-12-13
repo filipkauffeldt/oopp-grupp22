@@ -19,11 +19,13 @@ public class LevelView extends JLayeredPane implements ILevelView, IModelVisuali
     private TextureManager textureManager;
     private int levelHeight;
     private int levelWidth;
+    private PowerPanel powerPanel;
 
     public LevelView() {
         setDoubleBuffered(true);
         this.textureManager = new TextureManager();
         this.textureManager.loadTextures();
+        powerPanel = new PowerPanel();
     }
 
     @Override
@@ -72,11 +74,34 @@ public class LevelView extends JLayeredPane implements ILevelView, IModelVisuali
         return label;
     }
     
-    // TODO: FIX THIS!!!!
     private void drawDirectionLine(DrawableEntity entity) {
-     
+        DrawDirectionLine panel = new DrawDirectionLine();
+        panel.setBounds(entity.getxPosition(), entity.getyPosition(), DrawDirectionLine.WIDTH, DrawDirectionLine.HEIGHT);
+        
+        panel.changeAngle(entity.getCosinus(), entity.getSinus());
+        add(panel, JLayeredPane.DEFAULT_LAYER);
+        panel.repaint();
     }
 
+    private void drawPowerMeter() {
+        powerPanel.setBounds(powerPanel.getXPOS(), powerPanel.getYPOS(), powerPanel.getWidth(), powerPanel.getHeight());
+        add(powerPanel, MODAL_LAYER);
+    }
+
+    public void incrementPowerIndicator() {
+        powerPanel.incrementIndicator();
+        powerPanel.repaint();
+    }
+
+    public void decrementPowerIndicator() {
+        powerPanel.decrementIndicator();
+        powerPanel.repaint();
+    }
+
+    public void resetPowerIndicator() {
+        powerPanel.resetIndicator();
+        powerPanel.repaint();
+    }
 
     private void getHoopTexture(DrawableEntity entity) {
         int rotation = entity.getRotation();
@@ -138,6 +163,7 @@ public class LevelView extends JLayeredPane implements ILevelView, IModelVisuali
                 return;
             case DIRECTIONLINE:
                 drawDirectionLine(entity);
+                drawPowerMeter();
                 return;
             default:
                 throw new IllegalArgumentException("Unknown entity class: " + entity.getTypeName());

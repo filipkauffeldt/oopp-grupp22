@@ -37,7 +37,6 @@ public class CroquetController implements KeyListener {
                 break;
             case KeyEvent.VK_SPACE:
                 if (model.shotAllowed()) {
-                    view.setPowerMeterVisibility(true);
                     if (power >= maxPower) {
                         powerIsMax = true;
                     } else if (power <= 1) {

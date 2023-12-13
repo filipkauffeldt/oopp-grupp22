@@ -1,18 +1,18 @@
 package com.crocket.model;
 
+import com.crocket.model.entity.Ball;
+
 public class DirectionLine {
     private int degreeAngle;
-    private double height;
-    private double width;
+    private final double HEIGHT = 100;
+    private final double WIDTH = 100;
     private double xPosition;
     private double yPosition;
 
-    public DirectionLine(int degreeAngle, double xPosition, double yPosition, double height, double width){
+    public DirectionLine(int degreeAngle, double xPosition, double yPosition){
         setDegreeAngle(degreeAngle);
         this.xPosition = xPosition;
         this.yPosition = yPosition;
-        this.height = height;
-        this.width = width;
     }
 
     public int getDegreeAngle() {
@@ -28,35 +28,40 @@ public class DirectionLine {
     }
 
     public double getHeight() {
-        return height;
+        return HEIGHT;
     }
 
     public double getWidth() {
-        return width;
+        return WIDTH;
     }
 
-    public void setxPosition(double xPosition){
+    public void setxPosition(double xPosition) {
         this.xPosition = xPosition;
     }
 
-    public void setyPosition(double yPosition){
+    public void setyPosition(double yPosition) {
         this.yPosition = yPosition;
     }
 
-    public void setDegreeAngle(int degreeAngle){
+    public void setPositionToBall(Ball ball) {
+        setxPosition(ball.getxPosition() - WIDTH/2 + ball.getWidth()/2);
+        setyPosition(ball.getyPosition() - HEIGHT/2 + ball.getHeight()/2);
+    }
+
+    public void setDegreeAngle(int degreeAngle) {
         if(degreeAngle > 360 || degreeAngle < 0){
             degreeAngle = (((degreeAngle % 360) + 360) % 360);
         }
         this.degreeAngle = degreeAngle;
     }
 
-    public void incrementDegreeAngle(){
+    public void incrementDegreeAngle() {
         degreeAngle += 5;
 
         setDegreeAngle(degreeAngle);
     }
 
-    public void decrementDegreeAngle(){
+    public void decrementDegreeAngle() {
         degreeAngle -= 5;
 
         setDegreeAngle(degreeAngle);

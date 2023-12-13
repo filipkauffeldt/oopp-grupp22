@@ -9,11 +9,11 @@ import com.crocket.model.DirectionLine;
 import static org.junit.Assert.assertEquals;
 
 public class DirectionLineTest {
-    private DirectionLine directionLine = new DirectionLine(90, 20, 20, 20, 2);
+    private DirectionLine directionLine = new DirectionLine(90, 20, 20);
 
     @Before
     public void reset_directionline(){
-        directionLine = new DirectionLine(90, 20, 20, 20, 2);
+        directionLine = new DirectionLine(90, 20, 20);
     }
 
     @Test

@@ -22,7 +22,7 @@ public class Application {
 
     private static void init() {
         CroquetView frame = CroquetView.getInstance();
-        ILevel Level1 = new Level1();
+        Level Level1 = new Level1();
         LevelView level1View = new LevelView();
 
         IModel model = Model.getInstance();
