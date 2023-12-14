@@ -15,6 +15,14 @@ import com.crocket.shared.SurfaceType;
 public class Level1 extends Level {
     private static int width = 25;
     private static int height = 15;
+    private static final int STONEWIDTH = 30;
+    private static final int STONEHEIGHT = 30;
+    private static final int HOOPHEIGHT = 20;
+    private static final int HOOPWIDTH = 40;
+    private static final int HOOPOPENINGWIDTH = 32;
+    private static final int HOOPOPENINGHEIGHT = 4;
+    private static final int PEGWIDTH = 5;
+    private static final int PEGHEIGHT = 40;
  
     private static SurfaceType[][] tilemap = {
             { GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS},
@@ -33,17 +41,35 @@ public class Level1 extends Level {
             { GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, SAND, SAND, SAND, SAND, SAND, SAND, SAND, SAND, SAND, SAND, SAND, GRASS, GRASS, GRASS },
             { GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, SAND, SAND, SAND, SAND, SAND,SAND, SAND, SAND, SAND, SAND, SAND, GRASS, GRASS, GRASS, GRASS} };
 
+    private static Stone[] stoneList = {
+            new Stone(STONEWIDTH, STONEHEIGHT, 600, 500), new Stone(STONEWIDTH, STONEHEIGHT, 600, 600 ), new Stone(STONEWIDTH, STONEHEIGHT, 666, 667),
+            new Stone(STONEWIDTH, STONEHEIGHT, 669, 5), new Stone(STONEWIDTH, STONEHEIGHT,2, 240), new Stone(STONEWIDTH, STONEHEIGHT, 1200, 650),
+            new Stone(STONEWIDTH, STONEHEIGHT, 643, 390), new Stone(STONEWIDTH, STONEHEIGHT, 695, 196), new Stone(STONEWIDTH, STONEHEIGHT, 1016, 192),
+            new Stone(STONEWIDTH, STONEHEIGHT, 635, 85), new Stone(STONEWIDTH, STONEHEIGHT, 391, 645), new Stone(STONEWIDTH, STONEHEIGHT, 904, 302),
+            new Stone(STONEWIDTH, STONEHEIGHT, 1148, 387), new Stone(STONEWIDTH, STONEHEIGHT, 573, 544), new Stone(STONEWIDTH, STONEHEIGHT, 1229, 613),
+            new Stone(STONEWIDTH, STONEHEIGHT, 95, 158), new Stone(STONEWIDTH, STONEHEIGHT, 340, 512), new Stone(STONEWIDTH, STONEHEIGHT, 1124, 653),
+            new Stone(STONEWIDTH, STONEHEIGHT, 1038, 680), new Stone(STONEWIDTH, STONEHEIGHT, 1246, 461), new Stone(STONEWIDTH, STONEHEIGHT, 652, 522),
+            new Stone(STONEWIDTH, STONEHEIGHT, 697, 534), new Stone(STONEWIDTH, STONEHEIGHT, 1159, 616), new Stone(STONEWIDTH, STONEHEIGHT, 848, 100),
+    };
+
+    private static Hoop[] hoopsList = {
+            new Hoop(HOOPWIDTH, HOOPHEIGHT, HOOPOPENINGWIDTH, HOOPOPENINGHEIGHT, 295, 450, Direction.SOUTH), new Hoop(HOOPWIDTH, HOOPHEIGHT, HOOPOPENINGWIDTH, HOOPOPENINGHEIGHT, 400, 600, Direction.EAST),
+            new Hoop(HOOPWIDTH, HOOPHEIGHT, HOOPOPENINGWIDTH, HOOPOPENINGHEIGHT, 900, 350, Direction.NORTH), new Hoop(HOOPWIDTH, HOOPHEIGHT, HOOPOPENINGWIDTH, HOOPOPENINGHEIGHT, 750, 200, Direction.WEST),
+            new Hoop(HOOPWIDTH, HOOPHEIGHT, HOOPOPENINGWIDTH, HOOPOPENINGHEIGHT, 1000, 250, Direction.EAST), new Hoop(HOOPWIDTH, HOOPHEIGHT, HOOPOPENINGWIDTH, HOOPOPENINGHEIGHT, 600, 300, Direction.EAST),
+            new Hoop(HOOPWIDTH, HOOPHEIGHT, HOOPOPENINGWIDTH, HOOPOPENINGHEIGHT, 300, 150, Direction.SOUTH), new Hoop(HOOPWIDTH, HOOPHEIGHT, HOOPOPENINGWIDTH, HOOPOPENINGHEIGHT, 150, 276, Direction.SOUTH),
+            new Hoop(HOOPWIDTH, HOOPHEIGHT, HOOPOPENINGWIDTH, HOOPOPENINGHEIGHT, 500, 450, Direction.NORTH), new Hoop(HOOPWIDTH, HOOPHEIGHT, HOOPOPENINGWIDTH, HOOPOPENINGHEIGHT, 800, 500, Direction.SOUTH)
+    };
+
     public Level1() {
         super(width, height, tilemap);
-        
-        Stone s = new Stone(30, 30, 300, 500);
-        Hoop h = new Hoop(20, 40,32, 4,400, 280, Direction.WEST);
-        Hoop h2 = new Hoop(40, 20,32, 4,400, 466, Direction.NORTH);
-        Peg p = new Peg(5, 40, 309, 100);  
-        
-        addStone(s);
-        addHoop(h);
-        addHoop(h2);
+
+        for(Stone stone : stoneList){
+            addStone(stone);
+        }
+        for (Hoop hoop : hoopsList){
+            addHoop(hoop);
+        }
+        Peg p = new Peg(PEGWIDTH, PEGHEIGHT, 309, 100);
         addPeg(p);
     }
 

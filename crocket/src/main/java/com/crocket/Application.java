@@ -22,11 +22,10 @@ public class Application {
 
     private static void init() {
         CroquetView frame = CroquetView.getInstance();
-        Level Level1 = new Level1();
+        Level level1 = new Level1();
         LevelView level1View = new LevelView();
 
         IModel model = Model.getInstance();
-        Level level = new Level1();
         List<Player> players = new ArrayList<Player>();
 
         Ball p1Ball = new Ball(19, 19, 600d, 550d, 20);
@@ -38,11 +37,11 @@ public class Application {
         players.add(player1);
         players.add(player2);
 
-        model.setLevel(level);
+        model.setLevel(level1);
         model.setPlayers(players);
 
         CroquetController controller = new CroquetController(frame, model);
-        level1View.setSurfaceMap(Level1.getLevelSurfacemap(), Level1.getLevelHeight(), Level1.getLevelWidth());
+        level1View.setSurfaceMap(level1.getLevelSurfacemap(), level1.getLevelHeight(), level1.getLevelWidth());
         frame.setLevelView(level1View);
         Thread run = new Thread();
         run.start();
