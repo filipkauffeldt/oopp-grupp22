@@ -55,6 +55,7 @@ public class LevelView extends JLayeredPane implements ILevelView, IModelVisuali
 
     private void drawLowerLayerEntity(DrawableEntity entity, BufferedImage bufferedImage) {
         JLabel label = makeLabel(entity, bufferedImage);
+        label.setBackground(Color.RED);
         add(label, JLayeredPane.DEFAULT_LAYER);
     }
 
@@ -63,7 +64,7 @@ public class LevelView extends JLayeredPane implements ILevelView, IModelVisuali
         add(label, JLayeredPane.MODAL_LAYER);
     }
 
-    private void drawNoneLayeredEntity(DrawableEntity entity) {
+    private void drawLowerLayeredEntity(DrawableEntity entity) {
         BufferedImage bufferedImage = textureManager.getTexture(entity.getTypeName());
         drawLowerLayerEntity(entity, bufferedImage);
     }
@@ -156,10 +157,10 @@ public class LevelView extends JLayeredPane implements ILevelView, IModelVisuali
                 drawMiddleLayerEntity(entity, textureManager.getTexture(entity.getTypeName()));
                 return;
             case BALL:
-                drawNoneLayeredEntity(entity);
+                drawLowerLayeredEntity(entity);
                 return;
             case STONE:
-                drawNoneLayeredEntity(entity);
+                drawLowerLayeredEntity(entity);
                 return;
             case DIRECTIONLINE:
                 drawDirectionLine(entity);

@@ -37,11 +37,13 @@ public class Level1 extends Level {
         super(width, height, tilemap);
         
         Stone s = new Stone(30, 30, 300, 500);
-        Hoop h = new Hoop(40, 20,32, 4,295, 450, Direction.SOUTH);
+        Hoop h = new Hoop(20, 40,32, 4,400, 280, Direction.WEST);
+        Hoop h2 = new Hoop(40, 20,32, 4,400, 466, Direction.NORTH);
         Peg p = new Peg(5, 40, 309, 100);  
         
         addStone(s);
         addHoop(h);
+        addHoop(h2);
         addPeg(p);
     }
 

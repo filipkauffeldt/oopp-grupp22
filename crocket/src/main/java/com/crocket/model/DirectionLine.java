@@ -1,6 +1,7 @@
 package com.crocket.model;
 
 import com.crocket.model.entity.Ball;
+import com.crocket.model.interfaces.IEntityVisitor;
 
 public class DirectionLine {
     private int degreeAngle;
@@ -13,7 +14,7 @@ public class DirectionLine {
         setDegreeAngle(degreeAngle);
         this.xPosition = xPosition;
         this.yPosition = yPosition;
-    }
+    } 
 
     public int getDegreeAngle() {
         return degreeAngle;
@@ -25,8 +26,8 @@ public class DirectionLine {
 
     public double getyPosition() {
         return yPosition;
-    }
-
+    } 
+ 
     public double getHeight() {
         return HEIGHT;
     }
@@ -65,5 +66,9 @@ public class DirectionLine {
         degreeAngle -= 5;
 
         setDegreeAngle(degreeAngle);
+    }
+
+    public void accept(IEntityVisitor visitor) {
+        visitor.visit(this);
     }
 }
