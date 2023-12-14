@@ -29,6 +29,30 @@
                 "TexturePath": "crocket/assets/textures/HoopLowerWest.png"
             },
             {
+                "Name": "HOOPTOPHORIZONTALHIGHLIGHTED",
+                "TexturePath": "crocket/assets/textures/HoopTopHorizontalHighlighted.png"
+            },
+            {
+                "Name": "HOOPTOPVERTICALHIGHLIGHTED",
+                "TexturePath": "crocket/assets/textures/HoopTopVerticalHighlighted.png"
+            },
+            {
+                "Name": "HOOPLOWERNORTHHIGHLIGHTED",
+                "TexturePath": "crocket/assets/textures/HoopLowerNorthHighlighted.png"
+            },
+            {
+                "Name": "HOOPLOWERSOUTHHIGHLIGHTED",
+                "TexturePath": "crocket/assets/textures/HoopLowerSouthHighlighted.png"
+            },
+            {
+                "Name": "HOOPLOWEREASTHIGHLIGHTED",
+                "TexturePath": "crocket/assets/textures/HoopLowerEastHighlighted.png"
+            },
+            {
+                "Name": "HOOPLOWERWESTHLIGHTED",
+                "TexturePath": "crocket/assets/textures/HoopLowerWestHighlighted.png"
+            },
+            {
                 "Name": "STONE",
                 "TexturePath": "crocket/assets/textures/Stone.png"
             },
