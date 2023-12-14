@@ -3,20 +3,6 @@ import javax.swing.JFrame;
 
 import javax.swing.ImageIcon;
 
-/*
- * Class: CroquetView
- * 
- * This class extends JFrame and represents the main window of the game. It is responsible for 
- * rendering the game state to the user.
- * 
- * CroquetView is implemented as a Singleton, ensuring that only one instance of CroquetView exists
- * in the application at any time. This is done to maintain a consistent view state throughout
- * the application.
- * 
- * Methods:
- * setLevelView: Sets the current level view to the specified LevelView object. Clears the frame
- */
-
 public class CroquetView extends JFrame{
     private static CroquetView instance;
     private ImageIcon img = new ImageIcon("crocket/assets/textures/JFrame_Icon.jpg");
