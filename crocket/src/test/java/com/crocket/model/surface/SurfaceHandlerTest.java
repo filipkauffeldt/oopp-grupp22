@@ -6,10 +6,7 @@ import com.crocket.model.Level1;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
-// // 400x, 600y: Ice
-// // 1000x, 1400y: Sand
+import static org.junit.Assert.assertTrue;   
 
 public class SurfaceHandlerTest {
     Ball ball = new Ball(19, 19, 50, 50, 2);

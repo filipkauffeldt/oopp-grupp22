@@ -12,7 +12,6 @@ import com.crocket.model.interfaces.IPowerUp;
 public class Player {
     private String name;
     private int strokes;
-    private boolean finished;
     private Queue<Entity> remainingTargets; // Queue of hoops and peg that have not been passed yet
     private Ball ball;
     private List<IPowerUp> powerUps;
@@ -20,7 +19,6 @@ public class Player {
     public Player(Ball ball, String name) {
         this.remainingTargets = new LinkedList<Entity>();
         this.strokes = 0;
-        this.finished = false;
         this.ball = ball;
         this.name = name;
         this.powerUps = new ArrayList<IPowerUp>();
