@@ -46,7 +46,7 @@ public class Level1 extends Level {
             new Stone(STONEWIDTH, STONEHEIGHT, 1070, 500),
             new Stone(STONEWIDTH, STONEHEIGHT, 900, 400),
             new Stone(STONEWIDTH, STONEHEIGHT, 1070, 200),
-            new Stone(STONEWIDTH, STONEHEIGHT,970, 0),
+            new Stone(STONEWIDTH, STONEHEIGHT, 970, 0),
             new Stone(STONEWIDTH, STONEHEIGHT, 700, 300),
             new Stone(STONEWIDTH, STONEHEIGHT, 600, 500),
             new Stone(STONEWIDTH, STONEHEIGHT, 400, 100),
@@ -70,7 +70,7 @@ public class Level1 extends Level {
     public Level1() {
         super(width, height, tilemap);
 
-        for(Stone stone : stoneList){
+        for (Stone stone : stoneList){
             addStone(stone);
         }
         for (Hoop hoop : hoopsList){
