@@ -38,8 +38,8 @@ public class Application {
 
         // Ball p1Ball = new Ball(19, 19, 1030d, 650d, 20); // For level 1
         // Ball p2Ball = new Ball(19, 19, 1070d, 650d, 20); // For level 1
-        Ball p1Ball = new Ball(19, 19, 400d, 450d, 20); // For level test
-        Ball p2Ball = new Ball(19, 19, 430d, 480d, 20); // For level test
+        Ball p1Ball = new Ball(19, 19, 400d, 450d, 10); // For level test
+        Ball p2Ball = new Ball(19, 19, 430d, 480d, 10); // For level test
 
         // TODO: Implement a way for the end user to decide how many players there should be
         Player player1 = new Player(p1Ball, "Player 1");

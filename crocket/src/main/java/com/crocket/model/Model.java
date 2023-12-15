@@ -150,6 +150,10 @@ public class Model implements IModel, IEventListener {
         }
     }
 
+    public Player getActivePlayer() {
+        return activePlayer;
+    }
+
     private void populatePowerUpEntities(PowerUpEntity powerUp) {
         entities.add(powerUp);
         collidables.add(powerUp);

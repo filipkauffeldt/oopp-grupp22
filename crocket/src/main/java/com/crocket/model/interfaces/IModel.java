@@ -120,4 +120,8 @@ public interface IModel {
      * @return true if the model is ready to accept a shot, false otherwise.
      */
     public boolean shotAllowed();
+    /*
+     * @return the active player.
+     */
+    public Player getActivePlayer();
 }

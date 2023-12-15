@@ -9,14 +9,16 @@ public class DrawableEntity {
     private int height;
     private int rotation;
     private EntityType type;
+    private boolean active;
     
-    public DrawableEntity(int xPosition, int yPosition, int width, int height, int rotation, EntityType type) {
+    public DrawableEntity(int xPosition, int yPosition, int width, int height, int rotation, EntityType type, boolean active) {
         this.xPosition = xPosition;
         this.yPosition = yPosition;
         this.width = width;
         this.height = height;
         this.rotation = rotation;
         this.type = type;
+        this.active = active;
     }
 
     public int getxPosition() {
@@ -55,5 +57,7 @@ public class DrawableEntity {
         return type.name();
     }
 
-
+    public boolean isActive() {
+        return active;
+    }
 }

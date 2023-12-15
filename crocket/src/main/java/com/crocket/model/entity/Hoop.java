@@ -40,7 +40,8 @@ public class Hoop extends Entity implements ICollidable {
         else if (collidedLeft(ball)) {
             Direction direction = CollisionHandler.collidedDirection(ball, leftHitbox);
             CollisionHandler.reflect(ball, direction);
-        } else if (collidedRight(ball)) {
+        } 
+        else if (collidedRight(ball)) {
             Direction direction = CollisionHandler.collidedDirection(ball, rightHitbox);
             CollisionHandler.reflect(ball, direction);
         }
