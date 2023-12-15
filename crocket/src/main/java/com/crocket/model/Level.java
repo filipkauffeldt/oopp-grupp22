@@ -1,6 +1,8 @@
 package com.crocket.model;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import com.crocket.model.entity.Entity;
@@ -12,7 +14,7 @@ import com.crocket.model.interfaces.IMovable;
 import com.crocket.shared.SurfaceType;
 
 /**
- * Represents a level in the croquet game.
+ * Represents a level in the croquet game. Has a list of all entities in the level, a list of all movable entities in the level, a list of all collidable entities in the level, a list of all target entities in the level with the last target to be hit last in the list, a width, a height and a tilemap.
  */
 public abstract class Level {
     private int width = 25;
@@ -21,7 +23,7 @@ public abstract class Level {
     private Set<Entity> entities = new HashSet<Entity>();
     private Set<IMovable> movables = new HashSet<IMovable>();
     private Set<ICollidable> collidables = new HashSet<ICollidable>();
-    private Set<Entity> targetSet = new HashSet<Entity>();
+    private List<Entity> targets = new ArrayList<Entity>();
     private SurfaceType[][] tilemap;
 
     /**
@@ -66,13 +68,13 @@ public abstract class Level {
     protected void addHoop(Hoop hoop) {
         entities.add(hoop);
         collidables.add(hoop);
-        targetSet.add(hoop);
+        targets.add(hoop);
     }
     
     protected void addPeg(Peg peg) {
         entities.add(peg);
         collidables.add(peg);
-        targetSet.add(peg);
+        targets.add(peg);
     }
 
     /**
@@ -130,11 +132,11 @@ public abstract class Level {
     }
 
     /**
-     * Returns a set of all target entities in the level.
+     * Returns a new List of all target entities in the level.
      * 
      * @return Set of Entity objects representing all target entities in the level
      */
-    public Set<Entity> getTargets() {
-        return targetSet;
+    public List<Entity> getTargets() {
+        return new ArrayList<Entity>(targets);
     }
 }
