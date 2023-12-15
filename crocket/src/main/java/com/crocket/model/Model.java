@@ -20,7 +20,7 @@ import com.crocket.model.surface.SurfaceHandler;
 import com.crocket.shared.SurfaceType;
 
 public class Model implements IModel, IEventListener {
-    private static final double NO_MOVEMENT_THRESHOLD = 0.1;
+    private static final double NO_MOVEMENT_THRESHOLD = 0.5;
 
     private static Model instance = null;
     private List<Player> players;
