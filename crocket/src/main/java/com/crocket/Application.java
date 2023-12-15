@@ -24,8 +24,8 @@ public class Application {
 
     private static void init() {
         CroquetView frame = CroquetView.getInstance();
-        // Level level1 = new Level1();             // For level 1
-        // LevelView level1View = new LevelView();  // For level 1
+        //Level level1 = new Level1();                // For level 1
+        //LevelView level1View = new LevelView();     // For level 1
         Level levelTest = new LevelTest();          // For level test
         LevelView levelTestView = new LevelView();  // For level test
 
@@ -36,8 +36,8 @@ public class Application {
         EventPublisher eventPublisher = EventPublisher.getInstance();
         eventPublisher.addListener(Model.getInstance());
 
-        // Ball p1Ball = new Ball(19, 19, 1030d, 650d, 20);                                     // For level 1
-        // Ball p2Ball = new Ball(19, 19, 1070d, 650d, 20);                                     // For level 1
+        //Ball p1Ball = new Ball(19, 19, 1030d, 650d, 20);  // For level 1
+        //Ball p2Ball = new Ball(19, 19, 1070d, 650d, 20);  // For level 1
         Ball p1Ball = new Ball(19, 19, 400d, 450d, 20);   // For level test
         Ball p2Ball = new Ball(19, 19, 430d, 480d, 20);   // For level test
 
@@ -47,13 +47,13 @@ public class Application {
         players.add(player1);
         players.add(player2);
 
-        // model.setLevel(level1);  // For level 1
+        //model.setLevel(level1);     // For level 1
         model.setLevel(levelTest);  // For level test
         model.setPlayers(players);
 
         CroquetController controller = new CroquetController(frame, model);
-        // level1View.setSurfaceMap(level1.getLevelSurfacemap(), level1.getLevelHeight(), level1.getLevelWidth());          // For level 1
-        // frame.setLevelView(level1View);                                                                                  // For level 1
+        //level1View.setSurfaceMap(level1.getLevelSurfacemap(), level1.getLevelHeight(), level1.getLevelWidth());             // For level 1
+        //frame.setLevelView(level1View);                                                                                     // For level 1
         levelTestView.setSurfaceMap(levelTest.getLevelSurfacemap(), levelTest.getLevelHeight(), levelTest.getLevelWidth()); // For level test
         frame.setLevelView(levelTestView);                                                                                  // For level test
         Thread run = new Thread();
