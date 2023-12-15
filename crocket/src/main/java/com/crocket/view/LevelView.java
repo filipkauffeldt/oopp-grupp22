@@ -14,7 +14,7 @@ import com.crocket.model.interfaces.IModelVisualiser;
 import com.crocket.shared.SurfaceType;
 import com.crocket.view.interfaces.ILevelView;
 
-public class LevelView extends JLayeredPane implements ILevelView, IModelVisualiser {
+public class LevelView extends JLayeredPane implements ILevelView {
     private SurfaceType[][] levelSurfacemap;
     private TextureManager textureManager;
     private int levelHeight;
@@ -136,13 +136,6 @@ public class LevelView extends JLayeredPane implements ILevelView, IModelVisuali
         drawMiddleLayerEntity(entity, bufferedImage);
     }
 
-     public void update(Set<DrawableEntity> entities) {
-        drawEntities(entities);
-    }
-
-    public void notifyPlayerWon(String name) {
-    }
-
     public void drawEntities(Set<DrawableEntity> entities) {
         removeAll();
         for (DrawableEntity entity : entities) {
@@ -172,6 +165,10 @@ public class LevelView extends JLayeredPane implements ILevelView, IModelVisuali
             default:
                 throw new IllegalArgumentException("Unknown entity class: " + entity.getTypeName());
         }
+    }
+
+    public void displayWinner(String playerName) {
+        JOptionPane.showMessageDialog(null, playerName + " won!", "Game over", JOptionPane.INFORMATION_MESSAGE);
     }
 
     public void setSurfaceMap(SurfaceType[][] levelSurfacemap, int levelHeight, int levelWidth) {

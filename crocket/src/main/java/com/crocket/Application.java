@@ -50,7 +50,7 @@ public class Application {
         Thread run = new Thread();
         run.start();
 
-        model.addSubscriber(level1View);
+        model.addSubscriber(frame);
         model.start();
     }
 }
