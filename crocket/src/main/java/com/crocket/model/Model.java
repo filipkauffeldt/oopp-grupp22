@@ -32,7 +32,6 @@ public class Model implements IModel, IEventListener {
     private Map<Ball, Player> ballOwner;
   
     private Level level;
-    private EventPublisher eventPublisher;
 
     private Set<IModelVisualiser> visualizerSubscribers;
 
@@ -52,7 +51,6 @@ public class Model implements IModel, IEventListener {
         surfaceHandler = SurfaceHandler.getInstance();
         round = 0;
         ballIsMoving = false;
-        eventPublisher = EventPublisher.getInstance();
         ballOwner = new HashMap<Ball, Player>();
         visualizerSubscribers = new HashSet<IModelVisualiser>();
     }
