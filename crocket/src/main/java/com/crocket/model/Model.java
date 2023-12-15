@@ -94,12 +94,9 @@ public class Model implements IModel, IEventListener {
         Player player = ballOwner.get(event.getBall());
         Entity target = event.getTarget();
 
-        // System.out.println("Player " + player.getName() + " passed target event" + target);
-
         boolean passed = player.passTarget(target);
 
         if (!passed) {
-            // System.out.println("Player " + player.getName() + " failed to pass target " + target);
             return;
         }
 
