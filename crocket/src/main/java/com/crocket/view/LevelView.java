@@ -81,7 +81,7 @@ public class LevelView extends JLayeredPane implements ILevelView {
                 DrawDirectionLine.HEIGHT);
 
         panel.changeAngle(entity.getCosinus(), entity.getSinus());
-        add(panel, JLayeredPane.DEFAULT_LAYER);
+        add(panel, JLayeredPane.MODAL_LAYER);
         panel.repaint();
     }
 
