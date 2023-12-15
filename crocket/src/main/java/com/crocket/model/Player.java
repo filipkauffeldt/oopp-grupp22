@@ -40,8 +40,8 @@ public class Player {
         this.powerUps.remove(powerUp);
     }
 
-    public boolean passTarget(Entity hoop) {
-        if (this.remainingTargets.peek() == hoop) {
+    public boolean passTarget(Entity target) {
+        if (this.remainingTargets.peek() == target) {
             this.remainingTargets.poll();
             return true;
         }
