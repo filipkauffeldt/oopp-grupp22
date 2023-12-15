@@ -130,6 +130,12 @@ public class LevelView extends JLayeredPane implements ILevelView {
             default:
                 throw new IllegalArgumentException("Invalid rotation");
         }
+
+        if (entity.isActive()) {
+            topHoopTexture += "HIGHLIGHTED";
+            lowerHoopTexture += "HIGHLIGHTED";
+        }
+
         BufferedImage bufferedImage = textureManager.getTexture(lowerHoopTexture);
         drawLowerLayerEntity(entity, bufferedImage);
 

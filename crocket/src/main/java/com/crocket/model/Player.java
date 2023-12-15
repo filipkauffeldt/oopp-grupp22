@@ -93,6 +93,10 @@ public class Player {
         return remainingTargets;
     }
 
+    public Entity getActiveTarget() {
+        return remainingTargets.peek();
+    }
+
     public int getStrokes() {
         return this.strokes;
     }
