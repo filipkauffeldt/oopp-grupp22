@@ -45,8 +45,8 @@ public class EntityDrawableVisitor implements IEntityVisitor {
         int height = entity.getHeight();
         IModel model = Model.getInstance();
         Player activePlayer = model.getActivePlayer();
-        Entity entity2 = activePlayer.getActiveTarget();
-        if(entity2 == entity) {
+        Entity activeEntity = activePlayer.getActiveTarget();
+        if(activeEntity == entity) {
             active = true;
         }
         EntityType type = getEntityTypeFromClass(entity.getClass());
