@@ -41,7 +41,7 @@ public class LevelView extends JLayeredPane implements ILevelView {
 
     private void drawSurfaceTile(Graphics g, SurfaceType surface, int x, int y) throws IOException {
         BufferedImage surfaceImage = textureManager.getTexture(surface.name());
-        g.drawImage(surfaceImage, x*surfaceImage.getWidth(), y*surfaceImage.getHeight(), this);
+        g.drawImage(surfaceImage, x * surfaceImage.getWidth(), y * surfaceImage.getHeight(), this);
     }
 
     public void drawSurfaces(Graphics g) throws IOException {
@@ -68,17 +68,18 @@ public class LevelView extends JLayeredPane implements ILevelView {
         BufferedImage bufferedImage = textureManager.getTexture(entity.getTypeName());
         drawLowerLayerEntity(entity, bufferedImage);
     }
-    
+
     private JLabel makeLabel(DrawableEntity entity, BufferedImage bufferedImage) {
         JLabel label = new JLabel(new ImageIcon(bufferedImage));
         label.setBounds(entity.getxPosition(), entity.getyPosition(), entity.getWidth(), entity.getHeight());
         return label;
     }
-    
+
     private void drawDirectionLine(DrawableEntity entity) {
         DrawDirectionLine panel = new DrawDirectionLine();
-        panel.setBounds(entity.getxPosition(), entity.getyPosition(), DrawDirectionLine.WIDTH, DrawDirectionLine.HEIGHT);
-        
+        panel.setBounds(entity.getxPosition(), entity.getyPosition(), DrawDirectionLine.WIDTH,
+                DrawDirectionLine.HEIGHT);
+
         panel.changeAngle(entity.getCosinus(), entity.getSinus());
         add(panel, JLayeredPane.DEFAULT_LAYER);
         panel.repaint();
@@ -112,19 +113,19 @@ public class LevelView extends JLayeredPane implements ILevelView {
         switch (rotation) {
             case 0:
                 topHoopTexture = "HOOPTOPHORIZONTAL";
-                lowerHoopTexture = "HOOPLOWERNORTH";
+                lowerHoopTexture = "HOOPLOWERSOUTH";
                 break;
             case 90:
                 topHoopTexture = "HOOPTOPVERTICAL";
-                lowerHoopTexture = "HOOPLOWERWEST";
+                lowerHoopTexture = "HOOPLOWEREAST";
                 break;
             case 180:
                 topHoopTexture = "HOOPTOPHORIZONTAL";
-                lowerHoopTexture = "HOOPLOWERSOUTH";
+                lowerHoopTexture = "HOOPLOWERNORTH";
                 break;
             case 270:
                 topHoopTexture = "HOOPTOPVERTICAL";
-                lowerHoopTexture = "HOOPLOWEREAST";
+                lowerHoopTexture = "HOOPLOWERWEST";
                 break;
             default:
                 throw new IllegalArgumentException("Invalid rotation");

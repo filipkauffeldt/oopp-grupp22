@@ -33,15 +33,16 @@ public class Hoop extends Entity implements ICollidable {
     public void collideWithBall(Ball ball) {
         if (missedTarget(ball))
             return;
-        if (collidedLeft(ball)) {
+        if (passedThrough(ball)) {
+            PassTargetEvent event = new PassTargetEvent(ball, this);
+            eventPublisher.publishEvent(event);
+        }
+        else if (collidedLeft(ball)) {
             Direction direction = CollisionHandler.collidedDirection(ball, leftHitbox);
             CollisionHandler.reflect(ball, direction);
         } else if (collidedRight(ball)) {
             Direction direction = CollisionHandler.collidedDirection(ball, rightHitbox);
             CollisionHandler.reflect(ball, direction);
-        } else if (passedThrough(ball)) {
-            PassTargetEvent event = new PassTargetEvent(ball, this);
-            eventPublisher.publishEvent(event);
         }
     }
 
@@ -66,9 +67,9 @@ public class Hoop extends Entity implements ICollidable {
     }
 
     private void createVerticalPostsHitbox() {
-        int hitboxWidth = this.innerHeight;
-        int hitboxHeight = (this.getWidth() - this.innerWidth) / 2;
-        double xHitboxPlacement = this.getWidth() / 2 - hitboxWidth + this.getxPosition();
+        int hitboxWidth = this.innerWidth;
+        int hitboxHeight = (this.getHeight() - this.innerHeight) / 2;
+        double xHitboxPlacement = this.getxPosition();
         double yTopHitboxPlacement = this.getyPosition();
         double yBottomHitboxPlacement = this.getHeight() - hitboxHeight + this.getyPosition();
         this.leftHitbox = new Hitbox(hitboxWidth, hitboxHeight, xHitboxPlacement, yTopHitboxPlacement);
@@ -82,8 +83,8 @@ public class Hoop extends Entity implements ICollidable {
     }
 
     private void createVerticalScoreHitbox() {
-        double xHitboxPlacement = this.getWidth() / 2 - this.innerWidth + this.getxPosition();
-        double yHitboxPlacement = this.getHeight() - this.innerHeight + this.getyPosition();
+        double xHitboxPlacement = this.getxPosition();
+        double yHitboxPlacement = (this.getHeight() - this.innerHeight) / 2 + this.getyPosition();
         this.innerHitbox = new Hitbox(this.innerWidth, this.innerHeight, xHitboxPlacement, yHitboxPlacement);
     }
 
@@ -100,25 +101,28 @@ public class Hoop extends Entity implements ICollidable {
     }
 
     private boolean passedThrough(Ball ball) {
-        return CollisionHandler.intersect(ball, innerHitbox) 
-            && (CollisionHandler.northSouthCollisionDirection(ball) == this.dir
-                || CollisionHandler.eastWestCollisionDirection(ball) == this.dir);
+        return CollisionHandler.intersect(ball, innerHitbox)
+                && (CollisionHandler.northSouthCollisionDirection(ball) == this.dir
+                        || CollisionHandler.eastWestCollisionDirection(ball) == this.dir);
     }
 
     public Hitbox getLeftHitbox() {
-        return new Hitbox(leftHitbox.getWidth(), leftHitbox.getHeight(), leftHitbox.getxPosition(), leftHitbox.getyPosition());
+        return new Hitbox(leftHitbox.getWidth(), leftHitbox.getHeight(), leftHitbox.getxPosition(),
+                leftHitbox.getyPosition());
     }
 
     public Hitbox getRightHitbox() {
-        return new Hitbox(rightHitbox.getWidth(), rightHitbox.getHeight(), rightHitbox.getxPosition(),rightHitbox.getyPosition());
+        return new Hitbox(rightHitbox.getWidth(), rightHitbox.getHeight(), rightHitbox.getxPosition(),
+                rightHitbox.getyPosition());
     }
 
     public Direction getDirection() {
         return this.dir;
     }
 
-    // Weird bug should work in entity but IEntityVisitor does not use the overloaded method
-    @Override 
+    // Weird bug should work in entity but IEntityVisitor does not use the
+    // overloaded method
+    @Override
     public void accept(IEntityVisitor visitor) {
         visitor.visit(this);
     }
