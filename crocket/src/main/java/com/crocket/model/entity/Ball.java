@@ -4,7 +4,6 @@ import com.crocket.model.interfaces.IMovable;
 
 public class Ball extends Entity implements IMovable{
     private double mass;
-    private String powerUp;
     private double xVelocity;
     private double yVelocity;
     private double friction = 1;
