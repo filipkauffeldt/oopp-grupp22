@@ -63,6 +63,14 @@ public abstract class Entity implements IEntityVisitable {
         return new Hitbox(width, height, xPosition, yPosition);
     }
 
+    public void setHitboxXPosition(double xPosition) {
+        this.hitbox.setxPosition(xPosition);
+    }
+
+    public void setHitboxYPosition(double yPosition) {
+        this.hitbox.setyPosition(yPosition);
+    }
+
     public void accept(IEntityVisitor visitor) {
         visitor.visit(this);
     }
