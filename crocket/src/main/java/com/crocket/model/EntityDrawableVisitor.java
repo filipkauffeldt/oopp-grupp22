@@ -10,6 +10,7 @@ import com.crocket.model.entity.Hoop;
 import com.crocket.model.entity.Peg;
 import com.crocket.model.entity.Stone;
 import com.crocket.model.interfaces.IEntityVisitor;
+import com.crocket.model.interfaces.IModel;
 import com.crocket.shared.EntityType;
 import com.crocket.shared.Direction;
 
@@ -37,12 +38,19 @@ public class EntityDrawableVisitor implements IEntityVisitor {
     }
 
     private void addDrawableEntity(Entity entity, int rotation) {
+        boolean active = false;
         int xPosition = (int) entity.getxPosition();
         int yPosition = (int) entity.getyPosition();
         int width = entity.getWidth();
         int height = entity.getHeight();
+        IModel model = Model.getInstance();
+        Player activePlayer = model.getActivePlayer();
+        Entity entity2 = activePlayer.getActiveTarget();
+        if(entity2 == entity) {
+            active = true;
+        }
         EntityType type = getEntityTypeFromClass(entity.getClass());
-        drawableEntities.add(new DrawableEntity(xPosition, yPosition, width, height, rotation, type));
+        drawableEntities.add(new DrawableEntity(xPosition, yPosition, width, height, rotation, type, active));
     }
 
     private void addDrawableEntity(DirectionLine directionLine, int rotation) {
@@ -51,7 +59,7 @@ public class EntityDrawableVisitor implements IEntityVisitor {
         int width = (int) directionLine.getWidth();
         int height = (int) directionLine.getHeight();
         EntityType type = getEntityTypeFromClass(directionLine.getClass());
-        drawableEntities.add(new DrawableEntity(xPosition, yPosition, width, height, rotation, type));
+        drawableEntities.add(new DrawableEntity(xPosition, yPosition, width, height, rotation, type, false));
     }
 
     private int toDegrees(Direction direction) {
