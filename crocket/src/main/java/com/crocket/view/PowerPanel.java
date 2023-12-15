@@ -20,9 +20,9 @@ public class PowerPanel extends JPanel {
     private final int WIDTH = 200;
     private final int HEIGHT = 50;
     private final int XPOS = (int) screen.getWidth()/100;
-    private final int YPOS = 90 * (int) screen.getHeight()/100;
+    private final int YPOS = 85 * (int) screen.getHeight()/100;
     private int[] x = new int[] {0,3,6};
-    private int[] y = new int[] {55,25,55};
+    private int[] y = new int[] {55,0,55};
     
     PowerPanel() {
         super();

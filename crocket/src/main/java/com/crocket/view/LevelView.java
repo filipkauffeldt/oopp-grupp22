@@ -14,7 +14,7 @@ import com.crocket.model.interfaces.IModelVisualiser;
 import com.crocket.shared.SurfaceType;
 import com.crocket.view.interfaces.ILevelView;
 
-public class LevelView extends JLayeredPane implements ILevelView, IModelVisualiser {
+public class LevelView extends JLayeredPane implements ILevelView {
     private SurfaceType[][] levelSurfacemap;
     private TextureManager textureManager;
     private int levelHeight;
@@ -41,7 +41,7 @@ public class LevelView extends JLayeredPane implements ILevelView, IModelVisuali
 
     private void drawSurfaceTile(Graphics g, SurfaceType surface, int x, int y) throws IOException {
         BufferedImage surfaceImage = textureManager.getTexture(surface.name());
-        g.drawImage(surfaceImage, x*surfaceImage.getWidth(), y*surfaceImage.getHeight(), this);
+        g.drawImage(surfaceImage, x * surfaceImage.getWidth(), y * surfaceImage.getHeight(), this);
     }
 
     public void drawSurfaces(Graphics g) throws IOException {
@@ -68,17 +68,18 @@ public class LevelView extends JLayeredPane implements ILevelView, IModelVisuali
         BufferedImage bufferedImage = textureManager.getTexture(entity.getTypeName());
         drawLowerLayerEntity(entity, bufferedImage);
     }
-    
+
     private JLabel makeLabel(DrawableEntity entity, BufferedImage bufferedImage) {
         JLabel label = new JLabel(new ImageIcon(bufferedImage));
         label.setBounds(entity.getxPosition(), entity.getyPosition(), entity.getWidth(), entity.getHeight());
         return label;
     }
-    
+
     private void drawDirectionLine(DrawableEntity entity) {
         DrawDirectionLine panel = new DrawDirectionLine();
-        panel.setBounds(entity.getxPosition(), entity.getyPosition(), DrawDirectionLine.WIDTH, DrawDirectionLine.HEIGHT);
-        
+        panel.setBounds(entity.getxPosition(), entity.getyPosition(), DrawDirectionLine.WIDTH,
+                DrawDirectionLine.HEIGHT);
+
         panel.changeAngle(entity.getCosinus(), entity.getSinus());
         add(panel, JLayeredPane.DEFAULT_LAYER);
         panel.repaint();
@@ -112,19 +113,19 @@ public class LevelView extends JLayeredPane implements ILevelView, IModelVisuali
         switch (rotation) {
             case 0:
                 topHoopTexture = "HOOPTOPHORIZONTAL";
-                lowerHoopTexture = "HOOPLOWERNORTH";
+                lowerHoopTexture = "HOOPLOWERSOUTH";
                 break;
             case 90:
                 topHoopTexture = "HOOPTOPVERTICAL";
-                lowerHoopTexture = "HOOPLOWERWEST";
+                lowerHoopTexture = "HOOPLOWEREAST";
                 break;
             case 180:
                 topHoopTexture = "HOOPTOPHORIZONTAL";
-                lowerHoopTexture = "HOOPLOWERSOUTH";
+                lowerHoopTexture = "HOOPLOWERNORTH";
                 break;
             case 270:
                 topHoopTexture = "HOOPTOPVERTICAL";
-                lowerHoopTexture = "HOOPLOWEREAST";
+                lowerHoopTexture = "HOOPLOWERWEST";
                 break;
             default:
                 throw new IllegalArgumentException("Invalid rotation");
@@ -134,10 +135,6 @@ public class LevelView extends JLayeredPane implements ILevelView, IModelVisuali
 
         bufferedImage = textureManager.getTexture(topHoopTexture);
         drawMiddleLayerEntity(entity, bufferedImage);
-    }
-
-     public void update(Set<DrawableEntity> entities) {
-        drawEntities(entities);
     }
 
     public void drawEntities(Set<DrawableEntity> entities) {
@@ -169,6 +166,10 @@ public class LevelView extends JLayeredPane implements ILevelView, IModelVisuali
             default:
                 throw new IllegalArgumentException("Unknown entity class: " + entity.getTypeName());
         }
+    }
+
+    public void displayWinner(String playerName) {
+        JOptionPane.showMessageDialog(null, playerName + " won!", "Game over", JOptionPane.INFORMATION_MESSAGE);
     }
 
     public void setSurfaceMap(SurfaceType[][] levelSurfacemap, int levelHeight, int levelWidth) {

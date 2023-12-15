@@ -3,6 +3,7 @@ package com.crocket;
 import java.util.List;
 
 import com.crocket.controller.CroquetController;
+import com.crocket.model.EventPublisher;
 import com.crocket.model.Level;
 import com.crocket.model.Level1;
 import com.crocket.model.Model;
@@ -28,6 +29,9 @@ public class Application {
         IModel model = Model.getInstance();
         List<Player> players = new ArrayList<Player>();
 
+        EventPublisher eventPublisher = EventPublisher.getInstance();
+        eventPublisher.addListener(Model.getInstance());
+
         Ball p1Ball = new Ball(19, 19, 1030d, 650d, 20);
         Ball p2Ball = new Ball(19, 19, 1070d, 650d, 20);
 
@@ -46,7 +50,7 @@ public class Application {
         Thread run = new Thread();
         run.start();
 
-        model.addSubscriber(level1View);
+        model.addSubscriber(frame);
         model.start();
     }
 }
